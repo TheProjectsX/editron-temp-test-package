@@ -17,3 +17,6 @@ export type ListTags = "ul" | "li";
 export type ListData = {
     values: string[];
 };
+
+export type AllTags = HeadingTags | ParagraphTags | ListTags;
+export type AllData = HeadingData | ParagraphData | ListData;
