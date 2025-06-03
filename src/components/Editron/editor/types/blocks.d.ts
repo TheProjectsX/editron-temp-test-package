@@ -6,6 +6,8 @@
 */
 
 import type {
+    DividerData,
+    DividerTags,
     HeadingData,
     HeadingTags,
     ListData,
@@ -14,24 +16,35 @@ import type {
     ParagraphTags,
 } from "./blockElements";
 
+// Heading
 type HeadingBlock = {
     type: "heading";
     tag: HeadingTags;
     data: HeadingData;
 };
 
+// Paragraph
 type ParagraphBlock = {
     type: "paragraph";
     tag: ParagraphTags;
     data: ParagraphData;
 };
 
+// List
 type ListBlock = {
     type: "list";
     tag: ListTags;
     data: ListData;
 };
 
+
+// Divider
+type DividerBlock = {
+    type: "divider";
+    tag: DividerTags;
+    data: DividerData;
+};
+
 export type Block = {
     id: string;
-} & (HeadingBlock | ParagraphBlock | ListBlock);
+} & (HeadingBlock | ParagraphBlock | ListBlock | DividerBlock);

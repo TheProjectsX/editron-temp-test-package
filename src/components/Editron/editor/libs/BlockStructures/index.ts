@@ -1,5 +1,6 @@
 import type { IconType } from "react-icons";
 import { BiParagraph } from "react-icons/bi";
+import { CgFormatSeparator } from "react-icons/cg";
 import { GrList } from "react-icons/gr";
 import {
     LuHeading,
@@ -14,13 +15,14 @@ import {
     MdFormatListNumbered,
     MdOutlineFormatListBulleted,
 } from "react-icons/md";
+import type { AllData } from "../../types/blockElements";
 
 export type BlockStructure = {
     name: string;
     icon: IconType;
     type: string;
     tags: string | string[];
-    data: {};
+    data: AllData;
 };
 
 const BlockStructures = [
@@ -92,6 +94,13 @@ const BlockStructures = [
         data: {
             values: [""],
         },
+    },
+    {
+        name: "Divider",
+        icon: CgFormatSeparator,
+        type: "divider",
+        tags: "hr",
+        data: {},
     },
 ];
 

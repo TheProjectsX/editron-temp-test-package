@@ -5,6 +5,7 @@ import type { Block } from "../../types/blocks";
 import Heading from "../blockElements/Heading";
 import Paragraph from "../blockElements/Paragraph";
 import List from "../blockElements/List";
+import Divider from "../blockElements/Divider";
 
 interface BlockViewerProps extends React.HTMLAttributes<HTMLDivElement> {
     block: Block;
@@ -22,6 +23,7 @@ const BlocksAsType: Record<string, BlockElement> = {
     heading: Heading as BlockElement,
     paragraph: Paragraph as BlockElement,
     list: List as BlockElement,
+    divider: Divider as BlockElement,
 };
 
 const BlockViewer = ({
