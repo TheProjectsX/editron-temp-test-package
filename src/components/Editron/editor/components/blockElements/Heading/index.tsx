@@ -19,12 +19,13 @@ const Heading = ({
             className={`outline-none text-2xl font-semibold py-1 ${className}`}
             onKeyDown={preventNewLine}
             onInput={(e) => {
-                const target = e.currentTarget;
+                const target = e.currentTarget ?? e.target;
                 controlEmptyClass(target);
             }}
-            onBlur={(e) =>
-                onUpdate({ text: e.currentTarget.textContent ?? "" })
-            }
+            onBlur={(e) => {
+                const target = e.currentTarget ?? e.target;
+                onUpdate({ text: target.textContent ?? "" });
+            }}
             data-placeholder={`Enter your heading...`}
             autoFocus
             contentEditable

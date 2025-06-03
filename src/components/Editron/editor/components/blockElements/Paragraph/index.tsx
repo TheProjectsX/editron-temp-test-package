@@ -17,10 +17,13 @@ const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
             className={`outline-none py-1 ${className}`}
             onKeyDown={preventNewLine}
             onInput={(e) => {
-                const target = e.currentTarget;
-                controlEmptyClass(target)
+                const target = e.currentTarget ?? e.target;
+                controlEmptyClass(target);
             }}
-            onBlur={(e) => onUpdate({text: e.currentTarget.textContent ?? ""})}
+            onBlur={(e) => {
+                const target = e.currentTarget ?? e.target;
+                onUpdate({ text: target.textContent ?? "" });
+            }}
             data-placeholder={`Enter some text...`}
             autoFocus
             contentEditable

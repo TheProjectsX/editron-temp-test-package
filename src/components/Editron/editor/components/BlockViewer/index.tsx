@@ -34,7 +34,10 @@ const BlockViewer = ({
     if (!CurrentBlock) return;
 
     const handleUpdateBlock = (data: AllData) => {
-        if (((data as any).values as string[]).length === 0) {
+        if (
+            Array.isArray((data as any)?.values) &&
+            (data as any).values.length === 0
+        ) {
             return dispatch({ type: "DELETE", id: block.id });
         }
 

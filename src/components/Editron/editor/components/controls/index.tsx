@@ -11,9 +11,9 @@ import SettingsPopoverContent from "./SettingsPopoverContent";
 type ControlsProps = {
     wrapper: HTMLDivElement | null;
     focusedBlock: {
-        element: HTMLElement;
-        block: Block;
-    } | null;
+        element: HTMLElement | null;
+        block: Block | null;
+    };
     controllerFocused: boolean;
     setControllerFocused: React.Dispatch<React.SetStateAction<boolean>>;
     dispatch: React.Dispatch<BlockActions>;
@@ -51,7 +51,7 @@ const Controls = ({
 
         dispatch({
             type: "INSERT",
-            currentId: focusedBlock?.block.id!,
+            currentId: focusedBlock.block?.id!,
             payload: payload as Omit<Block, "id">,
         });
 
@@ -60,19 +60,19 @@ const Controls = ({
 
     // Handle Delete Block
     const handleDeleteBlock = () => {
-        dispatch({ type: "DELETE", id: focusedBlock?.block.id! });
+        dispatch({ type: "DELETE", id: focusedBlock.block?.id! });
         setSettingsOpened(false);
     };
 
     // Handle Move Block Up
     const handleMoveUp = () => {
-        dispatch({ type: "MOVE_UP", id: focusedBlock?.block.id! });
+        dispatch({ type: "MOVE_UP", id: focusedBlock.block?.id! });
         setSettingsOpened(false);
     };
 
     // Handle Move Block Down
     const handleMoveDown = () => {
-        dispatch({ type: "MOVE_DOWN", id: focusedBlock?.block.id! });
+        dispatch({ type: "MOVE_DOWN", id: focusedBlock.block?.id! });
         setSettingsOpened(false);
     };
 

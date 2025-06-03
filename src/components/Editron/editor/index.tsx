@@ -14,24 +14,34 @@ const Editron = ({ values, onChange = () => {} }: EditronProps) => {
     const [controllerFocused, setControllerFocused] = useState<boolean>(false);
 
     const [focusedBlock, setFocusedBlock] = useState<{
-        element: HTMLElement;
-        block: Block;
-    } | null>(null);
+        element: HTMLElement | null;
+        block: Block | null;
+    }>({ element: null, block: null });
 
     useEffect(() => {
         // Insert a Paragraph if no Block Item exist
         if (blocks.length === 0) {
             dispatch({ type: "INSERT", currentId: "", payload: ParagraphDemo });
         }
+        // Set Initial focusedBlock
+        if (!focusedBlock.block && blocks.length > 0) {
+            setFocusedBlock((prev) => ({ ...prev, block: blocks[0] }));
+        }
+
         onChange(blocks);
     }, [blocks]);
+
+    useEffect(() => {}, []);
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
             <div className="grid grid-cols-[1fr_60px] gap-2 relative">
-                <div data-name="editor-blocks-wrapper" className="space-y-2">
+                <div
+                    data-name="editor-blocks-wrapper"
+                    className="space-y-2"
+                >
                     {blocks.map((block) => (
                         <BlockViewer
                             key={block.id}
