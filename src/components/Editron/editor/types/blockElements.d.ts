@@ -13,7 +13,7 @@ export type ParagraphData = {
     text: string;
 };
 
-export type ListTags = "ul" | "li";
+export type ListTags = "ul" | "ol";
 export type ListData = {
     values: string[];
 };

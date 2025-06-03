@@ -26,6 +26,7 @@ const Heading = ({
                 onUpdate({ text: e.currentTarget.textContent ?? "" })
             }
             data-placeholder={`Enter your heading...`}
+            autoFocus
             contentEditable
         >
             {data.text ?? ""}

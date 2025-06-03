@@ -3,7 +3,7 @@ import BlockStructures, {
     type BlockStructure,
 } from "../../libs/BlockStructures";
 
-const PopoverContent = ({
+const AddButtonPopoverContent = ({
     newItemOpened,
     handleAddNewBlock,
 }: {
@@ -68,4 +68,4 @@ const PopoverContent = ({
     );
 };
 
-export default PopoverContent;
+export default AddButtonPopoverContent;

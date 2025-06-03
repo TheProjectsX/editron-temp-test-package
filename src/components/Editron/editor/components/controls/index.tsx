@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { GoGear } from "react-icons/go";
 import { IoAddOutline } from "react-icons/io5";
 import Popover from "@theprojectsx/react-popover";
-import PopoverContent from "./PopoverContent";
+import AddButtonPopoverContent from "./AddButtonPopoverContent";
 import type { BlockActions } from "../../hooks/useBlockForge";
 import type { BlockStructure } from "../../libs/BlockStructures";
 import type { Block } from "../../types/blocks";
+import SettingsPopoverContent from "./SettingsPopoverContent";
 
 type ControlsProps = {
     wrapper: HTMLDivElement | null;
@@ -25,6 +26,7 @@ const Controls = ({
     setControllerFocused,
 }: ControlsProps) => {
     const [newItemOpened, setNewItemOpened] = useState(false);
+    const [settingsOpened, setSettingsOpened] = useState(false);
 
     const [positions, setPositions] = useState<{ top: number }>({ top: 0 });
 
@@ -52,12 +54,31 @@ const Controls = ({
             currentId: focusedBlock?.block.id!,
             payload: payload as Omit<Block, "id">,
         });
+
+        setNewItemOpened(false);
+    };
+
+    // Handle Delete Block
+    const handleDeleteBlock = () => {
+        dispatch({ type: "DELETE", id: focusedBlock?.block.id! });
+        setSettingsOpened(false);
+    };
+
+    // Handle Move Block Up
+    const handleMoveUp = () => {
+        dispatch({ type: "MOVE_UP", id: focusedBlock?.block.id! });
+        setSettingsOpened(false);
+    };
+
+    // Handle Move Block Down
+    const handleMoveDown = () => {
+        dispatch({ type: "MOVE_DOWN", id: focusedBlock?.block.id! });
+        setSettingsOpened(false);
     };
 
     useEffect(() => {
-        setControllerFocused(newItemOpened);
+        setControllerFocused(newItemOpened || settingsOpened);
     }, [newItemOpened]);
-
 
     return (
         <div
@@ -65,9 +86,28 @@ const Controls = ({
             className="absolute right-0 flex items-center"
             style={positions}
         >
-            <button className="p-1.5 rounded-lg text-lg text-gray-900 hover:bg-gray-100 cursor-pointer">
-                <GoGear />
-            </button>
+            <Popover
+                gap={3}
+                position="left"
+                axis="top"
+                triggerType="manual"
+                contentVisible={settingsOpened}
+                onWrapperBlur={() => setSettingsOpened(false)}
+                content={
+                    <SettingsPopoverContent
+                        handleMoveUp={handleMoveUp}
+                        handleMoveDown={handleMoveDown}
+                        handleDeleteBlock={handleDeleteBlock}
+                    />
+                }
+            >
+                <button
+                    className="p-1.5 rounded-lg text-lg text-gray-900 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => setSettingsOpened((prev) => !prev)}
+                >
+                    <GoGear />
+                </button>
+            </Popover>
             <Popover
                 gap={3}
                 position="left"
@@ -76,7 +116,7 @@ const Controls = ({
                 contentVisible={newItemOpened}
                 onWrapperBlur={() => setNewItemOpened(false)}
                 content={
-                    <PopoverContent
+                    <AddButtonPopoverContent
                         newItemOpened={newItemOpened}
                         handleAddNewBlock={handleAddNewBlock}
                     />

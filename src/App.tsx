@@ -23,8 +23,8 @@ const App = () => {
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
-            <div className="bg-white rounded-2xl max-w-2xl w-full p-8">
-                <Editron />
+            <div className="bg-white rounded-2xl max-w-2xl w-full px-8 py-6">
+                <Editron onChange={(blocks) => console.log(blocks)} />
             </div>
         </div>
     );

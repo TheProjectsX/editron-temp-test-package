@@ -90,7 +90,7 @@ const BlockStructures = [
             },
         ],
         data: {
-            values: [],
+            values: [""],
         },
     },
 ];

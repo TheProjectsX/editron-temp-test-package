@@ -14,7 +14,7 @@ export type BlockActions =
       }
     | {
           type: "DELETE";
-          payload: Block;
+          id: string;
       }
     | {
           type: "MOVE_UP";
@@ -22,19 +22,20 @@ export type BlockActions =
       }
     | {
           type: "MOVE_DOWN";
+
           id: string;
       };
 
 const BlockReducers = (state: Block[], action: BlockActions) => {
     switch (action.type) {
-        case "INSERT":
+        case "INSERT": {
             const currentIdx = state.findIndex(
                 (block) => block.id === action.currentId
             );
 
             const preEndIdx =
                 currentIdx +
-                (["heading", "paragraph"].includes(state[currentIdx].type) &&
+                (["heading", "paragraph"].includes(state[currentIdx]?.type) &&
                 "text" in state[currentIdx].data &&
                 state[currentIdx].data.text === ""
                     ? 0
@@ -46,18 +47,45 @@ const BlockReducers = (state: Block[], action: BlockActions) => {
                 { ...action.payload, id: nanoid(10) } as Block,
                 ...state.slice(postEndIdx),
             ];
+        }
 
-        case "UPDATE":
-            return state;
+        case "UPDATE": {
+            return state.map((block) =>
+                block.id === action.payload.id ? action.payload : block
+            );
+        }
 
-        case "DELETE":
-            return state;
+        case "DELETE": {
+            return state.filter((block) => block.id !== action.id);
+        }
 
-        case "MOVE_UP":
-            return state;
+        case "MOVE_UP": {
+            const currentIdx = state.findIndex(
+                (block) => block.id === action.id
+            );
+            if (currentIdx <= 0) return state;
 
-        case "MOVE_DOWN":
-            return state;
+            const newArr = [...state];
+
+            const item = newArr.splice(currentIdx, 1)[0];
+            newArr.splice(currentIdx - 1, 0, item);
+
+            return newArr;
+        }
+
+        case "MOVE_DOWN": {
+            const currentIdx = state.findIndex(
+                (block) => block.id === action.id
+            );
+            if (currentIdx >= state.length - 1) return state;
+
+            const newArr = [...state];
+
+            const item = newArr.splice(currentIdx, 1)[0];
+            newArr.splice(currentIdx + 1, 0, item);
+
+            return newArr;
+        }
 
         default:
             return state;

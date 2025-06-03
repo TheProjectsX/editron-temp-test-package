@@ -1,13 +1,13 @@
 import useBlockForge from "./hooks/useBlockForge";
 import BlockViewer from "./components/BlockViewer";
 import type { EditronProps } from "./types";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Controls from "./components/controls";
 import type { Block } from "./types/blocks";
 import "./index.css";
 import { ParagraphDemo } from "./libs/demo";
 
-const Editron = ({ values }: EditronProps) => {
+const Editron = ({ values, onChange = () => {} }: EditronProps) => {
     const [blocks, dispatch] = useBlockForge(
         (values ?? []).length === 0 ? [ParagraphDemo] : values
     );
@@ -18,15 +18,20 @@ const Editron = ({ values }: EditronProps) => {
         block: Block;
     } | null>(null);
 
+    useEffect(() => {
+        // Insert a Paragraph if no Block Item exist
+        if (blocks.length === 0) {
+            dispatch({ type: "INSERT", currentId: "", payload: ParagraphDemo });
+        }
+        onChange(blocks);
+    }, [blocks]);
+
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
-            <div className="flex relative">
-                <div
-                    data-name="editor-blocks-wrapper"
-                    className="flex-1 space-y-1"
-                >
+            <div className="grid grid-cols-[1fr_60px] gap-2 relative">
+                <div data-name="editor-blocks-wrapper" className="space-y-2">
                     {blocks.map((block) => (
                         <BlockViewer
                             key={block.id}

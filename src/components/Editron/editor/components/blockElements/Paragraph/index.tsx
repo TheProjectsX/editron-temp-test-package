@@ -22,6 +22,7 @@ const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
             }}
             onBlur={(e) => onUpdate({text: e.currentTarget.textContent ?? ""})}
             data-placeholder={`Enter some text...`}
+            autoFocus
             contentEditable
         >
             {data.text ?? ""}
