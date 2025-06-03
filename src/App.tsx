@@ -10,7 +10,7 @@ const App = () => {
         {
             id: "Random3",
             type: "paragraph",
-            tag: "h1",
+            tag: "p",
             data: { text: "Test" },
         },
         {
@@ -24,7 +24,7 @@ const App = () => {
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
             <div className="bg-white rounded-2xl max-w-2xl w-full p-8">
-                <Editron values={demoData} />
+                <Editron />
             </div>
         </div>
     );

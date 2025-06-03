@@ -1,0 +1,14 @@
+[data-name="block-editor"] [contenteditable] {
+    position: relative;
+}
+[data-name="block-editor"] [contenteditable]:empty::before,
+[data-name="block-editor"] [contenteditable].empty::before {
+    position: absolute;
+    content: attr(data-placeholder);
+    color: #aaa;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    pointer-events: none;
+}
+

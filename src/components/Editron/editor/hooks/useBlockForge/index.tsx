@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import type { Block } from "../../types/blocks";
+import { nanoid } from "nanoid";
 
 export type BlockActions =
     | {
@@ -27,7 +28,24 @@ export type BlockActions =
 const BlockReducers = (state: Block[], action: BlockActions) => {
     switch (action.type) {
         case "INSERT":
-            return state;
+            const currentIdx = state.findIndex(
+                (block) => block.id === action.currentId
+            );
+
+            const preEndIdx =
+                currentIdx +
+                (["heading", "paragraph"].includes(state[currentIdx].type) &&
+                "text" in state[currentIdx].data &&
+                state[currentIdx].data.text === ""
+                    ? 0
+                    : 1);
+            const postEndIdx = currentIdx + 1;
+
+            return [
+                ...state.slice(0, preEndIdx),
+                { ...action.payload, id: nanoid(10) } as Block,
+                ...state.slice(postEndIdx),
+            ];
 
         case "UPDATE":
             return state;

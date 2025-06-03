@@ -14,7 +14,7 @@ type BlockElement = React.FC<{
     className?: string;
     tag: AllTags;
     data: AllData;
-    onChange: (value: AllData) => void;
+    onUpdate: (value: AllData) => void;
 }>;
 
 const BlocksAsType: Record<string, BlockElement> = {
@@ -25,6 +25,7 @@ const BlocksAsType: Record<string, BlockElement> = {
 const BlockViewer = ({
     className = "",
     block,
+    dispatch,
     ...options
 }: BlockViewerProps) => {
     const CurrentBlock = BlocksAsType[block.type];
@@ -35,7 +36,7 @@ const BlockViewer = ({
             <CurrentBlock
                 tag={block.tag}
                 data={block.data}
-                onChange={(value: AllData) => console.log(value)}
+                onUpdate={(value: AllData) => console.log(value)}
             />
         </div>
     );

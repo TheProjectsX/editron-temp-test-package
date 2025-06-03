@@ -2,21 +2,26 @@ import type {
     ParagraphData,
     ParagraphTags,
 } from "../../../types/blockElements";
+import { controlEmptyClass, preventNewLine } from "../libs/events";
 
 type Paragraph = {
     className?: string;
     tag: ParagraphTags;
     data: ParagraphData;
-    onChange: (value: ParagraphData) => void;
+    onUpdate: (value: ParagraphData) => void;
 };
 
-const Paragraph = ({ className = "", data, onChange }: Paragraph) => {
+const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
     return (
         <p
             className={`outline-none py-1 ${className}`}
-            onInput={(e) =>
-                onChange({ text: e.currentTarget.textContent ?? "" })
-            }
+            onKeyDown={preventNewLine}
+            onInput={(e) => {
+                const target = e.currentTarget;
+                controlEmptyClass(target)
+            }}
+            onBlur={(e) => onUpdate({text: e.currentTarget.textContent ?? ""})}
+            data-placeholder={`Enter some text...`}
             contentEditable
         >
             {data.text ?? ""}
