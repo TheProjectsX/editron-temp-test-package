@@ -12,12 +12,14 @@ type Paragraph = {
 };
 
 const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
+
     return (
         <p
-            className={`outline-none py-1 ${className}`}
+            className={`outline-none py-1 overflow-hidden ${className}`}
             onKeyDown={preventNewLine}
             onInput={(e) => {
                 const target = e.currentTarget ?? e.target;
+                // onUpdate({ text: target.innerHTML ?? "" });
                 controlEmptyClass(target);
             }}
             onBlur={(e) => {

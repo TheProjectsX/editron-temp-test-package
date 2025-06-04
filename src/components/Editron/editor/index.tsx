@@ -31,28 +31,19 @@ const Editron = ({ values, onChange = () => {} }: EditronProps) => {
         onChange(blocks);
     }, [blocks]);
 
-    useEffect(() => {}, []);
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
             <div className="grid grid-cols-[1fr_60px] gap-2 relative">
-                <div
-                    data-name="editor-blocks-wrapper"
-                    className="space-y-2"
-                >
+                <div data-name="editor-blocks-wrapper" className="space-y-2 overflow-hidden">
                     {blocks.map((block) => (
                         <BlockViewer
                             key={block.id}
                             block={block}
                             dispatch={dispatch}
-                            onMouseEnter={(e) => {
-                                setFocusedBlock({
-                                    element: e.target as HTMLElement,
-                                    block,
-                                });
-                            }}
+                            setFocusedBlock={setFocusedBlock}
                         />
                     ))}
                 </div>

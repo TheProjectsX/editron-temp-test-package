@@ -24,7 +24,7 @@ const Heading = ({
             }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ text: target.textContent ?? "" });
+                onUpdate({ text: target.innerHTML ?? "" });
             }}
             data-placeholder={`Enter your heading...`}
             autoFocus

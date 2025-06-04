@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GoGear } from "react-icons/go";
 import { IoAddOutline } from "react-icons/io5";
 import Popover from "@theprojectsx/react-popover";
@@ -36,9 +36,13 @@ const Controls = ({
         const wrapperRect = wrapper.getBoundingClientRect();
         const blockRect = focusedBlock.element.getBoundingClientRect();
 
-        setPositions({
-            top: blockRect.top - wrapperRect.top,
-        });
+        setPositions((prev) =>
+            prev.top === blockRect.top - wrapperRect.top
+                ? prev
+                : {
+                      top: blockRect.top - wrapperRect.top,
+                  }
+        );
     }, [wrapper, focusedBlock]);
 
     // Handle Add new Block
@@ -133,4 +137,4 @@ const Controls = ({
     );
 };
 
-export default Controls;
+export default React.memo(Controls);
