@@ -1,4 +1,5 @@
 import Editron from "./components/Editron/editor";
+
 const App = () => {
     // const demoData = [
     //     {
@@ -26,7 +27,7 @@ const App = () => {
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
             <div className="bg-white rounded-2xl max-w-2xl w-full px-8 py-6 mb-5">
-                <Editor onChange={(blocks) => console.log(blocks)} />
+                <Editor />
             </div>
 
             <button

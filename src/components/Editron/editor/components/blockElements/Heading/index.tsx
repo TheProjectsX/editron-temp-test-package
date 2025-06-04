@@ -24,14 +24,13 @@ const Heading = ({
             }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ text: target.innerHTML ?? "" });
+                onUpdate({ html: target.innerHTML });
             }}
             data-placeholder={`Enter your heading...`}
             autoFocus
             contentEditable
-        >
-            {data.text ?? ""}
-        </Tag>
+            dangerouslySetInnerHTML={{ __html: data.html }}
+        ></Tag>
     );
 };
 

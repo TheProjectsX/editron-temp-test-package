@@ -35,11 +35,7 @@ const BlockReducers = (state: Block[], action: BlockActions) => {
 
             const preEndIdx =
                 currentIdx +
-                (["heading", "paragraph"].includes(state[currentIdx]?.type) &&
-                "text" in state[currentIdx].data &&
-                state[currentIdx].data.text === ""
-                    ? 0
-                    : 1);
+                ((state[currentIdx]?.data as any)?.html === "" ? 0 : 1);
             const postEndIdx = currentIdx + 1;
 
             return [

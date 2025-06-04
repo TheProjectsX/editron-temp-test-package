@@ -1,9 +1,12 @@
+import type { EditorComponentProps } from "../components/EditorComponent";
 import type { Block } from "./blocks";
 
 export interface EditronProps {
-    values?: Block[] | any[];
-    onChange: (blocks: Block[]) => void;
+    values?: Block[];
 }
 
-declare const Editron: (props: EditronProps) => React.ReactElement;
+export type EditronReturn = [React.FC, () => any];
+
+declare const Editron: (props: EditronProps) => EditronReturn;
+
 export default Editron;

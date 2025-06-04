@@ -2,7 +2,6 @@ import type {
     ParagraphData,
     ParagraphTags,
 } from "../../../types/blockElements";
-import { ContentBlockToHtml } from "../libs/converter";
 import { controlEmptyClass, preventNewLine } from "../libs/events";
 
 type Paragraph = {
@@ -13,20 +12,7 @@ type Paragraph = {
 };
 
 const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
-    const Content = ContentBlockToHtml(data.content);
-
-    // Update State Content
-    const handleUpdateState = (html: string) => {
-
-
-
-
-
-        
-
-
-
-    };
+    console.log(data)
 
     return (
         <p
@@ -35,17 +21,16 @@ const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
             onInput={(e) => {
                 const target = e.currentTarget ?? e.target;
                 controlEmptyClass(target);
-                handleUpdateState(target.getHTML());
+            }}
+            onBlur={(e) => {
+                const target = e.currentTarget ?? e.target;
+                onUpdate({ html: target.innerHTML });
             }}
             data-placeholder={`Enter some text...`}
             autoFocus
             contentEditable
-            {...(Content
-                ? {}
-                : { dangerouslySetInnerHTML: { __html: data.html ?? "" } })}
-        >
-            {Content}
-        </p>
+            dangerouslySetInnerHTML={{ __html: data.html }}
+        ></p>
     );
 };
 

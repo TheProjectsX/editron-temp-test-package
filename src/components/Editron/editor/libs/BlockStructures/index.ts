@@ -17,32 +17,29 @@ import {
 } from "react-icons/md";
 import type { AllData } from "../../types/blockElements";
 
+type SubTags = {
+    name: string;
+    tag: string;
+    icon: IconType;
+};
+
 export type BlockStructure = {
     name: string;
     icon: IconType;
     type: string;
-    tags: string | string[];
+    tags: string | SubTags[];
     data: AllData;
 };
 
-const CommonDemoData = {
-    content: [
-        {
-            text: "",
-            tag: undefined,
-            style: undefined,
-        },
-    ],
-    html: "",
-};
-
-const BlockStructures = [
+const BlockStructures: BlockStructure[] = [
     {
         name: "Paragraph",
         icon: BiParagraph,
         type: "paragraph",
         tags: "p",
-        data: { ...CommonDemoData },
+        data: {
+            html: "",
+        },
     },
     {
         name: "Heading",
@@ -80,7 +77,9 @@ const BlockStructures = [
                 icon: LuHeading6,
             },
         ],
-        data: { ...CommonDemoData },
+        data: {
+            html: "",
+        },
     },
     {
         name: "List",
@@ -101,7 +100,7 @@ const BlockStructures = [
         data: {
             values: [
                 {
-                    ...CommonDemoData,
+                    html: "",
                 },
             ],
         },

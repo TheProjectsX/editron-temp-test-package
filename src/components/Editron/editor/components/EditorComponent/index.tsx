@@ -1,16 +1,15 @@
-import useBlockForge from "../../hooks/useBlockForge";
+import { type BlockActions } from "../../hooks/useBlockForge";
 import BlockViewer from "../BlockViewer";
-import type { EditronProps } from "../../types";
 import { useEffect, useRef, useState } from "react";
 import Controls from "../controls";
 import type { Block } from "../../types/blocks";
-import "./index.css";
-import { ParagraphDemo } from "../../libs/demo";
 
-const EditorComponent = ({ values, onChange = () => {} }: EditronProps) => {
-    const [blocks, dispatch] = useBlockForge(
-        (values ?? []).length === 0 ? [ParagraphDemo] : values
-    );
+export type EditorComponentProps = {
+    blocks: Block[];
+    dispatch: React.Dispatch<BlockActions>;
+};
+
+const EditorComponent = ({ blocks, dispatch }: EditorComponentProps) => {
     const [controllerFocused, setControllerFocused] = useState<boolean>(false);
 
     const [focusedBlock, setFocusedBlock] = useState<{
@@ -19,16 +18,10 @@ const EditorComponent = ({ values, onChange = () => {} }: EditronProps) => {
     }>({ element: null, block: null });
 
     useEffect(() => {
-        // Insert a Paragraph if no Block Item exist
-        if (blocks.length === 0) {
-            dispatch({ type: "INSERT", currentId: "", payload: ParagraphDemo });
-        }
         // Set Initial focusedBlock
         if (!focusedBlock.block && blocks.length > 0) {
             setFocusedBlock((prev) => ({ ...prev, block: blocks[0] }));
         }
-
-        onChange(blocks);
     }, [blocks]);
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);

@@ -10,16 +10,8 @@ export type BlockContentType = {
 };
 
 export type CommonDataType = {
-    content?: BlockContentType[];
-    html?: string;
-} & (
-    | {
-          content: BlockContentType[];
-      }
-    | {
-          html: string;
-      }
-);
+    html: string;
+};
 
 // Paragraph
 export type ParagraphTags = "p";

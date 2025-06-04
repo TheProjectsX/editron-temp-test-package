@@ -10,9 +10,12 @@ type ListProps = {
 };
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
-    const [listData, setListData] = useState<string[]>(data.values);
+    const [listData, setListData] = useState<{ html: string }[]>(data.values);
+    
+    // console.log(listData)
 
     useEffect(() => {
+        console.log(listData)
         onUpdate({ values: listData });
     }, [listData]);
 
@@ -22,49 +25,48 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
                 Tag === "ol" ? "list-decimal" : "list-disc"
             } ${className}`}
         >
-            {listData.map((value, idx) => (
+            {listData.map((itemData, idx) => (
                 <li
                     onKeyDown={(e) => {
-                        const element =
+                        const target =
                             e.currentTarget ?? (e.target as HTMLLIElement);
 
                         if (e.key === "Enter") {
                             e.preventDefault();
-                            setListData((prev) => [...prev, ""]);
+                            setListData((prev) => [...prev, { html: "" }]);
+
                             setTimeout(() => {
                                 focusElement(
-                                    element.nextElementSibling as HTMLLIElement | null,
+                                    target.nextElementSibling as HTMLLIElement | null,
                                     false
                                 );
                             }, 100);
                         } else if (e.key === "Backspace") {
-                            if ((element.textContent ?? "") === "") {
+                            if ((target.textContent ?? "") === "") {
                                 e.preventDefault();
                                 setListData((prev) =>
                                     prev.filter((_, id) => id !== idx)
                                 );
                                 const sibling =
-                                    element.previousElementSibling as HTMLLIElement | null;
+                                    target.previousElementSibling as HTMLLIElement | null;
                                 focusElement(sibling);
                             }
                         }
                     }}
                     onBlur={(e) => {
-                        const element =
-                            e.currentTarget ?? (e.target as HTMLLIElement);
+                        const target = e.currentTarget ?? e.target;
 
                         setListData((prev) =>
                             prev.map((item, id) =>
-                                id === idx ? element.textContent ?? "" : item
+                                idx === id ? { html: target.innerHTML } : item
                             )
                         );
                     }}
-                    contentEditable
                     key={idx}
                     className="outline-none"
-                >
-                    {value}
-                </li>
+                    contentEditable
+                    dangerouslySetInnerHTML={{ __html: itemData.html }}
+                ></li>
             ))}
         </Tag>
     );
