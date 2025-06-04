@@ -3,22 +3,36 @@
     This file contains block element's Tags and Data types
 */
 
-// Heading
-export type HeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-export type HeadingData = {
+export type BlockContentType = {
     text: string;
+    tag?: string;
+    style?: React.CSSProperties;
 };
+
+export type CommonDataType = {
+    content?: BlockContentType[];
+    html?: string;
+} & (
+    | {
+          content: BlockContentType[];
+      }
+    | {
+          html: string;
+      }
+);
 
 // Paragraph
 export type ParagraphTags = "p";
-export type ParagraphData = {
-    text: string;
-};
+export type ParagraphData = CommonDataType;
+
+// Heading
+export type HeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type HeadingData = CommonDataType;
 
 // List
 export type ListTags = "ul" | "ol";
 export type ListData = {
-    values: string[];
+    values: CommonDataType[];
 };
 
 // Divider
@@ -28,5 +42,5 @@ export type DividerData = {
     type?: "solid" | "dashed" | "dotted";
 };
 
-export type AllTags = HeadingTags | ParagraphTags | ListTags | DividerTags;
-export type AllData = HeadingData | ParagraphData | ListData | DividerData;
+export type AllTags = ParagraphTags | HeadingTags | ListTags | DividerTags;
+export type AllData = ParagraphData | HeadingData | ListData | DividerData;

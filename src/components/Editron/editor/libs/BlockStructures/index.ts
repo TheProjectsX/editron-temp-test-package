@@ -25,15 +25,24 @@ export type BlockStructure = {
     data: AllData;
 };
 
+const CommonDemoData = {
+    content: [
+        {
+            text: "",
+            tag: undefined,
+            style: undefined,
+        },
+    ],
+    html: "",
+};
+
 const BlockStructures = [
     {
         name: "Paragraph",
         icon: BiParagraph,
         type: "paragraph",
         tags: "p",
-        data: {
-            text: "",
-        },
+        data: { ...CommonDemoData },
     },
     {
         name: "Heading",
@@ -71,9 +80,7 @@ const BlockStructures = [
                 icon: LuHeading6,
             },
         ],
-        data: {
-            text: "",
-        },
+        data: { ...CommonDemoData },
     },
     {
         name: "List",
@@ -92,7 +99,11 @@ const BlockStructures = [
             },
         ],
         data: {
-            values: [""],
+            values: [
+                {
+                    ...CommonDemoData,
+                },
+            ],
         },
     },
     {

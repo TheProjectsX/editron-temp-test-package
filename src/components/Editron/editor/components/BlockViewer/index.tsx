@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import type { BlockActions } from "../../hooks/useBlockForge";
 import type { AllData, AllTags } from "../../types/blockElements";
 import type { Block } from "../../types/blocks";
@@ -77,11 +77,17 @@ const BlockViewer = ({
                 });
             }}
         >
-            <CurrentBlock
-                tag={block.tag}
-                data={block.data}
-                onUpdate={handleUpdateBlock}
-            />
+            {/* Using useMemo to memorize the component so that we only get the initial value of the state and not the updated value */}
+            {useMemo(
+                () => (
+                    <CurrentBlock
+                        tag={block.tag}
+                        data={block.data}
+                        onUpdate={handleUpdateBlock}
+                    />
+                ),
+                []
+            )}
         </div>
     );
 };

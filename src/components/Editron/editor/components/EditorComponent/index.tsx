@@ -1,13 +1,13 @@
-import useBlockForge from "./hooks/useBlockForge";
-import BlockViewer from "./components/BlockViewer";
-import type { EditronProps } from "./types";
+import useBlockForge from "../../hooks/useBlockForge";
+import BlockViewer from "../BlockViewer";
+import type { EditronProps } from "../../types";
 import { useEffect, useRef, useState } from "react";
-import Controls from "./components/controls";
-import type { Block } from "./types/blocks";
+import Controls from "../controls";
+import type { Block } from "../../types/blocks";
 import "./index.css";
-import { ParagraphDemo } from "./libs/demo";
+import { ParagraphDemo } from "../../libs/demo";
 
-const EditronComponent = ({ values, onChange = () => {} }: EditronProps) => {
+const EditorComponent = ({ values, onChange = () => {} }: EditronProps) => {
     const [blocks, dispatch] = useBlockForge(
         (values ?? []).length === 0 ? [ParagraphDemo] : values
     );
@@ -62,11 +62,4 @@ const EditronComponent = ({ values, onChange = () => {} }: EditronProps) => {
     );
 };
 
-const Editron: () => [
-    (props: EditronProps) => React.ReactElement,
-    () => string
-] = () => {
-    return [EditronComponent, () => "Something Saved"];
-};
-
-export default Editron;
+export default EditorComponent;
