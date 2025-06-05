@@ -11,11 +11,10 @@ type ListProps = {
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
-    
+
     // console.log(listData)
 
     useEffect(() => {
-        console.log(listData)
         onUpdate({ values: listData });
     }, [listData]);
 
@@ -33,23 +32,35 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
 
                         if (e.key === "Enter") {
                             e.preventDefault();
-                            setListData((prev) => [...prev, { html: "" }]);
+                            setListData((prev) => [
+                                ...prev.map((item, id) =>
+                                    idx === id
+                                        ? { html: target.innerHTML }
+                                        : item
+                                ),
+                                { html: "" },
+                            ]);
 
+                             // Getting the element inside, cause outside timeout it's not rendered yet
                             setTimeout(() => {
-                                focusElement(
-                                    target.nextElementSibling as HTMLLIElement | null,
-                                    false
-                                );
-                            }, 100);
+                                const sibling =
+                                    target.nextElementSibling as HTMLLIElement | null;
+                                focusElement(sibling, false);
+                            }, 0);
                         } else if (e.key === "Backspace") {
                             if ((target.textContent ?? "") === "") {
                                 e.preventDefault();
                                 setListData((prev) =>
                                     prev.filter((_, id) => id !== idx)
                                 );
+
+                                // Getting the element outside, cause inside timeout it's already removed
                                 const sibling =
                                     target.previousElementSibling as HTMLLIElement | null;
-                                focusElement(sibling);
+
+                                setTimeout(() => {
+                                    focusElement(sibling);
+                                }, 0);
                             }
                         }
                     }}

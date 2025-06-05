@@ -1,0 +1,1 @@
+-   Fix re rendering on state change

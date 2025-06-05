@@ -12,7 +12,6 @@ type Paragraph = {
 };
 
 const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
-    console.log(data)
 
     return (
         <p

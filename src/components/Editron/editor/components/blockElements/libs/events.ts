@@ -10,7 +10,10 @@ export const controlEmptyClass = (element: HTMLElement) => {
     }
 };
 
-export const focusElement = (element: HTMLElement | null, toEnd: boolean = true) => {
+export const focusElement = (
+    element: HTMLElement | null,
+    toEnd: boolean = true
+) => {
     if (!element) return;
     element.focus();
 
