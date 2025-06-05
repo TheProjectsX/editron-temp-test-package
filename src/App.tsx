@@ -3,22 +3,20 @@ import Editron from "./components/Editron/editor";
 const App = () => {
     // const demoData = [
     //     {
-    //         id: "Random",
+    //         tag: "h4",
     //         type: "heading",
-    //         tag: "h1",
-    //         data: { text: "Test" },
+    //         data: {
+    //             html: "I Hear you!",
+    //         },
+    //         id: "Dk0kBZcbTX",
     //     },
     //     {
-    //         id: "Random3",
-    //         type: "paragraph",
     //         tag: "p",
-    //         data: { text: "Test" },
-    //     },
-    //     {
-    //         id: "Random2",
-    //         type: "heading",
-    //         tag: "h1",
-    //         data: { text: "Test" },
+    //         type: "paragraph",
+    //         data: {
+    //             html: "Something is not Ok",
+    //         },
+    //         id: "ff6uTIJ8gD",
     //     },
     // ];
 

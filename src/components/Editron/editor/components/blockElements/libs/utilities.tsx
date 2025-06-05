@@ -10,7 +10,7 @@ const isStringEmpty = (item: undefined | string) => {
     return !item || (typeof item === "string" && item.length === 0);
 };
 
-type ContentBlockToHtmlType = (
+type ConvertBlockToHtmlType = (
     content:
         | {
               text: string;
@@ -20,7 +20,7 @@ type ContentBlockToHtmlType = (
         | undefined
 ) => React.ReactElement | undefined;
 
-export const ContentBlockToHtml: ContentBlockToHtmlType = (content) => {
+export const ConvertBlockToHtml: ConvertBlockToHtmlType = (content) => {
     if (!content) return undefined;
 
     const htmlContent = content.map((block, idx) => {
@@ -35,4 +35,14 @@ export const ContentBlockToHtml: ContentBlockToHtmlType = (content) => {
     });
 
     return htmlContent.length > 0 ? <>{htmlContent}</> : undefined;
+};
+
+export const cleanInnerHTML = (html: string): string => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+
+    // Remove <br> tags
+    div.querySelectorAll("br").forEach((br) => br.remove());
+
+    return div.innerHTML.trim();
 };

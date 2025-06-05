@@ -47,3 +47,5 @@ type DividerBlock = {
 export type Block = {
     id: string;
 } & (ParagraphBlock | HeadingBlock | ListBlock | DividerBlock);
+
+export type AllBlockType = Block["type"];

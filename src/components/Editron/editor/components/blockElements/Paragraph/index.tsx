@@ -2,6 +2,7 @@ import type {
     ParagraphData,
     ParagraphTags,
 } from "../../../types/blockElements";
+import { cleanInnerHTML } from "../libs/utilities";
 import { controlEmptyClass, preventNewLine } from "../libs/events";
 
 type Paragraph = {
@@ -12,7 +13,6 @@ type Paragraph = {
 };
 
 const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
-
     return (
         <p
             className={`outline-none py-1 overflow-hidden ${className}`}
@@ -23,7 +23,7 @@ const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
             }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ html: target.innerHTML });
+                onUpdate({ html: cleanInnerHTML(target.innerHTML) });
             }}
             data-placeholder={`Enter some text...`}
             autoFocus

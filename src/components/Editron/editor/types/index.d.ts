@@ -1,11 +1,13 @@
 import type { EditorComponentProps } from "../components/EditorComponent";
-import type { Block } from "./blocks";
+import type { AllBlockType, Block } from "./blocks";
 
 export interface EditronProps {
-    values?: Block[];
+    values?: Block[] | any[];
+    defaultBlock?: AllBlockType;
 }
 
-export type EditronReturn = [React.FC, () => any];
+
+export type EditronReturn = [React.FC, () => Block[]];
 
 declare const Editron: (props: EditronProps) => EditronReturn;
 

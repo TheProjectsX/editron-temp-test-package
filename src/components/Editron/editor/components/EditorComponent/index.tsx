@@ -8,8 +8,8 @@ import {
     useState,
 } from "react";
 import Controls from "../controls";
-import type { Block } from "../../types/blocks";
-import { ParagraphDemo } from "../../libs/demo";
+import type { AllBlockType, Block } from "../../types/blocks";
+import { AllDemo, ParagraphDemo } from "../../libs/demo";
 
 // export type EditorComponentProps = {
 //     blocks: Block[];
@@ -18,6 +18,7 @@ import { ParagraphDemo } from "../../libs/demo";
 
 export type EditorComponentProps = {
     values?: Block[];
+    defaultBlock?: AllBlockType;
 };
 
 export type EditorComponentSaveHandle = {
@@ -27,9 +28,12 @@ export type EditorComponentSaveHandle = {
 const EditorComponent = forwardRef<
     EditorComponentSaveHandle,
     EditorComponentProps
->(({ values = [] }, ref) => {
+>(({ values = [], defaultBlock = "paragraph" }, ref) => {
+    const defaultDemo =
+        AllDemo.find((item) => item.type === defaultBlock) ?? ParagraphDemo;
+
     const [blocks, dispatch] = useBlockForge(
-        values.length === 0 ? [ParagraphDemo] : values
+        values.length === 0 ? [defaultDemo] : values
     );
 
     const [controllerFocused, setControllerFocused] = useState<boolean>(false);
@@ -43,7 +47,7 @@ const EditorComponent = forwardRef<
     // If It's initial and no focused block exist, add the 1st block as focused
     useEffect(() => {
         if (blocks.length === 0) {
-            dispatch({ type: "INSERT", currentId: "", payload: ParagraphDemo });
+            dispatch({ type: "INSERT", currentId: "", payload: defaultDemo });
         }
 
         // Set Initial focusedBlock

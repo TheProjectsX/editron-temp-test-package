@@ -1,1 +1,2 @@
--   Fix re rendering on state change
+-   Fix re rendering on state change [X]
+-   Create a html filter / parser [X]

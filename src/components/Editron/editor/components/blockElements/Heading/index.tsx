@@ -1,4 +1,5 @@
 import type { HeadingData, HeadingTags } from "../../../types/blockElements";
+import { cleanInnerHTML } from "../libs/utilities";
 import { controlEmptyClass, preventNewLine } from "../libs/events";
 
 type HeadingProps = {
@@ -24,7 +25,7 @@ const Heading = ({
             }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ html: target.innerHTML });
+                onUpdate({ html: cleanInnerHTML(target.innerHTML) });
             }}
             data-placeholder={`Enter your heading...`}
             autoFocus
