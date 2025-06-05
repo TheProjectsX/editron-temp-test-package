@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import type { ListData, ListTags } from "../../../types/blockElements";
+import type { EditorListData, ListTags } from "../../../types/blockElements";
 import { focusElement } from "../libs/events";
 
 type ListProps = {
     className?: string;
     tag: ListTags;
-    data: ListData;
-    onUpdate: (value: ListData) => void;
+    data: EditorListData;
+    onUpdate: (value: EditorListData) => void;
 };
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {

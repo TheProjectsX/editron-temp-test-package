@@ -1,5 +1,5 @@
 import type {
-    ParagraphData,
+    EditorParagraphData,
     ParagraphTags,
 } from "../../../types/blockElements";
 import { cleanInnerHTML } from "../libs/utilities";
@@ -8,8 +8,8 @@ import { controlEmptyClass, preventNewLine } from "../libs/events";
 type Paragraph = {
     className?: string;
     tag: ParagraphTags;
-    data: ParagraphData;
-    onUpdate: (value: ParagraphData) => void;
+    data: EditorParagraphData;
+    onUpdate: (value: EditorParagraphData) => void;
 };
 
 const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {

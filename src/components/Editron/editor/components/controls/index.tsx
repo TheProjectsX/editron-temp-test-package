@@ -5,7 +5,7 @@ import Popover from "@theprojectsx/react-popover";
 import AddButtonPopoverContent from "./AddButtonPopoverContent";
 import type { BlockActions } from "../../hooks/useBlockForge";
 import type { BlockStructure } from "../../libs/BlockStructures";
-import type { Block } from "../../types/blocks";
+import type { EditorBlock } from "../../types/blocks";
 import SettingsPopoverContent from "./SettingsPopoverContent";
 
 
@@ -13,7 +13,7 @@ type ControlsProps = {
     wrapper: HTMLDivElement | null;
     focusedBlock: {
         element: HTMLElement | null;
-        block: Block | null;
+        block: EditorBlock | null;
     };
     controllerFocused: boolean;
     setControllerFocused: React.Dispatch<React.SetStateAction<boolean>>;
@@ -57,18 +57,18 @@ const Controls = ({
         dispatch({
             type: "INSERT",
             currentId: focusedBlock.block?.id!,
-            payload: payload as Omit<Block, "id">,
+            payload: payload as Omit<EditorBlock, "id">,
         });
 
         setNewItemOpened(false);
     };
 
     // Handle Hard Update (Hard update, not only `data` property, but also other properties)
-    const handleHardUpdate = (items: Partial<Block>) => {
+    const handleHardUpdate = (items: Partial<EditorBlock>) => {
         const payload = {
             ...focusedBlock,
             ...items,
-        } as Block;
+        } as EditorBlock;
 
         dispatch({ type: "UPDATE", payload });
     };

@@ -1,6 +1,6 @@
 import { ImMoveDown, ImMoveUp } from "react-icons/im";
 import { TbRowRemove } from "react-icons/tb";
-import type { Block } from "../../types/blocks";
+import type { EditorBlock } from "../../types/blocks";
 import Popover from "@theprojectsx/react-popover";
 
 const SettingsPopoverContent = ({
@@ -10,7 +10,7 @@ const SettingsPopoverContent = ({
     handleDeleteBlock,
 }: {
     currentBlock: string | undefined;
-    handleHardUpdate: (items: Partial<Block>) => void;
+    handleHardUpdate: (items: Partial<EditorBlock>) => void;
     handleMoveUp: () => void;
     handleMoveDown: () => void;
     handleDeleteBlock: () => void;

@@ -6,46 +6,60 @@
 */
 
 import type {
-    DividerData,
+    EditorDividerData,
     DividerTags,
-    HeadingData,
+    EditorHeadingData,
     HeadingTags,
-    ListData,
+    EditorListData,
     ListTags,
-    ParagraphData,
+    EditorParagraphData,
     ParagraphTags,
+    OutputParagraphData,
+    OutputHeadingData,
+    OutputListData,
+    OutputDividerData,
 } from "./blockElements";
 
-// Paragraph
-type ParagraphBlock = {
-    type: "paragraph";
-    tag: ParagraphTags;
-    data: ParagraphData;
+type BaseBlock<BlockType extends string, TagType, DataType> = {
+    type: BlockType;
+    tag: TagType;
+    data: DataType;
 };
+
+type BaseBlockReplaceData<T extends { data: any }, NewData> = Omit<
+    T,
+    "data"
+> & {
+    data: NewData;
+};
+
+// Paragraph
+type ParagraphBlock = BaseBlock<
+    "paragraph",
+    ParagraphTags,
+    EditorParagraphData
+>;
 
 // Heading
-type HeadingBlock = {
-    type: "heading";
-    tag: HeadingTags;
-    data: HeadingData;
-};
+type HeadingBlock = BaseBlock<"heading", HeadingTags, EditorHeadingData>;
 
 // List
-type ListBlock = {
-    type: "list";
-    tag: ListTags;
-    data: ListData;
-};
+type ListBlock = BaseBlock<"list", ListTags, EditorListData>;
 
 // Divider
-type DividerBlock = {
-    type: "divider";
-    tag: DividerTags;
-    data: DividerData;
-};
+type DividerBlock = BaseBlock<"divider", DividerTags, EditorDividerData>;
 
-export type Block = {
+export type EditorBlock = {
     id: string;
 } & (ParagraphBlock | HeadingBlock | ListBlock | DividerBlock);
 
-export type AllBlockType = Block["type"];
+export type AllBlockType = EditorBlock["type"];
+
+export type OutputBlock = {
+    id: string;
+} & (
+    | BaseBlockReplaceData<ParagraphBlock, OutputParagraphData>
+    | BaseBlockReplaceData<HeadingBlock, OutputHeadingData>
+    | BaseBlockReplaceData<ListBlock, OutputListData>
+    | BaseBlockReplaceData<DividerBlock, OutputDividerData>
+);

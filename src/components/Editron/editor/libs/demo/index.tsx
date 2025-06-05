@@ -1,19 +1,19 @@
 import { nanoid } from "nanoid";
-import type { Block } from "../../types/blocks";
+import type { EditorBlock } from "../../types/blocks";
 
 export const ParagraphDemo = {
     id: nanoid(10),
     type: "paragraph",
     tag: "p",
     data: { html: "" },
-} as Block;
+} as EditorBlock;
 
 export const HeadingDemo = {
     id: nanoid(10),
     type: "heading",
     tag: "h2",
     data: { html: "" },
-} as Block;
+} as EditorBlock;
 
 export const ListDemo = {
     id: nanoid(10),
@@ -26,6 +26,6 @@ export const ListDemo = {
             },
         ],
     },
-} as Block;
+} as EditorBlock;
 
 export const AllDemo = [ParagraphDemo, HeadingDemo, ListDemo];

@@ -15,7 +15,7 @@ import {
     MdFormatListNumbered,
     MdOutlineFormatListBulleted,
 } from "react-icons/md";
-import type { AllData } from "../../types/blockElements";
+import type { EditorAllData } from "../../types/blockElements";
 
 type SubTags = {
     name: string;
@@ -28,7 +28,7 @@ export type BlockStructure = {
     icon: IconType;
     type: string;
     tags: string | SubTags[];
-    data: AllData;
+    data: EditorAllData;
 };
 
 const BlockStructures: BlockStructure[] = [

@@ -1,16 +1,16 @@
 import { useReducer } from "react";
-import type { Block } from "../../types/blocks";
+import type { EditorBlock } from "../../types/blocks";
 import { nanoid } from "nanoid";
 
 export type BlockActions =
     | {
           type: "INSERT";
           currentId: string;
-          payload: Omit<Block, "id">;
+          payload: Omit<EditorBlock, "id">;
       }
     | {
           type: "UPDATE";
-          payload: Block;
+          payload: EditorBlock;
       }
     | {
           type: "DELETE";
@@ -26,7 +26,7 @@ export type BlockActions =
           id: string;
       };
 
-const BlockReducers = (state: Block[], action: BlockActions) => {
+const BlockReducers = (state: EditorBlock[], action: BlockActions) => {
     switch (action.type) {
         case "INSERT": {
             const currentIdx = state.findIndex(
@@ -40,7 +40,7 @@ const BlockReducers = (state: Block[], action: BlockActions) => {
 
             return [
                 ...state.slice(0, preEndIdx),
-                { ...action.payload, id: nanoid(10) } as Block,
+                { ...action.payload, id: nanoid(10) } as EditorBlock,
                 ...state.slice(postEndIdx),
             ];
         }
@@ -89,8 +89,8 @@ const BlockReducers = (state: Block[], action: BlockActions) => {
 };
 
 const useBlockForge = (
-    givenValues: Block[] = []
-): [Block[], React.Dispatch<BlockActions>] => {
+    givenValues: EditorBlock[] = []
+): [EditorBlock[], React.Dispatch<BlockActions>] => {
     const [state, dispatch] = useReducer(BlockReducers, givenValues);
 
     return [state, dispatch];

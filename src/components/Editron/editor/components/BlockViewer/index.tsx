@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import type { BlockActions } from "../../hooks/useBlockForge";
-import type { AllData, AllTags } from "../../types/blockElements";
-import type { Block } from "../../types/blocks";
+import type { EditorAllData, AllTags } from "../../types/blockElements";
+import type { EditorBlock } from "../../types/blocks";
 import Heading from "../blockElements/Heading";
 import Paragraph from "../blockElements/Paragraph";
 import List from "../blockElements/List";
@@ -9,12 +9,12 @@ import Divider from "../blockElements/Divider";
 
 interface BlockViewerProps {
     className?: string;
-    block: Block;
+    block: EditorBlock;
     dispatch: React.Dispatch<BlockActions>;
     setFocusedBlock: React.Dispatch<
         React.SetStateAction<{
             element: HTMLElement | null;
-            block: Block | null;
+            block: EditorBlock | null;
         }>
     >;
 }
@@ -22,8 +22,8 @@ interface BlockViewerProps {
 type BlockElement = React.FC<{
     className?: string;
     tag: AllTags;
-    data: AllData;
-    onUpdate: (value: AllData) => void;
+    data: EditorAllData;
+    onUpdate: (value: EditorAllData) => void;
 }>;
 
 const BlocksAsType: Record<string, BlockElement> = {
@@ -43,7 +43,7 @@ const BlockViewer = ({
     if (!CurrentBlock) return;
 
     const handleUpdateBlock = useCallback(
-        (data: AllData) => {
+        (data: EditorAllData) => {
             if (
                 Array.isArray((data as any)?.values) &&
                 (data as any).values.length === 0
@@ -54,7 +54,7 @@ const BlockViewer = ({
             const payload = {
                 ...block,
                 data,
-            } as Block;
+            } as EditorBlock;
 
             dispatch({ type: "UPDATE", payload });
         },

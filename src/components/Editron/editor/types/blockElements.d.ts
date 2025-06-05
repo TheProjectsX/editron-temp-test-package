@@ -9,30 +9,47 @@ export type BlockContentType = {
     style?: React.CSSProperties;
 };
 
-export type CommonDataType = {
+export type EditorCommonDataType = {
+    html: string;
+};
+
+export type OutputCommonDataType = {
     html: string;
 };
 
 // Paragraph
 export type ParagraphTags = "p";
-export type ParagraphData = CommonDataType;
+export type EditorParagraphData = EditorCommonDataType;
+export type OutputParagraphData = OutputCommonDataType;
 
 // Heading
 export type HeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-export type HeadingData = CommonDataType;
+export type EditorHeadingData = EditorCommonDataType;
+export type OutputHeadingData = OutputCommonDataType;
 
 // List
 export type ListTags = "ul" | "ol";
-export type ListData = {
-    values: CommonDataType[];
+export type EditorListData = {
+    values: EditorCommonDataType[];
+};
+export type OutputListData = {
+    values: OutputCommonDataType[];
 };
 
 // Divider
 export type DividerTags = "hr";
-export type DividerData = {
+export type EditorDividerData = {
+    text?: string;
+    type?: "solid" | "dashed" | "dotted";
+};
+export type OutputDividerData = {
     text?: string;
     type?: "solid" | "dashed" | "dotted";
 };
 
 export type AllTags = ParagraphTags | HeadingTags | ListTags | DividerTags;
-export type AllData = ParagraphData | HeadingData | ListData | DividerData;
+export type EditorAllData =
+    | EditorParagraphData
+    | EditorHeadingData
+    | EditorListData
+    | EditorDividerData;

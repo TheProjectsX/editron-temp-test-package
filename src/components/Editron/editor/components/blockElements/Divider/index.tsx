@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import type { DividerData, DividerTags } from "../../../types/blockElements";
+import type { EditorDividerData, DividerTags } from "../../../types/blockElements";
 
 type DividerProps = {
     className?: string;
     tag: DividerTags;
-    data: DividerData;
-    onUpdate: (value: DividerData) => void;
+    data: EditorDividerData;
+    onUpdate: (value: EditorDividerData) => void;
 };
 
 const Divider = ({ data, onUpdate }: DividerProps) => {

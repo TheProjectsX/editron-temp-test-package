@@ -1,12 +1,12 @@
-import type { HeadingData, HeadingTags } from "../../../types/blockElements";
+import type { EditorHeadingData, HeadingTags } from "../../../types/blockElements";
 import { cleanInnerHTML } from "../libs/utilities";
 import { controlEmptyClass, preventNewLine } from "../libs/events";
 
 type HeadingProps = {
     className?: string;
     tag: HeadingTags;
-    data: HeadingData;
-    onUpdate: (value: HeadingData) => void;
+    data: EditorHeadingData;
+    onUpdate: (value: EditorHeadingData) => void;
 };
 
 const Heading = ({

@@ -8,7 +8,7 @@ import {
     useState,
 } from "react";
 import Controls from "../controls";
-import type { AllBlockType, Block } from "../../types/blocks";
+import type { AllBlockType, EditorBlock } from "../../types/blocks";
 import { AllDemo, ParagraphDemo } from "../../libs/demo";
 
 // export type EditorComponentProps = {
@@ -17,12 +17,12 @@ import { AllDemo, ParagraphDemo } from "../../libs/demo";
 // };
 
 export type EditorComponentProps = {
-    values?: Block[];
+    values?: EditorBlock[];
     defaultBlock?: AllBlockType;
 };
 
 export type EditorComponentSaveHandle = {
-    runSave: () => Block[];
+    runSave: () => EditorBlock[];
 };
 
 const EditorComponent = forwardRef<
@@ -40,7 +40,7 @@ const EditorComponent = forwardRef<
 
     const [focusedBlock, setFocusedBlock] = useState<{
         element: HTMLElement | null;
-        block: Block | null;
+        block: EditorBlock | null;
     }>({ element: null, block: null });
 
     // If no block exist, add Paragraph as Default.
