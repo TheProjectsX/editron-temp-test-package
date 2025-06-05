@@ -47,9 +47,22 @@ export type OutputDividerData = {
     type?: "solid" | "dashed" | "dotted";
 };
 
-export type AllTags = ParagraphTags | HeadingTags | ListTags | DividerTags;
+// Code
+export type CodeTags = "pre";
+export type EditorCodeData = {
+    code: string;
+};
+export type OutputCodeData = EditorCodeData;
+
+export type AllTags =
+    | ParagraphTags
+    | HeadingTags
+    | ListTags
+    | DividerTags
+    | CodeTags;
 export type EditorAllData =
     | EditorParagraphData
     | EditorHeadingData
     | EditorListData
-    | EditorDividerData;
+    | EditorDividerData
+    | EditorCodeData;

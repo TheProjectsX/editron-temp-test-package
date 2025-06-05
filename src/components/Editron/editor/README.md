@@ -7,4 +7,3 @@ New Block Add process:
 -   Update `components/BlockViewer > BlocksAsType`
 -   Update `libs/BlockStructures`
 -   Update `libs/demo`
--   Add demo in `libs/demo`

@@ -1,26 +1,44 @@
 import Editron from "./components/Editron/editor";
 
 const App = () => {
-    // const demoData = [
-    //     {
-    //         tag: "h4",
-    //         type: "heading",
-    //         data: {
-    //             html: "I Hear you!",
-    //         },
-    //         id: "Dk0kBZcbTX",
-    //     },
-    //     {
-    //         tag: "p",
-    //         type: "paragraph",
-    //         data: {
-    //             html: "Something is not Ok",
-    //         },
-    //         id: "ff6uTIJ8gD",
-    //     },
-    // ];
+    const demoData = [
+        {
+            tag: "h2",
+            type: "heading",
+            data: {
+                html: "How to write your first Python Code!",
+            },
+            id: "VYRxuHYKZr",
+        },
+        {
+            tag: "p",
+            type: "paragraph",
+            data: {
+                html: "Write the basic <b>Hello, World</b>&nbsp;in <b>print </b>function. The most easiest of them all!",
+            },
+            id: "e_i2_hVylV",
+        },
+        {
+            tag: "pre",
+            type: "code",
+            data: {
+                code: 'print("Hello, World!")',
+            },
+            id: "jNpqOx9ZSf",
+        },
+        {
+            tag: "p",
+            type: "paragraph",
+            data: {
+                html: "Hooray!! Your first python programming!",
+            },
+            id: "7fVkDVCvnw",
+        },
+    ];
 
-    const [Editor, save] = Editron();
+    const [Editor, save] = Editron({
+        values: demoData,
+    });
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">

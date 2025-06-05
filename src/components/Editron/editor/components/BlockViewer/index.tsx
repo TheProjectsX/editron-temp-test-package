@@ -6,6 +6,7 @@ import Heading from "../blockElements/Heading";
 import Paragraph from "../blockElements/Paragraph";
 import List from "../blockElements/List";
 import Divider from "../blockElements/Divider";
+import Code from "../blockElements/Code";
 
 interface BlockViewerProps {
     className?: string;
@@ -31,6 +32,7 @@ const BlocksAsType: Record<string, BlockElement> = {
     paragraph: Paragraph as BlockElement,
     list: List as BlockElement,
     divider: Divider as BlockElement,
+    code: Code as BlockElement,
 };
 
 const BlockViewer = ({

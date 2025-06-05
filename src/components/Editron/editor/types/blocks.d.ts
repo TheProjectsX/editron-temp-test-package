@@ -18,6 +18,9 @@ import type {
     OutputHeadingData,
     OutputListData,
     OutputDividerData,
+    CodeTags,
+    EditorCodeData,
+    OutputCodeData,
 } from "./blockElements";
 
 type BaseBlock<BlockType extends string, TagType, DataType> = {
@@ -49,9 +52,13 @@ type ListBlock = BaseBlock<"list", ListTags, EditorListData>;
 // Divider
 type DividerBlock = BaseBlock<"divider", DividerTags, EditorDividerData>;
 
+// Code
+type CodeBlock = BaseBlock<"code", CodeTags, EditorCodeData>;
+
+// Exports
 export type EditorBlock = {
     id: string;
-} & (ParagraphBlock | HeadingBlock | ListBlock | DividerBlock);
+} & (ParagraphBlock | HeadingBlock | ListBlock | DividerBlock | CodeBlock);
 
 export type AllBlockType = EditorBlock["type"];
 
@@ -62,4 +69,5 @@ export type OutputBlock = {
     | BaseBlockReplaceData<HeadingBlock, OutputHeadingData>
     | BaseBlockReplaceData<ListBlock, OutputListData>
     | BaseBlockReplaceData<DividerBlock, OutputDividerData>
+    | BaseBlockReplaceData<CodeBlock, OutputCodeData>
 );
