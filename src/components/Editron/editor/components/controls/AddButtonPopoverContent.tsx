@@ -16,8 +16,8 @@ const AddButtonPopoverContent = ({
                 if (typeof structure.tags === "string")
                     return (
                         <button
+                            className="popoverButton"
                             key={structure.type}
-                            className="w-full py-2.5 px-4 text-gray-600 font-medium hover:bg-gray-100 flex items-center gap-1.5 cursor-pointer"
                             onClick={() =>
                                 handleAddNewBlock(structure as BlockStructure)
                             }
@@ -40,8 +40,8 @@ const AddButtonPopoverContent = ({
                                 <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-56 overflow-auto scrollbar-thin">
                                     {structure.tags.map((sub) => (
                                         <button
+                                            className="popoverButton"
                                             key={sub.tag}
-                                            className="w-full py-2.5 px-4 text-gray-600 text-sm font-medium hover:bg-gray-100 flex items-center gap-1.5 cursor-pointer"
                                             onClick={() =>
                                                 handleAddNewBlock({
                                                     ...structure,
@@ -57,7 +57,7 @@ const AddButtonPopoverContent = ({
                             )
                         }
                     >
-                        <button className="w-full py-2.5 px-4 text-gray-600 font-medium hover:bg-gray-100 flex items-center gap-1.5 cursor-pointer">
+                        <button className="popoverButton">
                             <structure.icon className="w-5" />
                             <span>{structure.name}</span>
                         </button>

@@ -8,6 +8,7 @@ import type { BlockStructure } from "../../libs/BlockStructures";
 import type { Block } from "../../types/blocks";
 import SettingsPopoverContent from "./SettingsPopoverContent";
 
+
 type ControlsProps = {
     wrapper: HTMLDivElement | null;
     focusedBlock: {
@@ -62,6 +63,16 @@ const Controls = ({
         setNewItemOpened(false);
     };
 
+    // Handle Hard Update (Hard update, not only `data` property, but also other properties)
+    const handleHardUpdate = (items: Partial<Block>) => {
+        const payload = {
+            ...focusedBlock,
+            ...items,
+        } as Block;
+
+        dispatch({ type: "UPDATE", payload });
+    };
+
     // Handle Delete Block
     const handleDeleteBlock = () => {
         dispatch({ type: "DELETE", id: focusedBlock.block?.id! });
@@ -99,6 +110,8 @@ const Controls = ({
                 onWrapperBlur={() => setSettingsOpened(false)}
                 content={
                     <SettingsPopoverContent
+                        currentBlock={focusedBlock.block?.type}
+                        handleHardUpdate={handleHardUpdate}
                         handleMoveUp={handleMoveUp}
                         handleMoveDown={handleMoveDown}
                         handleDeleteBlock={handleDeleteBlock}

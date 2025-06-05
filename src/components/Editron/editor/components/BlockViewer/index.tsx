@@ -51,12 +51,12 @@ const BlockViewer = ({
                 return dispatch({ type: "DELETE", id: block.id });
             }
 
-            const newBlock = {
+            const payload = {
                 ...block,
                 data,
-            };
+            } as Block;
 
-            dispatch({ type: "UPDATE", payload: newBlock as Block });
+            dispatch({ type: "UPDATE", payload });
         },
         [block]
     );
