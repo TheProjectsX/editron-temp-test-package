@@ -34,10 +34,28 @@ const App = () => {
             },
             id: "7fVkDVCvnw",
         },
+        {
+            id: "uE65TCxDHl",
+            type: "quote",
+            tag: "blockquote",
+            data: {
+                quote: '"Soemthing is on the way, now!"',
+            },
+        },
+        {
+            tag: "blockquote",
+            type: "quote",
+            data: {
+                quote: '"sdasdasdas"',
+                type: "highlighted"
+            },
+            id: "PKhR0Eqlbi",
+        },
     ];
 
     const [Editor, save] = Editron({
-        values: demoData,
+        // values: demoData,
+        defaultBlock: "quote",
     });
 
     return (

@@ -16,7 +16,7 @@ import {
     MdOutlineFormatListBulleted,
 } from "react-icons/md";
 import type { EditorAllData } from "../../types/blockElements";
-import { IoMdCode } from "react-icons/io";
+import { IoMdCode, IoMdQuote } from "react-icons/io";
 
 type SubTags = {
     name: string;
@@ -120,6 +120,15 @@ const BlockStructures: BlockStructure[] = [
         tags: "pre",
         data: {
             code: "",
+        },
+    },
+    {
+        name: "Quote",
+        icon: IoMdQuote,
+        type: "quote",
+        tags: "blockquote",
+        data: {
+            quote: "",
         },
     },
 ];

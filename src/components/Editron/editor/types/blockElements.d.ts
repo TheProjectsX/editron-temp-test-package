@@ -42,10 +42,7 @@ export type EditorDividerData = {
     text?: string;
     type?: "solid" | "dashed" | "dotted";
 };
-export type OutputDividerData = {
-    text?: string;
-    type?: "solid" | "dashed" | "dotted";
-};
+export type OutputDividerData = EditorDividerData;
 
 // Code
 export type CodeTags = "pre";
@@ -54,15 +51,26 @@ export type EditorCodeData = {
 };
 export type OutputCodeData = EditorCodeData;
 
+// Quote (Block Quote)
+export type QuoteTags = "blockquote";
+export type EditorQuoteData = {
+    quote: string;
+    type?: "plain" | "highlighted";
+};
+export type OutputQuoteData = EditorQuoteData;
+
 export type AllTags =
     | ParagraphTags
     | HeadingTags
     | ListTags
     | DividerTags
-    | CodeTags;
+    | CodeTags
+    | QuoteTags;
+
 export type EditorAllData =
     | EditorParagraphData
     | EditorHeadingData
     | EditorListData
     | EditorDividerData
-    | EditorCodeData;
+    | EditorCodeData
+    | EditorQuoteData;

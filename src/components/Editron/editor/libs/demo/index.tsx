@@ -28,4 +28,36 @@ export const ListDemo = {
     },
 } as EditorBlock;
 
-export const AllDemo = [ParagraphDemo, HeadingDemo, ListDemo];
+export const DividerDemo = {
+    id: nanoid(10),
+    type: "divider",
+    tag: "hr",
+    data: {},
+} as EditorBlock;
+
+export const CodeDemo = {
+    id: nanoid(10),
+    type: "code",
+    tag: "pre",
+    data: {
+        code: "",
+    },
+} as EditorBlock;
+
+export const QuoteDemo = {
+    id: nanoid(10),
+    type: "quote",
+    tag: "blockquote",
+    data: {
+        quote: ""
+    },
+} as EditorBlock;
+
+export const AllDemo = [
+    ParagraphDemo,
+    HeadingDemo,
+    ListDemo,
+    DividerDemo,
+    CodeDemo,
+    QuoteDemo,
+];

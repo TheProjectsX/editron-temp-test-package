@@ -27,3 +27,13 @@ export const focusElement = (
     sel?.removeAllRanges();
     sel?.addRange(range);
 };
+
+export const insertAZ = (text: string | null, value: string) => {
+    if (!text) return "";
+    if (text.length < 0) return "";
+
+    if (text.charAt(0) === value && text.charAt(text.length - 1) === value)
+        return text;
+
+    return `${value}${text}${value}`;
+};

@@ -7,6 +7,7 @@ import Paragraph from "../blockElements/Paragraph";
 import List from "../blockElements/List";
 import Divider from "../blockElements/Divider";
 import Code from "../blockElements/Code";
+import Quote from "../blockElements/Quote";
 
 interface BlockViewerProps {
     className?: string;
@@ -33,6 +34,7 @@ const BlocksAsType: Record<string, BlockElement> = {
     list: List as BlockElement,
     divider: Divider as BlockElement,
     code: Code as BlockElement,
+    quote: Quote as BlockElement,
 };
 
 const BlockViewer = ({
@@ -66,7 +68,7 @@ const BlockViewer = ({
     return (
         <div
             data-name="block-editor"
-            className={`${className}`}
+            className={`${className} min-h-11 flex items-center`}
             onMouseEnter={(e) => {
                 setFocusedBlock((prev) => {
                     if (prev.element === e.target) {
@@ -85,6 +87,7 @@ const BlockViewer = ({
                     <CurrentBlock
                         tag={block.tag}
                         data={block.data}
+                        className="flex-1"
                         onUpdate={handleUpdateBlock}
                     />
                 ),
