@@ -55,7 +55,7 @@ const App = () => {
 
     const [Editor, save] = Editron({
         // values: demoData,
-        defaultBlock: "quote",
+        // defaultBlock: "quote",
     });
 
     return (

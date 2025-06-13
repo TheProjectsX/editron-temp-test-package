@@ -68,7 +68,7 @@ const BlockViewer = ({
     return (
         <div
             data-name="block-editor"
-            className={`${className} min-h-11 flex items-center`}
+            className={`${className}`}
             onMouseEnter={(e) => {
                 setFocusedBlock((prev) => {
                     if (prev.element === e.target) {
@@ -87,7 +87,6 @@ const BlockViewer = ({
                     <CurrentBlock
                         tag={block.tag}
                         data={block.data}
-                        className="flex-1"
                         onUpdate={handleUpdateBlock}
                     />
                 ),
