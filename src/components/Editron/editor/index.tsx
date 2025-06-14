@@ -1,27 +1,13 @@
-import EditorComponent, {
-    type EditorComponentSaveHandle,
-} from "./components/EditorComponent";
-import type { EditronProps, EditronReturn } from "./types";
-import "./index.css";
-import { createRef } from "react";
+interface EditronProps {
+    values?: any[];
+    defaultBlock?: string;
+}
 
-const Editron = ({
-    values = [],
-    defaultBlock = "paragraph",
-}: EditronProps = {}): EditronReturn => {
-    const editorRef = createRef<EditorComponentSaveHandle>();
+type EditronReturn = [React.FC, () => any[]];
 
-    const saveRunner = () => editorRef.current?.runSave() ?? [];
-
-    const Component = () => (
-        <EditorComponent
-            values={values}
-            ref={editorRef}
-            defaultBlock={defaultBlock}
-        />
-    );
-
-    return [Component, saveRunner];
+const Editron = ({}: EditronProps = {}) => {
+    
+    return <div>Editron</div>;
 };
 
 export default Editron;

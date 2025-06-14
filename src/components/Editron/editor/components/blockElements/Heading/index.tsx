@@ -1,16 +1,7 @@
-import type {
-    EditorHeadingData,
-    HeadingTags,
-} from "../../../types/blockElements";
 import { cleanInnerHTML } from "../libs/utilities";
-import { controlEmptyClass, preventNewLine } from "../libs/events";
-
-type HeadingProps = {
-    className?: string;
-    tag: HeadingTags;
-    data: EditorHeadingData;
-    onUpdate: (value: EditorHeadingData) => void;
-};
+import {  preventNewLine } from "../libs/events";
+import type { HeadingProps } from "./types";
+import { demo, structure } from "./meta";
 
 const Heading = ({
     className = "",
@@ -31,10 +22,6 @@ const Heading = ({
         <Tag
             className={`outline-none py-1 ${headingStyles[Tag]} ${className}`}
             onKeyDown={preventNewLine}
-            onInput={(e) => {
-                const target = e.currentTarget ?? e.target;
-                controlEmptyClass(target);
-            }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
                 onUpdate({ html: cleanInnerHTML(target.innerHTML) });
@@ -47,4 +34,8 @@ const Heading = ({
     );
 };
 
-export default Heading;
+export default {
+    component: Heading,
+    structure,
+    demo
+};

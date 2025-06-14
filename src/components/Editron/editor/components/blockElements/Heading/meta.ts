@@ -1,0 +1,58 @@
+import { nanoid } from "nanoid";
+import {
+    LuHeading,
+    LuHeading1,
+    LuHeading2,
+    LuHeading3,
+    LuHeading4,
+    LuHeading5,
+    LuHeading6,
+} from "react-icons/lu";
+
+export const structure = {
+    name: "Heading",
+    icon: LuHeading,
+    type: "heading",
+    tags: [
+        {
+            name: "Heading 1",
+            tag: "h1",
+            icon: LuHeading1,
+        },
+        {
+            name: "Heading 2",
+            tag: "h2",
+            icon: LuHeading2,
+        },
+        {
+            name: "Heading 3",
+            tag: "h3",
+            icon: LuHeading3,
+        },
+        {
+            name: "Heading 4",
+            tag: "h4",
+            icon: LuHeading4,
+        },
+        {
+            name: "Heading 5",
+            tag: "h5",
+            icon: LuHeading5,
+        },
+        {
+            name: "Heading 6",
+            tag: "h6",
+            icon: LuHeading6,
+        },
+    ],
+    data: {
+        html: "",
+    },
+};
+
+export const demo = {
+    id: nanoid(10),
+    type: "heading",
+    tag: "h2",
+    data: { html: "" },
+};

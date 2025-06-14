@@ -1,26 +1,13 @@
-import type {
-    EditorParagraphData,
-    ParagraphTags,
-} from "../../../types/blockElements";
 import { cleanInnerHTML } from "../libs/utilities";
-import { controlEmptyClass, preventNewLine } from "../libs/events";
+import { preventNewLine } from "../libs/events";
+import type { ParagraphProps } from "./types";
+import { demo, structure } from "./meta";
 
-type Paragraph = {
-    className?: string;
-    tag: ParagraphTags;
-    data: EditorParagraphData;
-    onUpdate: (value: EditorParagraphData) => void;
-};
-
-const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
+const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
     return (
         <p
             className={`outline-none py-1 overflow-hidden ${className}`}
             onKeyDown={preventNewLine}
-            onInput={(e) => {
-                const target = e.currentTarget ?? e.target;
-                controlEmptyClass(target);
-            }}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
                 onUpdate({ html: cleanInnerHTML(target.innerHTML) });
@@ -33,4 +20,8 @@ const Paragraph = ({ className = "", data, onUpdate }: Paragraph) => {
     );
 };
 
-export default Paragraph;
+export default {
+    component: Paragraph,
+    structure,
+    demo,
+};

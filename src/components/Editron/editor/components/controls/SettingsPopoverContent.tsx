@@ -1,6 +1,6 @@
 import { ImMoveDown, ImMoveUp } from "react-icons/im";
 import { TbRowRemove } from "react-icons/tb";
-import type { EditorBlock } from "../../types/blocks";
+import type { EditorBlock } from "../../register/types";
 import Popover from "@theprojectsx/react-popover";
 
 const SettingsPopoverContent = ({
@@ -41,9 +41,7 @@ const SettingsPopoverContent = ({
                 viewOnHover
                 content={<></>}
             >
-                <button className="popoverButton">
-                    Style
-                </button>
+                <button className="popoverButton">Style</button>
             </Popover>
         );
     }
@@ -61,7 +59,10 @@ const SettingsPopoverContent = ({
                 <span>Move Down</span>
             </button>
 
-            <button className="popoverButton" onClick={() => handleDeleteBlock()}>
+            <button
+                className="popoverButton"
+                onClick={() => handleDeleteBlock()}
+            >
                 <TbRowRemove className="w-5" />
                 <span>Remove</span>
             </button>

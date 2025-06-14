@@ -5,9 +5,8 @@ import Popover from "@theprojectsx/react-popover";
 import AddButtonPopoverContent from "./AddButtonPopoverContent";
 import type { BlockActions } from "../../hooks/useBlockForge";
 import type { BlockStructure } from "../../libs/BlockStructures";
-import type { EditorBlock } from "../../types/blocks";
+import type { EditorBlock } from "../../register/types";
 import SettingsPopoverContent from "./SettingsPopoverContent";
-
 
 type ControlsProps = {
     wrapper: HTMLDivElement | null;

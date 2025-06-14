@@ -1,17 +1,18 @@
 import React, { useCallback, useMemo } from "react";
 import type { BlockActions } from "../../hooks/useBlockForge";
-import type { EditorAllData, AllTags } from "../../types/blockElements";
-import type { EditorBlock } from "../../types/blocks";
-import Heading from "../blockElements/Heading";
-import Paragraph from "../blockElements/Paragraph";
-import List from "../blockElements/List";
-import Divider from "../blockElements/Divider";
-import Code from "../blockElements/Code";
-import Quote from "../blockElements/Quote";
+import type { EditorBlock, AllTags, AllData } from "../../register/types";
+
+type BlockElement = React.FC<{
+    className?: string;
+    tag: AllTags;
+    data: AllData;
+    onUpdate: (value: AllData) => void;
+}>;
 
 interface BlockViewerProps {
     className?: string;
-    block: EditorBlock;
+    Block: BlockElement;
+    metadata: EditorBlock;
     dispatch: React.Dispatch<BlockActions>;
     setFocusedBlock: React.Dispatch<
         React.SetStateAction<{
@@ -21,48 +22,30 @@ interface BlockViewerProps {
     >;
 }
 
-type BlockElement = React.FC<{
-    className?: string;
-    tag: AllTags;
-    data: EditorAllData;
-    onUpdate: (value: EditorAllData) => void;
-}>;
-
-const BlocksAsType: Record<string, BlockElement> = {
-    heading: Heading as BlockElement,
-    paragraph: Paragraph as BlockElement,
-    list: List as BlockElement,
-    divider: Divider as BlockElement,
-    code: Code as BlockElement,
-    quote: Quote as BlockElement,
-};
-
 const BlockViewer = ({
     className = "",
-    block,
+    Block,
+    metadata,
     dispatch,
     setFocusedBlock,
 }: BlockViewerProps) => {
-    const CurrentBlock = BlocksAsType[block.type];
-    if (!CurrentBlock) return;
-
     const handleUpdateBlock = useCallback(
-        (data: EditorAllData) => {
+        (data: AllData) => {
             if (
                 Array.isArray((data as any)?.values) &&
                 (data as any).values.length === 0
             ) {
-                return dispatch({ type: "DELETE", id: block.id });
+                return dispatch({ type: "DELETE", id: metadata.id });
             }
 
             const payload = {
-                ...block,
+                ...metadata,
                 data,
             } as EditorBlock;
 
             dispatch({ type: "UPDATE", payload });
         },
-        [block]
+        [metadata]
     );
 
     return (
@@ -76,7 +59,7 @@ const BlockViewer = ({
                     }
                     return {
                         element: e.target as HTMLElement,
-                        block,
+                        block: metadata,
                     };
                 });
             }}
@@ -84,9 +67,9 @@ const BlockViewer = ({
             {/* Using useMemo to memorize the component so that we only get the initial value of the state and not the updated value */}
             {useMemo(
                 () => (
-                    <CurrentBlock
-                        tag={block.tag}
-                        data={block.data}
+                    <Block
+                        tag={metadata.tag}
+                        data={metadata.data}
                         onUpdate={handleUpdateBlock}
                     />
                 ),
