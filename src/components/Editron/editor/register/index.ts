@@ -7,9 +7,10 @@ import type {
     PluginStructure,
     PluginType,
 } from "./types";
+import List from "../components/blockElements/List";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading];
+const AllBlocks = [Paragraph, Heading, List];
 
 // All Block Structures
 export const BlockStructures: BlockStructure[] = AllBlocks.map(

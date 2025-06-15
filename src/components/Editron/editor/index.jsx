@@ -1,9 +1,13 @@
 import { createRef } from "react";
 import { register } from "./register";
 import EditorComponent from "./components/EditorComponent";
-import "./index.css"
+import "./index.css";
 
-const Editron = ({ values = [], defaultBlock = "paragraph", plugins = [] }) => {
+const Editron = ({
+    values = [],
+    defaultBlock = "paragraph",
+    plugins = [],
+} = {}) => {
     const registers = register(plugins);
 
     const editorRef = createRef();

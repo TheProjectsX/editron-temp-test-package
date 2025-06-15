@@ -3,7 +3,7 @@ import { HeadingBlock } from "../components/blockElements/Heading/types";
 import type { IconType } from "react-icons";
 
 // All Props
-type AllProps = [ParagraphBlock, HeadingBlock];
+type AllProps = [ParagraphBlock, HeadingBlock, List];
 
 // Editor Block
 export type EditorBlock = {
