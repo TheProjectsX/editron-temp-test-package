@@ -73,7 +73,7 @@ const BlockViewer = ({
                         onUpdate={handleUpdateBlock}
                     />
                 ),
-                []
+                [metadata]
             )}
         </div>
     );

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { focusElement } from "../libs/events";
 import type { ListData, ListTags } from "./types";
-import { demo, structure } from "./meta";
+import { demo, settings, structure } from "./meta";
 
 type ListProps = {
     className?: string;
@@ -13,14 +13,13 @@ type ListProps = {
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
 
-
     useEffect(() => {
         onUpdate({ values: listData });
     }, [listData]);
 
     return (
         <Tag
-            className={`list-outside py-1 pl-4 ${
+            className={`list-outside py-1 pl-5 ${
                 Tag === "ol" ? "list-decimal" : "list-disc"
             } ${className}`}
         >
@@ -86,5 +85,6 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
 export default {
     component: List,
     structure,
-    demo
+    demo,
+    settings,
 };

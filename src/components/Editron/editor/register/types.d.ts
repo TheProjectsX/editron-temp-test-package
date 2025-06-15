@@ -8,28 +8,27 @@ import type { CodeBlock } from "../components/blockElements/Code/types";
 import type { QuoteBlock } from "../components/blockElements/Quote/types";
 
 // All Block Types
-type AllBlocks = [
-    ParagraphBlock,
-    HeadingBlock,
-    ListBlock,
-    DividerBlock,
-    CodeBlock,
-    QuoteBlock
-];
+type AllBlocks =
+    | ParagraphBlock
+    | HeadingBlock
+    | ListBlock
+    | DividerBlock
+    | CodeBlock
+    | QuoteBlock;
 
 // Editor Block
 export type EditorBlock = {
     id: string;
-} & AllBlocks[number];
+} & AllBlocks;
 
 // All Tags
-export type AllTags = AllBlocks[number]["tag"];
+export type AllTags = AllBlocks["tag"];
 
 // All Types
-export type AllTypes = AllBlocks[number]["type"];
+export type AllTypes = AllBlocks["type"];
 
 // All Data
-export type AllData = AllBlocks[number]["data"];
+export type AllData = AllBlocks["data"];
 
 // Block Structure
 export type BlockStructure = {
@@ -38,6 +37,13 @@ export type BlockStructure = {
     type: string;
     tags: string | SubTags[];
     data: AllData;
+};
+
+// Settings Structure
+export type SettingsStructure = {
+    name: string;
+    icon: IconType;
+    transform: () => any;
 };
 
 // Plugin Structure
@@ -65,4 +71,5 @@ export type PluginType = {
     component: React.FC<PluginProps>;
     structure: PluginStructure;
     demo: PluginDemo;
+    settings?: SettingsStructure[];
 };

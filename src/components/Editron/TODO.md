@@ -8,3 +8,4 @@
 -   After creating "register" update `editor/components/controls/AddButtonPopoverContent` for BlockStructure [XXX] ''
 -   Drill the registered component, structure, demo to their desired places (including the upper TODO) [X]
 -   After "Move" hover doesn't work on same block
+- There is something wrong with the hover controls movement

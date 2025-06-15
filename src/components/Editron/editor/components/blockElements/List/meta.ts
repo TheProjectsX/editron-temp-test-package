@@ -42,3 +42,20 @@ export const demo = {
         ],
     },
 };
+
+export const settings = [
+    {
+        name: "Ordered",
+        icon: MdFormatListNumbered,
+        transform: () => {
+            return { tag: "ol" };
+        },
+    },
+    {
+        name: "Unordered",
+        icon: MdOutlineFormatListBulleted,
+        transform: () => {
+            return { tag: "ul" };
+        },
+    },
+];

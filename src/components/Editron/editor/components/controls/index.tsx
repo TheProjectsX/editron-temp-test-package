@@ -4,7 +4,11 @@ import { IoAddOutline } from "react-icons/io5";
 import Popover from "@theprojectsx/react-popover";
 import AddButtonPopoverContent from "./AddButtonPopoverContent";
 import type { BlockActions } from "../../hooks/useBlockForge";
-import type { BlockStructure, EditorBlock } from "../../register/types";
+import type {
+    BlockStructure,
+    EditorBlock,
+    SettingsStructure,
+} from "../../register/types";
 import SettingsPopoverContent from "./SettingsPopoverContent";
 
 type ControlsProps = {
@@ -14,6 +18,7 @@ type ControlsProps = {
         block: EditorBlock | null;
     };
     structures: BlockStructure[];
+    settings: Record<string, SettingsStructure[] | undefined>;
     controllerFocused: boolean;
     setControllerFocused: React.Dispatch<React.SetStateAction<boolean>>;
     dispatch: React.Dispatch<BlockActions>;
@@ -23,6 +28,7 @@ const Controls = ({
     wrapper,
     focusedBlock,
     structures,
+    settings,
     dispatch,
     setControllerFocused,
 }: ControlsProps) => {
@@ -66,9 +72,11 @@ const Controls = ({
     // Handle Hard Update (Hard update, not only `data` property, but also other properties)
     const handleHardUpdate = (items: Partial<EditorBlock>) => {
         const payload = {
-            ...focusedBlock,
+            ...focusedBlock.block,
             ...items,
         } as EditorBlock;
+
+        console.log(payload)
 
         dispatch({ type: "UPDATE", payload });
     };
@@ -111,6 +119,7 @@ const Controls = ({
                 content={
                     <SettingsPopoverContent
                         currentBlock={focusedBlock.block?.type}
+                        moreSettings={settings}
                         handleHardUpdate={handleHardUpdate}
                         handleMoveUp={handleMoveUp}
                         handleMoveDown={handleMoveDown}

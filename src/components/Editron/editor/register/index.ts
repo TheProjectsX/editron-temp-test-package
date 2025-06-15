@@ -5,6 +5,7 @@ import type {
     PluginDemo,
     PluginStructure,
     PluginType,
+    SettingsStructure,
 } from "./types";
 
 // Blocks
@@ -33,6 +34,7 @@ export type RegisterReturn = {
     component: React.FC;
     structure: BlockStructure | PluginStructure;
     demo: EditorBlock | PluginDemo;
+    settings?: SettingsStructure[];
 };
 
 export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
@@ -41,11 +43,13 @@ export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
         component: block.component as React.FC<any>,
         structure: block.structure,
         demo: block.demo,
+        settings: "settings" in block ? block.settings : undefined,
     }));
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
         structure: plugin.structure,
         demo: plugin.demo,
+        settings: plugin.settings,
     }));
     return [...blocks, ...pluginItems];
 };
