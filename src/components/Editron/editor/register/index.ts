@@ -22,7 +22,7 @@ export const BlockDemos: EditorBlock[] = AllBlocks.map(
 );
 
 // Register and return new Structure
-type RegisterReturn = {
+export type RegisterReturn = {
     component: React.FC;
     structure: BlockStructure | PluginStructure;
     demo: EditorBlock | PluginDemo;

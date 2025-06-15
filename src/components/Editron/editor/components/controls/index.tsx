@@ -4,8 +4,7 @@ import { IoAddOutline } from "react-icons/io5";
 import Popover from "@theprojectsx/react-popover";
 import AddButtonPopoverContent from "./AddButtonPopoverContent";
 import type { BlockActions } from "../../hooks/useBlockForge";
-import type { BlockStructure } from "../../libs/BlockStructures";
-import type { EditorBlock } from "../../register/types";
+import type { BlockStructure, EditorBlock } from "../../register/types";
 import SettingsPopoverContent from "./SettingsPopoverContent";
 
 type ControlsProps = {
@@ -14,6 +13,7 @@ type ControlsProps = {
         element: HTMLElement | null;
         block: EditorBlock | null;
     };
+    structures: BlockStructure[];
     controllerFocused: boolean;
     setControllerFocused: React.Dispatch<React.SetStateAction<boolean>>;
     dispatch: React.Dispatch<BlockActions>;
@@ -22,6 +22,7 @@ type ControlsProps = {
 const Controls = ({
     wrapper,
     focusedBlock,
+    structures,
     dispatch,
     setControllerFocused,
 }: ControlsProps) => {
@@ -133,6 +134,7 @@ const Controls = ({
                 onWrapperBlur={() => setNewItemOpened(false)}
                 content={
                     <AddButtonPopoverContent
+                        structures={structures}
                         newItemOpened={newItemOpened}
                         handleAddNewBlock={handleAddNewBlock}
                     />

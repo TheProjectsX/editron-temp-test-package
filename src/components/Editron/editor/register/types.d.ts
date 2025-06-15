@@ -13,6 +13,9 @@ export type EditorBlock = {
 // All Tags
 export type AllTags = AllProps[number]["tag"];
 
+// All Types
+export type AllTypes = AllProps[number]["type"];
+
 // All Data
 export type AllData = AllProps[number]["data"];
 
@@ -24,7 +27,6 @@ export type BlockStructure = {
     tags: string | SubTags[];
     data: AllData;
 };
-
 
 // Plugin Structure
 export type PluginStructure = Omit<BlockStructure, "data"> & {

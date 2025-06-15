@@ -2,7 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import type { BlockActions } from "../../hooks/useBlockForge";
 import type { EditorBlock, AllTags, AllData } from "../../register/types";
 
-type BlockElement = React.FC<{
+export type BlockElement = React.FC<{
     className?: string;
     tag: AllTags;
     data: AllData;
@@ -11,7 +11,7 @@ type BlockElement = React.FC<{
 
 interface BlockViewerProps {
     className?: string;
-    Block: BlockElement;
+    Component: BlockElement;
     metadata: EditorBlock;
     dispatch: React.Dispatch<BlockActions>;
     setFocusedBlock: React.Dispatch<
@@ -24,7 +24,7 @@ interface BlockViewerProps {
 
 const BlockViewer = ({
     className = "",
-    Block,
+    Component,
     metadata,
     dispatch,
     setFocusedBlock,
@@ -67,7 +67,7 @@ const BlockViewer = ({
             {/* Using useMemo to memorize the component so that we only get the initial value of the state and not the updated value */}
             {useMemo(
                 () => (
-                    <Block
+                    <Component
                         tag={metadata.tag}
                         data={metadata.data}
                         onUpdate={handleUpdateBlock}

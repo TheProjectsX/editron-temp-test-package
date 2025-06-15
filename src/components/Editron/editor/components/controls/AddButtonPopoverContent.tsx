@@ -1,18 +1,18 @@
 import Popover from "@theprojectsx/react-popover";
-import BlockStructures, {
-    type BlockStructure,
-} from "../../libs/BlockStructures";
+import type { BlockStructure } from "../../register/types";
 
 const AddButtonPopoverContent = ({
+    structures,
     newItemOpened,
     handleAddNewBlock,
 }: {
+    structures: BlockStructure[];
     newItemOpened: boolean;
     handleAddNewBlock: (structure: BlockStructure) => void;
 }) => {
     return (
         <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-56 overflow-auto scrollbar-thin">
-            {BlockStructures.map((structure) => {
+            {structures.map((structure) => {
                 if (typeof structure.tags === "string")
                     return (
                         <button
