@@ -1,23 +1,35 @@
-import { ParagraphBlock } from "../components/blockElements/Paragraph/types";
-import { HeadingBlock } from "../components/blockElements/Heading/types";
 import type { IconType } from "react-icons";
 
-// All Props
-type AllProps = [ParagraphBlock, HeadingBlock, List];
+import type { ParagraphBlock } from "../components/blockElements/Paragraph/types";
+import type { HeadingBlock } from "../components/blockElements/Heading/types";
+import type { ListBlock } from "../components/blockElements/List/types";
+import type { DividerBlock } from "../components/blockElements/Divider/types";
+import type { CodeBlock } from "../components/blockElements/Code/types";
+import type { QuoteBlock } from "../components/blockElements/Quote/types";
+
+// All Block Types
+type AllBlocks = [
+    ParagraphBlock,
+    HeadingBlock,
+    ListBlock,
+    DividerBlock,
+    CodeBlock,
+    QuoteBlock
+];
 
 // Editor Block
 export type EditorBlock = {
     id: string;
-} & AllProps[number];
+} & AllBlocks[number];
 
 // All Tags
-export type AllTags = AllProps[number]["tag"];
+export type AllTags = AllBlocks[number]["tag"];
 
 // All Types
-export type AllTypes = AllProps[number]["type"];
+export type AllTypes = AllBlocks[number]["type"];
 
 // All Data
-export type AllData = AllProps[number]["data"];
+export type AllData = AllBlocks[number]["data"];
 
 // Block Structure
 export type BlockStructure = {

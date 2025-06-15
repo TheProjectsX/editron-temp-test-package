@@ -1,5 +1,4 @@
-import Paragraph from "../components/blockElements/Paragraph";
-import Heading from "../components/blockElements/Heading";
+// Types
 import type {
     BlockStructure,
     EditorBlock,
@@ -7,10 +6,17 @@ import type {
     PluginStructure,
     PluginType,
 } from "./types";
+
+// Blocks
+import Paragraph from "../components/blockElements/Paragraph";
+import Heading from "../components/blockElements/Heading";
 import List from "../components/blockElements/List";
+import Divider from "../components/blockElements/Divider";
+import Code from "../components/blockElements/Code";
+import Quote from "../components/blockElements/Quote";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List];
+const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote];
 
 // All Block Structures
 export const BlockStructures: BlockStructure[] = AllBlocks.map(
