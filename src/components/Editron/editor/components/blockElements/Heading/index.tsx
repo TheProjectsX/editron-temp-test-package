@@ -1,7 +1,7 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import {  preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
-import { demo, structure } from "./meta";
+import { demo, settings, structure } from "./meta";
 
 const Heading = ({
     className = "",
@@ -37,5 +37,6 @@ const Heading = ({
 export default {
     component: Heading,
     structure,
-    demo
+    demo,
+    settings
 };

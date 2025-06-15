@@ -70,15 +70,29 @@ const Controls = ({
     };
 
     // Handle Hard Update (Hard update, not only `data` property, but also other properties)
-    const handleHardUpdate = (items: Partial<EditorBlock>) => {
-        const payload = {
-            ...focusedBlock.block,
-            ...items,
-        } as EditorBlock;
+    // const handleHardUpdate = (items: Partial<EditorBlock>) => {
+    //     const payload = {
+    //         ...items,
+    //     } as Partial<EditorBlock>;
 
-        console.log(payload)
+    //     dispatch({
+    //         type: "UPDATE",
+    //         id: focusedBlock.block?.id!,
+    //         payload,
+    //     });
+    // };
 
-        dispatch({ type: "UPDATE", payload });
+    // Handle Update, but get the new data from a transformer
+    const handleTransformedUpdate = (func: (block: EditorBlock) => any) => {
+        const payload = func(focusedBlock.block!);
+
+        dispatch({
+            type: "UPDATE",
+            id: focusedBlock.block?.id!,
+            payload,
+        });
+
+        setSettingsOpened(false);
     };
 
     // Handle Delete Block
@@ -120,7 +134,7 @@ const Controls = ({
                     <SettingsPopoverContent
                         currentBlock={focusedBlock.block?.type}
                         moreSettings={settings}
-                        handleHardUpdate={handleHardUpdate}
+                        handleTransformedUpdate={handleTransformedUpdate}
                         handleMoveUp={handleMoveUp}
                         handleMoveDown={handleMoveDown}
                         handleDeleteBlock={handleDeleteBlock}

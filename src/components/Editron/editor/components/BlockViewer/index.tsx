@@ -39,11 +39,10 @@ const BlockViewer = ({
             }
 
             const payload = {
-                ...metadata,
                 data,
-            } as EditorBlock;
+            } as Partial<EditorBlock>;
 
-            dispatch({ type: "UPDATE", payload });
+            dispatch({ type: "UPDATE", id: metadata.id, payload });
         },
         [metadata]
     );

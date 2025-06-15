@@ -6,14 +6,14 @@ import type { EditorBlock, SettingsStructure } from "../../register/types";
 const SettingsPopoverContent = ({
     currentBlock,
     moreSettings,
-    handleHardUpdate,
+    handleTransformedUpdate,
     handleMoveUp,
     handleMoveDown,
     handleDeleteBlock,
 }: {
     currentBlock: string | undefined;
     moreSettings: Record<string, SettingsStructure[] | undefined>;
-    handleHardUpdate: (items: Partial<EditorBlock>) => void;
+    handleTransformedUpdate: (func: (block: EditorBlock) => any) => void;
     handleMoveUp: () => void;
     handleMoveDown: () => void;
     handleDeleteBlock: () => void;
@@ -27,7 +27,9 @@ const SettingsPopoverContent = ({
                     <button
                         key={setting.name}
                         className="popoverButton"
-                        onClick={() => handleHardUpdate(setting.transform())}
+                        onClick={() =>
+                            handleTransformedUpdate(setting.transform)
+                        }
                     >
                         {setting.icon ? (
                             <setting.icon className="w-5" />

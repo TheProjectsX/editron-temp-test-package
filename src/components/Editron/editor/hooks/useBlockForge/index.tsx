@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import type { EditorBlock } from "../../types/blocks";
+import type { EditorBlock } from "../../register/types";
 import { nanoid } from "nanoid";
 
 export type BlockActions =
@@ -10,7 +10,8 @@ export type BlockActions =
       }
     | {
           type: "UPDATE";
-          payload: EditorBlock;
+          id: string;
+          payload: Partial<EditorBlock>;
       }
     | {
           type: "DELETE";
@@ -47,7 +48,9 @@ const BlockReducers = (state: EditorBlock[], action: BlockActions) => {
 
         case "UPDATE": {
             return state.map((block) =>
-                block.id === action.payload.id ? action.payload : block
+                block.id === action.id
+                    ? ({ ...block, ...action.payload } as EditorBlock)
+                    : block
             );
         }
 

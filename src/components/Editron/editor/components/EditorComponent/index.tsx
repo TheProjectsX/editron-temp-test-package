@@ -78,9 +78,6 @@ const EditorComponent = forwardRef<
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-    
-    useEffect(() => {console.log(blocks)}, [blocks])
-
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
             <div className="grid grid-cols-[1fr_60px] gap-2 relative">
