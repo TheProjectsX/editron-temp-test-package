@@ -1,5 +1,5 @@
 import { insertAZ, preventNewLine } from "../libs/events";
-import { demo, structure } from "./meta";
+import { demo, settings, structure } from "./meta";
 import type { QuoteProps } from "./types";
 
 const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
@@ -35,5 +35,6 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
 export default {
     component: Quote,
     structure,
-    demo
+    demo,
+    settings
 };

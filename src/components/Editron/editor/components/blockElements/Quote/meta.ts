@@ -1,5 +1,8 @@
 import { nanoid } from "nanoid";
+import { BsChatLeftQuoteFill } from "react-icons/bs";
+import { FaQuoteRight } from "react-icons/fa";
 import { IoMdQuote } from "react-icons/io";
+import type { EditorBlock } from "../../../register/types";
 
 export const structure = {
     name: "Quote",
@@ -19,3 +22,33 @@ export const demo = {
         quote: "",
     },
 };
+
+export const settings = [
+    {
+        name: "Plain",
+        icon: FaQuoteRight,
+        transform: (block: EditorBlock) => {
+            console.log(block)
+            return {
+                data: {
+                    ...block.data,
+                    type: "plain",
+                },
+            };
+        },
+    },
+    {
+        name: "Highlighted",
+        icon: BsChatLeftQuoteFill,
+        transform: (block: EditorBlock) => {
+            console.log(block)
+
+            return {
+                data: {
+                    ...block.data,
+                    type: "highlighted",
+                },
+            };
+        },
+    },
+];
