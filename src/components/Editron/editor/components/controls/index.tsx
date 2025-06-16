@@ -37,6 +37,7 @@ const Controls = ({
 
     const [positions, setPositions] = useState<{ top: number }>({ top: 0 });
 
+    // Set position of the Controller
     useEffect(() => {
         if (!wrapper || !focusedBlock?.element || newItemOpened) return;
 
@@ -70,21 +71,10 @@ const Controls = ({
     };
 
     // Handle Hard Update (Hard update, not only `data` property, but also other properties)
-    // const handleHardUpdate = (items: Partial<EditorBlock>) => {
-    //     const payload = {
-    //         ...items,
-    //     } as Partial<EditorBlock>;
-
-    //     dispatch({
-    //         type: "UPDATE",
-    //         id: focusedBlock.block?.id!,
-    //         payload,
-    //     });
-    // };
-
-    // Handle Update, but get the new data from a transformer
-    const handleTransformedUpdate = (func: (block: EditorBlock) => any) => {
-        const payload = func(focusedBlock.block!);
+    const handleHardUpdate = (values: Partial<EditorBlock>) => {
+        const payload = {
+            ...values,
+        };
 
         dispatch({
             type: "UPDATE",
@@ -132,9 +122,9 @@ const Controls = ({
                 onWrapperBlur={() => setSettingsOpened(false)}
                 content={
                     <SettingsPopoverContent
-                        currentBlock={focusedBlock.block?.type}
+                        currentBlock={focusedBlock.block!}
                         moreSettings={settings}
-                        handleTransformedUpdate={handleTransformedUpdate}
+                        handleHardUpdate={handleHardUpdate}
                         handleMoveUp={handleMoveUp}
                         handleMoveDown={handleMoveDown}
                         handleDeleteBlock={handleDeleteBlock}

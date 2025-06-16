@@ -43,7 +43,7 @@ export type BlockStructure = {
 export type SettingsStructure = {
     name: string;
     icon: IconType;
-    transform: () => any;
+    transform: (values: EditorBlock) => Partial<EditorBlock>;
 };
 
 // Plugin Structure

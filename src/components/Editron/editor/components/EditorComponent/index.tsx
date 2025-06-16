@@ -68,6 +68,13 @@ const EditorComponent = forwardRef<
         // Set Initial focusedBlock
         if (!focusedBlock.block && blocks.length > 0) {
             setFocusedBlock((prev) => ({ ...prev, block: blocks[0] }));
+        } else {
+            // Update the current focusedBlock Data
+            setFocusedBlock((prev) => ({
+                ...prev,
+                block:
+                    blocks.find((block) => block.id === prev.block?.id) || null,
+            }));
         }
     }, [blocks]);
 

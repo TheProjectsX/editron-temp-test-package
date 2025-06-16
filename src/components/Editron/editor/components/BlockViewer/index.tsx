@@ -42,8 +42,6 @@ const BlockViewer = ({
                 data,
             } as Partial<EditorBlock>;
 
-            console.log(payload, metadata);
-
             dispatch({ type: "UPDATE", id: metadata.id, payload });
         },
         [metadata]
@@ -58,6 +56,7 @@ const BlockViewer = ({
                     if (prev.element === e.target) {
                         return prev;
                     }
+
                     return {
                         element: e.target as HTMLElement,
                         block: metadata,
