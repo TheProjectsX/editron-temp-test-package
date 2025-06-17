@@ -1,4 +1,4 @@
-import { insertAZ, preventNewLine } from "../libs/events";
+import { preventNewLine } from "../libs/events";
 import { demo, settings, structure } from "./meta";
 import type { QuoteProps } from "./types";
 
@@ -12,21 +12,34 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
             } ${className}`}
         >
             <p
-                className="outline-none text-xl leading-relaxed italic font-semibold text-gray-900 py-1"
-                onKeyDown={preventNewLine}
-                onBlur={(e) => {
+                className="outline-none text-xl leading-relaxed italic font-semibold text-gray-900 py-1 cursor-text"
+                onClick={(e) => {
                     const target = e.currentTarget ?? e.target;
-                    onUpdate({
-                        ...data,
-                        quote: insertAZ(target.textContent, '"'),
-                    });
-                    target.textContent = insertAZ(target.textContent, '"');
+
+                    (
+                        target.querySelector(
+                            "[data-name='quote-content']"
+                        ) as HTMLSpanElement
+                    ).focus();
                 }}
-                data-placeholder={`Enter a Quote`}
-                autoFocus
-                contentEditable
             >
-                {data.quote ? insertAZ(data.quote, '"') : ""}
+                <span>“</span>
+                <span
+                    data-name="quote-content"
+                    onKeyDown={preventNewLine}
+                    onBlur={(e) => {
+                        const target = e.currentTarget ?? e.target;
+                        onUpdate({
+                            ...data,
+                            quote: target.textContent ?? "",
+                        });
+                    }}
+                    contentEditable
+                    autoFocus
+                    className="inline-block min-w-[1ch] min-h-[1em] outline-none"
+                />
+
+                <span>”</span>
             </p>
         </blockquote>
     );
@@ -36,5 +49,5 @@ export default {
     component: Quote,
     structure,
     demo,
-    settings
+    settings,
 };

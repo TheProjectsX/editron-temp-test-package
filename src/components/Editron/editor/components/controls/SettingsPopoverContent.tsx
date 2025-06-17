@@ -1,7 +1,6 @@
 import { ImMoveDown, ImMoveUp } from "react-icons/im";
 import { TbRowRemove } from "react-icons/tb";
 import type { EditorBlock, SettingsStructure } from "../../register/types";
-// import Popover from "@theprojectsx/react-popover";
 
 const SettingsPopoverContent = ({
     currentBlock,
@@ -27,9 +26,13 @@ const SettingsPopoverContent = ({
                     <button
                         key={setting.name}
                         className="popoverButton"
-                        onClick={() =>
-                            handleHardUpdate(setting.transform(currentBlock))
-                        }
+                        onClick={() => {
+                            const transformedData =
+                                setting.transform(currentBlock);
+                            if (transformedData) {
+                                handleHardUpdate(transformedData);
+                            }
+                        }}
                     >
                         {setting.icon ? (
                             <setting.icon className="w-5" />

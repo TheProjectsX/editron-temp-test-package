@@ -1,7 +1,7 @@
 [data-name="block-editor"] [contenteditable] {
     position: relative;
 }
-[data-name="block-editor"] [contenteditable]:empty::before {
+[data-name="block-editor"] [contenteditable][data-placeholder]:empty::before {
     position: absolute;
     content: attr(data-placeholder);
     color: #aaa;

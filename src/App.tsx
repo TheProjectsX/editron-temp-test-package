@@ -1,6 +1,5 @@
 import Editron from "./components/Editron/editor";
 
-
 const App = () => {
     // const demoData = [
     //     {

@@ -52,13 +52,16 @@ const BlockViewer = ({
             data-name="block-editor"
             className={`${className}`}
             onMouseEnter={(e) => {
+                const target = (e.currentTarget ?? e.target) as HTMLElement;
+                if (target.dataset["name"] !== "block-editor") return;
+
                 setFocusedBlock((prev) => {
-                    if (prev.element === e.target) {
+                    if (prev.element === target) {
                         return prev;
                     }
 
                     return {
-                        element: e.target as HTMLElement,
+                        element: target,
                         block: metadata,
                     };
                 });

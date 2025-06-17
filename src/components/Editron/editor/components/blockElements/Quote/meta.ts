@@ -28,7 +28,6 @@ export const settings = [
         name: "Plain",
         icon: FaQuoteRight,
         transform: (block: EditorBlock) => {
-            console.log(block)
             return {
                 data: {
                     ...block.data,
@@ -41,8 +40,6 @@ export const settings = [
         name: "Highlighted",
         icon: BsChatLeftQuoteFill,
         transform: (block: EditorBlock) => {
-            console.log(block)
-
             return {
                 data: {
                     ...block.data,
