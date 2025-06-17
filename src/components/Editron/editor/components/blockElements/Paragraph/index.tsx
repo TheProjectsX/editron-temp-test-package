@@ -6,7 +6,7 @@ import { demo, structure } from "./meta";
 const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
     return (
         <p
-            className={`outline-none py-1 overflow-hidden ${className}`}
+            className={`outline-none overflow-hidden ${className}`}
             onKeyDown={preventNewLine}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;

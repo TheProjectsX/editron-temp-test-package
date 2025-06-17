@@ -50,7 +50,7 @@ const BlockViewer = ({
     return (
         <div
             data-name="block-editor"
-            className={`${className}`}
+            className={`min-h-9 flex flex-col justify-center ${className}`}
             onMouseEnter={(e) => {
                 const target = (e.currentTarget ?? e.target) as HTMLElement;
                 if (target.dataset["name"] !== "block-editor") return;
