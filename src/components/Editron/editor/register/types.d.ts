@@ -16,7 +16,7 @@ type AllBlocks =
     | DividerBlock
     | CodeBlock
     | QuoteBlock
-    | WebpageBlock
+    | WebpageBlock;
 
 // Editor Block
 export type EditorBlock = {
@@ -44,8 +44,13 @@ export type BlockStructure = {
 // Settings Structure
 export type SettingsStructure = {
     name: string;
-    icon: IconType;
-    transform: (values: EditorBlock) => Partial<EditorBlock> | null;
+    icon?: IconType;
+    transform?: (values: EditorBlock) => Partial<EditorBlock> | null;
+    actions: {
+        name: string;
+        icon?: IconType;
+        transform: (values: EditorBlock) => Partial<EditorBlock> | null;
+    }[];
 };
 
 // Plugin Structure

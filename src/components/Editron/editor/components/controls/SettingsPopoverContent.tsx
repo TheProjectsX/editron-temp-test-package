@@ -1,10 +1,12 @@
 import { ImMoveDown, ImMoveUp } from "react-icons/im";
 import { TbRowRemove } from "react-icons/tb";
 import type { EditorBlock, SettingsStructure } from "../../register/types";
+import Popover from "@theprojectsx/react-popover";
 
 const SettingsPopoverContent = ({
     currentBlock,
     moreSettings,
+    settingsOpened,
     handleHardUpdate,
     handleMoveUp,
     handleMoveDown,
@@ -12,6 +14,7 @@ const SettingsPopoverContent = ({
 }: {
     currentBlock: EditorBlock;
     moreSettings: Record<string, SettingsStructure[] | undefined>;
+    settingsOpened: boolean;
     handleHardUpdate: (values: Partial<EditorBlock>) => void;
     handleMoveUp: () => void;
     handleMoveDown: () => void;
@@ -22,26 +25,85 @@ const SettingsPopoverContent = ({
     if (currentBlock && moreSettings[currentBlock.type]) {
         BlockBasedSettings = (
             <>
-                {moreSettings[currentBlock.type]?.map((setting) => (
-                    <button
-                        key={setting.name}
-                        className="popoverButton"
-                        onClick={() => {
-                            const transformedData =
-                                setting.transform(currentBlock);
-                            if (transformedData) {
-                                handleHardUpdate(transformedData);
-                            }
-                        }}
-                    >
-                        {setting.icon ? (
-                            <setting.icon className="w-5" />
-                        ) : (
-                            <span className="w-5"></span>
-                        )}
-                        <span>{setting.name}</span>
-                    </button>
-                ))}
+                {moreSettings[currentBlock.type]?.map((setting) => {
+                    if (setting.transform) {
+                        return (
+                            <button
+                                key={setting.name}
+                                className="popoverButton"
+                                onClick={() => {
+                                    const transformedData =
+                                        setting.transform!(currentBlock);
+                                    if (transformedData) {
+                                        handleHardUpdate(transformedData);
+                                    }
+                                }}
+                            >
+                                {setting.icon ? (
+                                    <setting.icon className="w-5" />
+                                ) : (
+                                    <span className="w-5"></span>
+                                )}
+                                <span>{setting.name}</span>
+                            </button>
+                        );
+                    }
+
+                    if (setting.actions) {
+                        return (
+                            <Popover
+                                key={setting.name}
+                                gap={0}
+                                position="left"
+                                axis="top"
+                                parentStyles={{ width: "100%" }}
+                                viewOnHover
+                                content={
+                                    settingsOpened && (
+                                        <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-56 overflow-auto scrollbar-thin">
+                                            {setting.actions.map((action) => (
+                                                <button
+                                                    key={action.name}
+                                                    className="popoverButton"
+                                                    onClick={() => {
+                                                        const transformedData =
+                                                            action.transform(
+                                                                currentBlock
+                                                            );
+                                                        if (transformedData) {
+                                                            handleHardUpdate(
+                                                                transformedData
+                                                            );
+                                                        }
+                                                    }}
+                                                >
+                                                    {action.icon ? (
+                                                        <action.icon className="w-5" />
+                                                    ) : (
+                                                        <span className="w-5"></span>
+                                                    )}
+                                                    <span>{action.name}</span>
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )
+                                }
+                            >
+                                <button
+                                    key={setting.name}
+                                    className="popoverButton"
+                                >
+                                    {setting.icon ? (
+                                        <setting.icon className="w-5" />
+                                    ) : (
+                                        <span className="w-5"></span>
+                                    )}
+                                    <span>{setting.name}</span>
+                                </button>
+                            </Popover>
+                        );
+                    }
+                })}
             </>
         );
     }

@@ -124,6 +124,7 @@ const Controls = ({
                     <SettingsPopoverContent
                         currentBlock={focusedBlock.block!}
                         moreSettings={settings}
+                        settingsOpened={settingsOpened}
                         handleHardUpdate={handleHardUpdate}
                         handleMoveUp={handleMoveUp}
                         handleMoveDown={handleMoveDown}

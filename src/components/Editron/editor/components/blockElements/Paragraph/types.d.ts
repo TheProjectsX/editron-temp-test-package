@@ -1,6 +1,7 @@
 type ParagraphTags = "p";
 type ParagraphData = {
     html: string;
+    style?: Record<string, string>;
 };
 
 export type ParagraphBlock = {
