@@ -14,6 +14,7 @@ const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
             }}
             style={data.style ?? {}}
             data-placeholder={`Enter some text...`}
+            data-align={data.style?.textAlign ?? ""}
             autoFocus
             contentEditable
             dangerouslySetInnerHTML={{ __html: data.html }}

@@ -1,14 +1,38 @@
 [data-name="block-editor"] [contenteditable] {
     position: relative;
 }
+
 [data-name="block-editor"] [contenteditable][data-placeholder]:empty::before {
     position: absolute;
     content: attr(data-placeholder);
     color: #aaa;
     top: 50%;
     transform: translateY(-50%);
-    left: 0px;
     pointer-events: none;
+    left: 0;
+}
+
+/* Center aligned placeholder */
+[data-name="block-editor"]
+    [contenteditable][data-align="center"][data-placeholder]:empty::before {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Right aligned placeholder */
+[data-name="block-editor"]
+    [contenteditable][data-align="right"][data-placeholder]:empty::before {
+    right: 0;
+    left: auto;
+    transform: translateY(-50%);
+}
+
+[data-name="block-editor"]
+    [contenteditable][data-placeholder][data-align="right"]:empty::before {
+    left: auto;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: right;
 }
 
 @reference "../../../index.css";

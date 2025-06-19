@@ -41,7 +41,7 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
                                 { html: "" },
                             ]);
 
-                            // Getting the element inside, cause outside timeout it's not rendered yet
+                            // Getting the element inside, cause outside timeout, it's not rendered yet
                             setTimeout(() => {
                                 const sibling =
                                     target.nextElementSibling as HTMLLIElement | null;
