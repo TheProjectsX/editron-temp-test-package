@@ -22,6 +22,7 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
                         ) as HTMLSpanElement
                     ).focus();
                 }}
+                style={data.style ?? {}}
             >
                 <span>“</span>
                 <span

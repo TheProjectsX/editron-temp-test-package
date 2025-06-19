@@ -3,6 +3,7 @@ export type ListData = {
     values: {
         html: string;
     }[];
+    style: Record<string, string>;
 };
 
 export type ListBlock = {

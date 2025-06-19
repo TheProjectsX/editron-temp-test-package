@@ -1,7 +1,7 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { ParagraphProps } from "./types";
-import { demo, structure } from "./meta";
+import { demo, settings, structure } from "./meta";
 
 const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
     return (
@@ -12,6 +12,7 @@ const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
                 const target = e.currentTarget ?? e.target;
                 onUpdate({ html: cleanInnerHTML(target.innerHTML) });
             }}
+            style={data.style ?? {}}
             data-placeholder={`Enter some text...`}
             autoFocus
             contentEditable
@@ -24,4 +25,5 @@ export default {
     component: Paragraph,
     structure,
     demo,
+    settings,
 };

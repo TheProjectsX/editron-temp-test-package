@@ -14,7 +14,7 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
 
     useEffect(() => {
-        onUpdate({ values: listData });
+        onUpdate({ ...data, values: listData });
     }, [listData]);
 
     return (
@@ -22,6 +22,7 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
             className={`list-outside py-1 pl-5 ${
                 Tag === "ol" ? "list-decimal" : "list-disc"
             } ${className}`}
+            style={data.style ?? {}}
         >
             {listData.map((itemData, idx) => (
                 <li

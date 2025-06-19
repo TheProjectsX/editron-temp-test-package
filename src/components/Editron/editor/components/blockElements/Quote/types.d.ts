@@ -2,6 +2,7 @@ export type QuoteTags = "blockquote";
 export type QuoteData = {
     quote: string;
     type?: "plain" | "highlighted";
+    style?: Record<string, string>;
 };
 
 export type QuoteBlock = {

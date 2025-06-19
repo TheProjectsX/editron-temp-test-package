@@ -9,6 +9,7 @@ import {
     LuHeading6,
 } from "react-icons/lu";
 import { TbTransform } from "react-icons/tb";
+import { AlignSettings } from "../libs/common";
 
 export const structure = {
     name: "Heading",
@@ -107,4 +108,5 @@ export const settings = [
             },
         ],
     },
+    AlignSettings,
 ];

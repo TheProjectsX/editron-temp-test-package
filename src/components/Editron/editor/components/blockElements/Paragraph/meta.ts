@@ -1,5 +1,6 @@
-import { BiParagraph } from "react-icons/bi";
 import { nanoid } from "nanoid";
+import { BiParagraph } from "react-icons/bi";
+import { AlignSettings } from "../libs/common";
 
 export const structure = {
     name: "Paragraph",
@@ -17,3 +18,5 @@ export const demo = {
     tag: "p",
     data: { html: "" },
 };
+
+export const settings = [AlignSettings];

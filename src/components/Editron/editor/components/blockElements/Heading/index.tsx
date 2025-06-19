@@ -1,5 +1,5 @@
 import { cleanInnerHTML } from "../libs/utilities";
-import {  preventNewLine } from "../libs/events";
+import { preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
 import { demo, settings, structure } from "./meta";
 
@@ -24,8 +24,9 @@ const Heading = ({
             onKeyDown={preventNewLine}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ html: cleanInnerHTML(target.innerHTML) });
+                onUpdate({ ...data, html: cleanInnerHTML(target.innerHTML) });
             }}
+            style={data.style ?? {}}
             data-placeholder={`Enter your heading...`}
             autoFocus
             contentEditable
@@ -38,5 +39,5 @@ export default {
     component: Heading,
     structure,
     demo,
-    settings
+    settings,
 };

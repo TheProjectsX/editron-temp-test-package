@@ -4,6 +4,7 @@ import {
     MdFormatListNumbered,
     MdOutlineFormatListBulleted,
 } from "react-icons/md";
+import { AlignSettings } from "../libs/common";
 
 export const structure = {
     name: "List",
@@ -58,4 +59,5 @@ export const settings = [
             return { tag: "ul" };
         },
     },
+    AlignSettings
 ];
