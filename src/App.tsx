@@ -53,7 +53,7 @@ const App = () => {
     //     },
     // ];
 
-    const [Editor, save] = Editron({defaultBlock: "image"});
+    const [Editor, save] = Editron({defaultBlock: "code-preview"});
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">

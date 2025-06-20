@@ -16,9 +16,10 @@ import Divider from "../components/blockElements/Divider";
 import Code from "../components/blockElements/Code";
 import Quote from "../components/blockElements/Quote";
 import Image from "../components/blockElements/Image";
+import CodePreview from "../components/blockElements/CodePreview";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote, Image];
+const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote, Image, CodePreview];
 
 // All Block Structures
 export const BlockStructures: BlockStructure[] = AllBlocks.map(
