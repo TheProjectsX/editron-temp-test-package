@@ -15,10 +15,10 @@ import List from "../components/blockElements/List";
 import Divider from "../components/blockElements/Divider";
 import Code from "../components/blockElements/Code";
 import Quote from "../components/blockElements/Quote";
-import Webpage from "../components/blockElements/Webpage";
+import Image from "../components/blockElements/Image";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote, Webpage];
+const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote, Image];
 
 // All Block Structures
 export const BlockStructures: BlockStructure[] = AllBlocks.map(
@@ -44,9 +44,10 @@ export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
         component: block.component as React.FC<any>,
         structure: block.structure,
         demo: block.demo,
-        settings: "settings" in block
-            ? (block.settings as SettingsStructure[])
-            : undefined,
+        settings:
+            "settings" in block
+                ? (block.settings as SettingsStructure[])
+                : undefined,
     }));
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,

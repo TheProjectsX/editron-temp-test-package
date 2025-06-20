@@ -10,3 +10,4 @@
 -   After "Move" hover doesn't work on same block [X]
 -   There is something wrong with the hover controls movement [Got the problem, but not sure what is causing it, so, Best of luck Future Me!] [X] [Error: Was using child elements to get the top size. Solution: check if the target has `data-name` == `block-editor`]
 -   Cause we are using `focusedBlock.block` when func initialized, the new data is not being used. Where? `handleTransformUpdate` in `controls` [X]
+-   Create Transformer to transform from state data to export data

@@ -7,6 +7,7 @@ import type { DividerBlock } from "../components/blockElements/Divider/types";
 import type { CodeBlock } from "../components/blockElements/Code/types";
 import type { QuoteBlock } from "../components/blockElements/Quote/types";
 import type { WebpageBlock } from "../components/blockElements/Webpage/types";
+import type { ImageBlock } from "../components/blockElements/Image/types";
 
 // All Block Types
 type AllBlocks =
@@ -16,7 +17,7 @@ type AllBlocks =
     | DividerBlock
     | CodeBlock
     | QuoteBlock
-    | WebpageBlock;
+    | ImageBlock;
 
 // Editor Block
 export type EditorBlock = {

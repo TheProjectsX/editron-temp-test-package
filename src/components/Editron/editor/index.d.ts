@@ -2,7 +2,7 @@ import type { AllTypes, EditorBlock, PluginType } from "./register/types";
 
 export interface EditronProps {
     values?: EditorBlock[];
-    defaultBlock?: AllTypes;
+    defaultBlock?: AllTypes | (string & {});
     plugins?: PluginType[] | any[];
 }
 
