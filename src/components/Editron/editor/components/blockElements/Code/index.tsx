@@ -20,5 +20,6 @@ const Code = ({ className = "", data, onUpdate }: CodeProps) => {
 export default {
     component: Code,
     structure,
-    demo
+    demo,
+    inlineToolbar: false,
 };

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useSelectionPosition = () => {
+const useSelectionPosition = (preventSelectEvent: boolean) => {
     const [position, setPosition] = useState<{
         top: number;
         left: number;
@@ -10,7 +10,10 @@ const useSelectionPosition = () => {
 
     useEffect(() => {
         const handleSelectionChange = () => {
+            if (preventSelectEvent) return;
+
             const selection = window.getSelection();
+
             if (!selection || selection.isCollapsed) {
                 setPosition(null);
                 return;
@@ -46,7 +49,7 @@ const useSelectionPosition = () => {
         };
 
         const handleWindowBlur = () => {
-            setPosition(null);
+            // setPosition(null);
         };
 
         document.addEventListener("selectionchange", handleSelectionChange);
@@ -58,7 +61,7 @@ const useSelectionPosition = () => {
             );
             window.removeEventListener("blur", handleWindowBlur);
         };
-    }, []);
+    }, [preventSelectEvent]);
 
     return position;
 };

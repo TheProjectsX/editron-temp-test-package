@@ -28,7 +28,7 @@ const Webpage = () => {
             );
             console.log(response);
 
-            setWebpageMeta(null)
+            setWebpageMeta(null);
         } catch (error) {
             setWebpageMeta(null);
         }
@@ -56,4 +56,5 @@ export default {
     component: Webpage,
     structure,
     demo,
+    inlineToolbar: false,
 };

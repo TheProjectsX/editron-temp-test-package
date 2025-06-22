@@ -19,7 +19,16 @@ import Image from "../components/blockElements/Image";
 import CodePreview from "../components/blockElements/CodePreview";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote, Image, CodePreview];
+const AllBlocks = [
+    Paragraph,
+    Heading,
+    List,
+    Divider,
+    Code,
+    Quote,
+    Image,
+    CodePreview,
+];
 
 // All Block Structures
 export const BlockStructures: BlockStructure[] = AllBlocks.map(
@@ -30,6 +39,12 @@ export const BlockStructures: BlockStructure[] = AllBlocks.map(
 export const BlockDemos: EditorBlock[] = AllBlocks.map(
     (block) => block.demo as EditorBlock
 );
+
+// Inline Toolbar not Supported
+export const NoInlineToolbar = AllBlocks.filter(
+    (block) =>
+        "inlineToolbar" in block && (block as any).inlineToolbar === false
+).map((block) => block.structure.type);
 
 // Register and return new Structure
 export type RegisterReturn = {

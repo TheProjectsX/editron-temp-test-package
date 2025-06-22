@@ -66,5 +66,6 @@ export default {
     component: Divider,
     structure,
     demo,
-    settings
+    settings,
+    inlineToolbar: false,
 };

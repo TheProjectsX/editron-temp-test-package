@@ -50,3 +50,12 @@
 .popoverButton:hover {
     background-color: #f3f4f6;
 }
+
+/* Set sub and super. cause it does not normally toggle in Chrome */
+sub {
+    vertical-align: sub;
+}
+
+sup {
+    vertical-align: super;
+}
