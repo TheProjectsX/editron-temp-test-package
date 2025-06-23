@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineStrikethrough } from "react-icons/ai";
 import { GoBold, GoItalic } from "react-icons/go";
 import { ImSubscript, ImSuperscript } from "react-icons/im";
-// import { IoMdCodeWorking, IoMdLink } from "react-icons/io";
+import { LuLink2, LuLink2Off } from "react-icons/lu";
 import { MdOutlineFormatUnderlined } from "react-icons/md";
 
 export const RegularInlineTools = [
@@ -46,21 +46,7 @@ export const RegularInlineTools = [
 
 /* Custom Inline Tools with Control */
 
-let savedRange: Range | null = null;
-const saveSelection = () => {
-    const sel = window.getSelection();
-    if (sel && sel.rangeCount > 0) {
-        savedRange = sel.getRangeAt(0);
-    }
-};
-
-const restoreSelection = () => {
-    if (savedRange) {
-        const sel = window.getSelection()!;
-        sel.removeAllRanges();
-        sel.addRange(savedRange);
-    }
-};
+// Save Selection and Restore Selection
 
 const getAnchorTag = (): HTMLAnchorElement | null => {
     const sel = window.getSelection();
@@ -75,65 +61,22 @@ const getAnchorTag = (): HTMLAnchorElement | null => {
     return null;
 };
 
-type InlineLinkToolProps = { onActive: () => void; onClose: () => void };
+type InlineLinkToolProps = {
+    onActive: () => void;
+    onClose: () => void;
+    restoreSelection: () => void;
+};
 
 export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
     onActive,
     onClose,
+    restoreSelection,
 }) => {
-    const [inputVisible, setInputVisible] = useState(false);
-    const [inputValue, setInputValue] = useState("");
+    const [inputVisible, setInputVisible] = useState<boolean>(false);
+    const [inputValue, setInputValue] = useState<string>("");
     const [isActive, setIsActive] = useState(false);
 
-    useEffect(() => {
-        const anchor = getAnchorTag();
-        if (anchor) {
-            setInputVisible(true);
-            setInputValue(anchor.getAttribute("href") || "");
-            setIsActive(true);
-            saveSelection();
-        }
-    }, []);
-
-    const handleButtonClick = () => {
-        const anchor = getAnchorTag();
-
-        if (anchor) {
-            restoreSelection();
-            document.execCommand("unlink");
-            setInputVisible(false);
-            setInputValue("");
-            setIsActive(false);
-            return;
-        }
-
-        if (!inputVisible) {
-            saveSelection();
-        }
-
-        setInputVisible((v) => !v);
-    };
-
-    const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key !== "Enter") return;
-
-        e.preventDefault();
-        restoreSelection();
-
-        const raw = inputValue.trim();
-        if (!raw) {
-            document.execCommand("unlink");
-            setIsActive(false);
-        } else {
-            const url = /^(https?:\/\/|\/\/)/.test(raw) ? raw : `http://${raw}`;
-            document.execCommand("createLink", false, url);
-            setIsActive(true);
-        }
-
-        setInputVisible(false);
-        setInputValue("");
-    };
-
+    // Run Active or Close Function based on input visibility
     useEffect(() => {
         if (inputVisible) {
             onActive();
@@ -142,32 +85,62 @@ export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
         }
     }, [inputVisible]);
 
+    useEffect(() => {
+        const anchor = getAnchorTag();
+        if (anchor) {
+            setInputValue(anchor.getAttribute("href") || "");
+            setIsActive(true);
+            // saveSelection();
+        }
+    }, []);
+
+    // Handle Button Click
+    const handleButtonClick = () => {};
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const raw = inputValue.trim();
+        if (!raw) {
+            restoreSelection();
+            document.execCommand("unlink");
+            setIsActive(false);
+        } else {
+            const url = /^(https?:\/\/|\/\/)/.test(raw) ? raw : `http://${raw}`;
+            restoreSelection();
+            document.execCommand("createLink", false, url);
+            setIsActive(true);
+        }
+
+        setInputVisible(false);
+        setInputValue("");
+    };
+
     return (
-        <div
-            className="flex gap-2 items-center"
-            onMouseDown={(e) => {
-                if ((e.target as HTMLElement).tagName !== "INPUT") {
-                    e.preventDefault();
-                }
-            }}
-        >
+        <div className="flex items-center gap-2">
             <button
-                onClick={handleButtonClick}
-                className={`text-sm px-2 py-1 rounded border hover:bg-gray-100 ${
-                    isActive ? "bg-gray-200" : ""
-                }`}
+                title={"Insert Link (Under construction)"}
+                className={`text-sm p-1.5 hover:bg-gray-100 rounded-sm cursor-pointer`}
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() => setInputVisible((prev) => !prev)}
             >
-                🔗
+               {isActive ? <LuLink2Off /> : <LuLink2 />}
             </button>
 
             {inputVisible && (
-                <input
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={handleSubmit}
-                    placeholder="Enter link"
-                    className="text-sm border rounded px-2 py-1 outline-none"
-                />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        name="url"
+                        type="text"
+                        value={inputValue}
+                        // onMouseDown={(e) => {
+                        //     e.preventDefault();
+                        // }}
+                        onChange={(e) => setInputValue(e.target.value)}
+                        placeholder="Enter an URL"
+                        className="text-sm border border-gray-200 rounded px-2 py-0.5 outline-none"
+                    />
+                </form>
             )}
         </div>
     );

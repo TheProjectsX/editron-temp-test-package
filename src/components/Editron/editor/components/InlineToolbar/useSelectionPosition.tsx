@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
 
 const useSelectionPosition = (preventSelectEvent: boolean) => {
-    const [position, setPosition] = useState<{
-        top: number;
-        left: number;
-        bottom: number;
-        right: number;
-    } | null>(null);
+    const [position, setPosition] = useState<DOMRect | null>(null);
 
     useEffect(() => {
         const handleSelectionChange = () => {
@@ -40,12 +35,14 @@ const useSelectionPosition = (preventSelectEvent: boolean) => {
 
             const rect = range.getBoundingClientRect();
 
-            setPosition({
-                top: rect.top + window.scrollY,
-                left: rect.left + window.scrollX,
-                bottom: rect.bottom + window.scrollY,
-                right: rect.right + window.scrollX,
-            });
+            setPosition(rect);
+
+            // setPosition({
+            //     top: rect.top + window.scrollY,
+            //     left: rect.left + window.scrollX,
+            //     bottom: rect.bottom + window.scrollY,
+            //     right: rect.right + window.scrollX,
+            // });
         };
 
         const handleWindowBlur = () => {

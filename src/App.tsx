@@ -53,7 +53,19 @@ const App = () => {
     //     },
     // ];
 
-    const [Editor, save] = Editron({defaultBlock: "paragraph"});
+    const [Editor, save] = Editron({
+        defaultBlock: "paragraph",
+        values: [
+            {
+                id: "LBDLHHJ3uk",
+                type: "paragraph",
+                tag: "p",
+                data: {
+                    html: "I am testing this right now",
+                },
+            },
+        ],
+    });
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
