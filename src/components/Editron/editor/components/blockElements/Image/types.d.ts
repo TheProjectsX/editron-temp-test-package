@@ -16,9 +16,10 @@ export type ImageBlock = {
     type: "image";
     tag: ImageTags;
     data: ImageData;
+    output: ImageData;
 };
 
-export type ImageProps = Omit<ImageBlock, "type"> & {
+export type ImageProps = Omit<ImageBlock, "type" | "output"> & {
     className?: string;
     onUpdate: (value: ImageData) => void;
 };

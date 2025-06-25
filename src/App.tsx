@@ -65,6 +65,11 @@ const App = () => {
                 },
             },
         ],
+        config: {
+            uploadImage(file) {
+                return "test";
+            },
+        },
     });
 
     return (

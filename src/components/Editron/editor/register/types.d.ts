@@ -24,7 +24,14 @@ type AllBlocks =
 // Editor Block
 export type EditorBlock = {
     id: string;
-} & AllBlocks;
+} & Omit<AllBlocks, "output">;
+
+// Output Data Block
+export type OutputDataBlock = {
+    id: string;
+} & Omit<AllBlocks, "data" | "output"> & {
+        data: AllBlocks["output"];
+    };
 
 // All Tags
 export type AllTags = AllBlocks["tag"];

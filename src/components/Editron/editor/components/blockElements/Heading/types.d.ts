@@ -8,9 +8,10 @@ export type HeadingBlock = {
     type: "heading";
     tag: HeadingTags;
     data: HeadingData;
+    output: HeadingData
 };
 
-export type HeadingProps = Omit<HeadingBlock, "type"> & {
+export type HeadingProps = Omit<HeadingBlock, "type" | "output"> & {
     className?: string;
     onUpdate: (value: HeadingData) => void;
 };

@@ -44,6 +44,20 @@ export const RegularInlineTools = [
     },
 ];
 
+export const InlineTools = RegularInlineTools.map((tool) => () => (
+    <button
+        key={tool.name}
+        title={tool.name}
+        className={`text-sm p-1.5 hover:bg-gray-100 rounded-sm cursor-pointer ${
+            tool.isActive() ? "text-blue-500" : ""
+        }`}
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={tool.onClick}
+    >
+        <tool.icon />
+    </button>
+));
+
 /* Custom Inline Tools with Control */
 
 // Save Selection and Restore Selection
@@ -94,9 +108,6 @@ export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
         }
     }, []);
 
-    // Handle Button Click
-    const handleButtonClick = () => {};
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -124,7 +135,7 @@ export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => setInputVisible((prev) => !prev)}
             >
-               {isActive ? <LuLink2Off /> : <LuLink2 />}
+                {isActive ? <LuLink2Off /> : <LuLink2 />}
             </button>
 
             {inputVisible && (

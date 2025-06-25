@@ -7,6 +7,7 @@ const Editron = ({
     values = [],
     defaultBlock = "paragraph",
     plugins = [],
+    config: {},
 } = {}) => {
     const registers = register(plugins);
 
@@ -19,6 +20,7 @@ const Editron = ({
             values={values}
             ref={editorRef}
             defaultBlock={defaultBlock}
+            config={config}
         />
     );
 

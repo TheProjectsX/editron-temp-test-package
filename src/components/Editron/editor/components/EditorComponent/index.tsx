@@ -15,11 +15,13 @@ import type {
 } from "../../register/types";
 import type { RegisterReturn } from "../../register";
 import InlineToolbar from "../InlineToolbar";
+import type { UserConfig } from "../..";
 
 export type EditorComponentProps = {
     values?: EditorBlock[];
     defaultBlock?: AllTypes;
     registers: RegisterReturn[];
+    config?: UserConfig;
 };
 
 export type EditorComponentSaveHandle = {
@@ -88,7 +90,7 @@ const EditorComponent = forwardRef<
 
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
-            <InlineToolbar focusedBlock={focusedBlock}/>
+            <InlineToolbar focusedBlock={focusedBlock} />
             <div className="grid grid-cols-[1fr_60px] gap-2 relative">
                 <div
                     data-name="editor-blocks-wrapper"

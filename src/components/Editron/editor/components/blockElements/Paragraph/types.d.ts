@@ -8,9 +8,10 @@ export type ParagraphBlock = {
     type: "paragraph";
     tag: ParagraphTags;
     data: ParagraphData;
+    output: ParagraphData
 };
 
-export type ParagraphProps = Omit<ParagraphBlock, "type"> & {
+export type ParagraphProps = Omit<ParagraphBlock, "type" | "output"> & {
     className?: string;
     onUpdate: (value: ParagraphData) => void;
 };

@@ -3,7 +3,7 @@ import useSelectionPosition from "./useSelectionPosition";
 import { createPortal } from "react-dom";
 import type { EditorBlock } from "../../register/types";
 import { NoInlineToolbar } from "../../register";
-import { InlineLinkTool, RegularInlineTools } from "./utils";
+import { InlineLinkTool, InlineTools } from "./utils";
 import { useTextSelection } from "./useTextSelection";
 import { FakeHighlight } from "./FakeHighlight";
 
@@ -47,24 +47,17 @@ const InlineToolbar = ({
                 left: position.left + window.scrollX,
             }}
         >
-            {preventSelectEvent && position && <FakeHighlight rect={position}/>}
+            {preventSelectEvent && position && (
+                <FakeHighlight rect={position} />
+            )}
             <InlineLinkTool
                 onActive={() => setPreventSelectEvent(true)}
                 onClose={() => setPreventSelectEvent(false)}
-                restoreSelection={()=>restoreSelection(focusedBlock.element)}
+                restoreSelection={() => restoreSelection(focusedBlock.element)}
             />
-            {RegularInlineTools.map((tool) => (
-                <button
-                    key={tool.name}
-                    title={tool.name}
-                    className={`text-sm p-1.5 hover:bg-gray-100 rounded-sm cursor-pointer ${
-                        tool.isActive() ? "text-blue-500" : ""
-                    }`}
-                    onMouseDown={(e) => e.preventDefault()}
-                    onClick={tool.onClick}
-                >
-                    <tool.icon />
-                </button>
+
+            {InlineTools.map((Tool, idx) => (
+                <Tool key={idx} />
             ))}
         </div>
     );

@@ -9,9 +9,10 @@ export type QuoteBlock = {
     type: "quote";
     tag: QuoteTags;
     data: QuoteData;
+    output: QuoteData
 };
 
-export type QuoteProps = Omit<QuoteBlock, "type"> & {
+export type QuoteProps = Omit<QuoteBlock, "type" | "output"> & {
     className?: string;
     onUpdate: (value: QuoteData) => void;
 };
