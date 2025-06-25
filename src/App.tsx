@@ -67,7 +67,9 @@ const App = () => {
         ],
         config: {
             uploadImage(file) {
-                return "test";
+                return new Promise((resolve) =>
+                    setTimeout(() => resolve("test"), 500)
+                );
             },
         },
     });
@@ -80,7 +82,7 @@ const App = () => {
 
             <button
                 className="px-6 py-2.5 rounded-lg bg-[dodgerBlue] text-white"
-                onClick={() => console.log(save())}
+                onClick={async () => console.log(await save())}
             >
                 Save
             </button>

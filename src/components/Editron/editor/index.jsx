@@ -7,7 +7,7 @@ const Editron = ({
     values = [],
     defaultBlock = "paragraph",
     plugins = [],
-    config: {},
+    config = {},
 } = {}) => {
     const registers = register(plugins);
 

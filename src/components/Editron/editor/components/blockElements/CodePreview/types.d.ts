@@ -1,7 +1,7 @@
 type CodePreviewTags = "pre";
 type CodePreviewData = {
     code: string;
-    mode: "preview" | "reveal";
+    type: "preview" | "reveal";
 };
 
 export type CodePreviewBlock = {

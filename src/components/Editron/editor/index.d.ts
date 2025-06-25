@@ -1,7 +1,8 @@
+import type { OutputBlock } from "../editor-bak/types/blocks";
 import type { AllTypes, EditorBlock, PluginType } from "./register/types";
 
 export type UserConfig = {
-    uploadImage?: (file: File) => string;
+    uploadImage?: (file: File) => Promise<string>;
 };
 
 export interface EditronProps {
@@ -11,7 +12,7 @@ export interface EditronProps {
     config?: UserConfig;
 }
 
-export type EditronReturn = [React.FC, () => any[]];
+export type EditronReturn = [React.FC, () => Promise<OutputBlock[]>];
 
 declare const Editron: (props?: EditronProps) => EditronReturn;
 

@@ -16,6 +16,8 @@ import type {
 import type { RegisterReturn } from "../../register";
 import InlineToolbar from "../InlineToolbar";
 import type { UserConfig } from "../..";
+import type { OutputBlock } from "../../../editor-bak/types/blocks";
+import { processExport } from "./processor";
 
 export type EditorComponentProps = {
     values?: EditorBlock[];
@@ -25,7 +27,7 @@ export type EditorComponentProps = {
 };
 
 export type EditorComponentSaveHandle = {
-    runSave: () => EditorBlock[];
+    runSave: () => Promise<OutputBlock[]>;
 };
 
 // Util func to get registered value
@@ -46,7 +48,7 @@ const getFromRegister = (
 const EditorComponent = forwardRef<
     EditorComponentSaveHandle,
     EditorComponentProps
->(({ values = [], defaultBlock = "paragraph", registers }, ref) => {
+>(({ values = [], defaultBlock = "paragraph", registers, config }, ref) => {
     const defaultDemo = (getFromRegister(registers, defaultBlock, "demo") ??
         getFromRegister(registers, "paragraph", "demo")) as EditorBlock;
 
@@ -83,7 +85,7 @@ const EditorComponent = forwardRef<
 
     // Run the runSave Function
     useImperativeHandle(ref, () => ({
-        runSave: () => blocks,
+        runSave: () => processExport(blocks, config),
     }));
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
