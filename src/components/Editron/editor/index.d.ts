@@ -5,15 +5,15 @@ export type UserConfig = {
     uploadImage?: (file: File) => Promise<string>;
 };
 
-export interface EditronProps {
+export interface EditorProps {
     values?: EditorBlock[];
     defaultBlock?: AllTypes | (string & {});
     plugins?: PluginType[] | any[];
     config?: UserConfig;
 }
 
-export type EditronReturn = [React.FC, () => Promise<OutputBlock[]>];
+export type EditorReturn = [React.FC, () => Promise<OutputBlock[]>];
 
-declare const Editron: (props?: EditronProps) => EditronReturn;
+declare const Editor: (props?: EditorProps) => EditorReturn;
 
-export default Editron;
+export default Editor;

@@ -12,11 +12,11 @@ import type {
     AllTypes,
     BlockStructure,
     EditorBlock,
+    OutputDataBlock,
 } from "../../register/types";
 import type { RegisterReturn } from "../../register";
 import InlineToolbar from "../InlineToolbar";
 import type { UserConfig } from "../..";
-import type { OutputBlock } from "../../../editor-bak/types/blocks";
 import { processExport } from "./processor";
 
 export type EditorComponentProps = {
@@ -27,7 +27,7 @@ export type EditorComponentProps = {
 };
 
 export type EditorComponentSaveHandle = {
-    runSave: () => Promise<OutputBlock[]>;
+    runSave: () => Promise<OutputDataBlock[]>;
 };
 
 // Util func to get registered value

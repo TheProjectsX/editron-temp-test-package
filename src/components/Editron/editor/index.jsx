@@ -1,9 +1,9 @@
-import { createRef, useEffect } from "react";
+import { createRef } from "react";
 import { register } from "./register";
 import EditorComponent from "./components/EditorComponent";
 import "./index.css";
 
-const Editron = ({
+const Editor = ({
     values = [],
     defaultBlock = "paragraph",
     plugins = [],
@@ -27,4 +27,4 @@ const Editron = ({
     return [Component, saveRunner];
 };
 
-export default Editron;
+export default Editor;
