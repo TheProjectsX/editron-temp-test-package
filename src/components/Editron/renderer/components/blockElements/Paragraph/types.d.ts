@@ -12,4 +12,5 @@ export type ParagraphBlock = {
 
 export type ParagraphProps = Omit<ParagraphBlock, "type"> & {
     className?: string;
+    style?: Record<string, string>;
 };

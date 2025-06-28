@@ -1,4 +1,13 @@
-export type UserConfig = {};
+import type { CSSProperties } from "react";
+import type { AllTypes } from "./register/types";
+
+export type UserConfig = Record<
+    AllTypes,
+    {
+        className?: string;
+        style?: CSSProperties
+    }
+>;
 
 export interface RendererProps {
     config: UserConfig;

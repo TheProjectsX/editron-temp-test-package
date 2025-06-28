@@ -1,10 +1,13 @@
 import type { ParagraphProps } from "./types";
 
-const Paragraph = ({ className = "", data }: ParagraphProps) => {
+const Paragraph = ({ className = "", style, data }: ParagraphProps) => {
     return (
         <p
-            className={`outline-none overflow-hidden ${className}`}
-            style={data.style ?? {}}
+            className={`${className}`}
+            style={{
+                ...(data.style ?? {}),
+                ...(style ?? {}),
+            }}
             dangerouslySetInnerHTML={{ __html: data.html }}
         ></p>
     );
