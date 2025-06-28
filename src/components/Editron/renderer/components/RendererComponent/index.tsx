@@ -1,12 +1,31 @@
-import type { RegisterReturn } from "../../register/types";
+import type { RegisterReturn } from "../../register";
+import BlockViewer from "../BlockViewer";
 
 interface RendererComponentProps {
-    values: any[];
-    registers: RegisterReturn;
+    blocks: any[];
+    registers: RegisterReturn[];
 }
 
-const RendererComponent = ({}: RendererComponentProps) => {
-    return <div>RendererComponent</div>;
+const RendererComponent = ({ blocks, registers }: RendererComponentProps) => {
+    return (
+        <>
+            {blocks.map((block) => {
+                const currentBlock = registers.find(
+                    (register) => register.type === block.type
+                );
+
+                if (!currentBlock) return;
+
+                return (
+                    <BlockViewer
+                        key={block.id}
+                        Component={currentBlock.component}
+                        metadata={block}
+                    />
+                );
+            })}
+        </>
+    );
 };
 
 export default RendererComponent;

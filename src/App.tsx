@@ -1,91 +1,59 @@
-import Editor from "./components/Editron/editor";
+// import Editor from "./components/Editron/editor";
+import Renderer from "./components/Editron/renderer";
 
 const App = () => {
-    // const demoData = [
-    //     {
-    //         tag: "h2",
-    //         type: "heading",
-    //         data: {
-    //             html: "How to write your first Python Code!",
+    // const [Component, save] = Editor({
+    //     defaultBlock: "paragraph",
+    //     values: [
+    //         {
+    //             id: "LBDLHHJ3uk",
+    //             type: "paragraph",
+    //             tag: "p",
+    //             data: {
+    //                 html: "I am testing this right now",
+    //             },
     //         },
-    //         id: "VYRxuHYKZr",
-    //     },
-    //     {
-    //         tag: "p",
-    //         type: "paragraph",
-    //         data: {
-    //             html: "Write the basic <b>Hello, World</b>&nbsp;in <b>print </b>function. The most easiest of them all!",
-    //         },
-    //         id: "e_i2_hVylV",
-    //     },
-    //     {
-    //         tag: "pre",
-    //         type: "code",
-    //         data: {
-    //             code: 'print("Hello, World!")',
-    //         },
-    //         id: "jNpqOx9ZSf",
-    //     },
-    //     {
-    //         tag: "p",
-    //         type: "paragraph",
-    //         data: {
-    //             html: "Hooray!! Your first python programming!",
-    //         },
-    //         id: "7fVkDVCvnw",
-    //     },
-    //     {
-    //         id: "uE65TCxDHl",
-    //         type: "quote",
-    //         tag: "blockquote",
-    //         data: {
-    //             quote: '"Soemthing is on the way, now!"',
+    //     ],
+    //     config: {
+    //         uploadImage(file) {
+    //             return new Promise((resolve) =>
+    //                 setTimeout(() => resolve("test"), 500)
+    //             );
     //         },
     //     },
-    //     {
-    //         tag: "blockquote",
-    //         type: "quote",
-    //         data: {
-    //             quote: '"sdasdasdas"',
-    //             type: "highlighted"
-    //         },
-    //         id: "PKhR0Eqlbi",
-    //     },
-    // ];
-
-    const [Component, save] = Editor({
-        defaultBlock: "paragraph",
-        values: [
-            {
-                id: "LBDLHHJ3uk",
-                type: "paragraph",
-                tag: "p",
-                data: {
-                    html: "I am testing this right now",
-                },
-            },
-        ],
-        config: {
-            uploadImage(file) {
-                return new Promise((resolve) =>
-                    setTimeout(() => resolve("test"), 500)
-                );
+    // });
+    const blocks = [
+        {
+            id: "LBDLHHJ3uk",
+            type: "paragraph",
+            tag: "p",
+            data: {
+                html: "I am<u> testing</u> <b>this rig</b>ht now",
+                style: {},
             },
         },
-    });
+    ];
+
+    const [Component] = Renderer();
+
+    // return (
+    //     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
+    //         <div className="bg-white rounded-2xl max-w-2xl w-full px-8 py-6 mb-5">
+    //             <Component />
+    //         </div>
+
+    //         <button
+    //             className="px-6 py-2.5 rounded-lg bg-[dodgerBlue] text-white"
+    //             onClick={async () => console.log(await save())}
+    //         >
+    //             Save
+    //         </button>
+    //     </div>
+    // );
 
     return (
-        <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
-            <div className="bg-white rounded-2xl max-w-2xl w-full px-8 py-6 mb-5">
-                <Component />
-            </div>
-
-            <button
-                className="px-6 py-2.5 rounded-lg bg-[dodgerBlue] text-white"
-                onClick={async () => console.log(await save())}
-            >
-                Save
-            </button>
+        <div className="px-4 py-2">
+            <Component blocks={blocks} />
         </div>
     );
 };

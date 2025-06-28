@@ -1,12 +1,14 @@
-import React from "react";
 import RendererComponent from "./components/RendererComponent";
+import { register } from "./register";
 
 const Renderer = () => {
-    const Component = (values) => {
-        return <RendererComponent />;
+    const registers = register();
+
+    const Component = ({ blocks }) => {
+        return <RendererComponent registers={registers} blocks={blocks} />;
     };
 
-    return <div>Renderer</div>;
+    return [Component];
 };
 
 export default Renderer;
