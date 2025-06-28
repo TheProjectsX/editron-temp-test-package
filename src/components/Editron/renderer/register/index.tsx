@@ -1,8 +1,12 @@
-import Paragraph from "../components/blockElements/Paragraph";
 import type { AllBlocks, AllTypes } from "./types";
 
+import Heading from "../components/blockElements/Heading";
+import Paragraph from "../components/blockElements/Paragraph";
+import Divider from "../components/blockElements/Divider";
+import List from "../components/blockElements/List";
+
 // All Blocks
-const AllBlocks = [Paragraph];
+const AllBlocks = [Paragraph, Heading, List, Divider];
 
 export type RegisterReturn = {
     component: React.FC<any>;
@@ -10,5 +14,10 @@ export type RegisterReturn = {
 };
 
 export const register = (): RegisterReturn[] => {
-    return AllBlocks;
+    const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
+        type: block.type as AllTypes,
+        component: block.component,
+    }));
+
+    return blocks;
 };
