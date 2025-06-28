@@ -1,14 +1,7 @@
 import { useEffect, useState } from "react";
 import { focusElement } from "../libs/events";
-import type { ListData, ListTags } from "./types";
+import type { ListProps } from "./types";
 import { demo, settings, structure } from "./meta";
-
-type ListProps = {
-    className?: string;
-    tag: ListTags;
-    data: ListData;
-    onUpdate: (value: ListData) => void;
-};
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
