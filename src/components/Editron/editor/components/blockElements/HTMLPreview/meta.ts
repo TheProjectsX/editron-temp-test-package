@@ -10,6 +10,7 @@ export const structure = {
     type: "html-preview",
     tags: "pre",
     data: {
+        head: "",
         code: "",
         mode: "reveal",
     },
@@ -20,6 +21,7 @@ export const demo = {
     type: "html-preview",
     tag: "pre",
     data: {
+        head: "",
         code: "",
         mode: "reveal",
     },
@@ -31,7 +33,7 @@ export const settings = [
         icon: MdAutoMode,
         actions: [
             {
-                name: "Preview",
+                name: "Preview Only",
                 icon: LuEyeClosed,
                 transform: (block: EditorBlock) => {
                     return {

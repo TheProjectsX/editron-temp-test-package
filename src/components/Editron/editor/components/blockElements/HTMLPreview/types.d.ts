@@ -1,11 +1,12 @@
 type HTMLPreviewTags = "pre";
 type HTMLPreviewData = {
-    code: string;
+    head?: string;
+    html: string;
     type: "preview" | "reveal";
 };
 
 export type HTMLPreviewBlock = {
-    type: "code-preview";
+    type: "html-preview";
     tag: HTMLPreviewTags;
     data: HTMLPreviewData;
     output: HTMLPreviewData;
