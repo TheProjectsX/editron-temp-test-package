@@ -1,68 +1,37 @@
-// import Editor from "./components/Editron/editor";
-import Renderer from "./components/Editron/renderer";
+import { useState } from "react";
+import EditorComponent from "./components/Editor";
+import RendererComponent from "./components/Renderer";
 
 const App = () => {
-    // const [Component, save] = Editor({
-    //     defaultBlock: "paragraph",
-    //     values: [
-    //         {
-    //             id: "LBDLHHJ3uk",
-    //             type: "paragraph",
-    //             tag: "p",
-    //             data: {
-    //                 html: "I am testing this right now",
-    //             },
-    //         },
-    //     ],
-    //     config: {
-    //         uploadImage(file) {
-    //             return new Promise((resolve) =>
-    //                 setTimeout(() => resolve("test"), 500)
-    //             );
-    //         },
-    //     },
-    // });
-    const blocks = [
-        {
-            id: "LBDLHHJ3uk",
-            type: "paragraph",
-            tag: "p",
-            data: {
-                html: "I am<u> testing</u> <b>this rig</b>ht now",
-                style: {},
-            },
-        },
-        {
-            id: "LBDLHHJ3ui",
-            type: "code",
-            tag: "pre",
-            data: {
-                code: `print("Hello, World!")`,
-                style: {},
-            },
-        },
-    ];
-
-    const [Component] = Renderer();
-
-    // return (
-    //     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gray-200 py-5">
-    //         <div className="bg-white rounded-2xl max-w-2xl w-full px-8 py-6 mb-5">
-    //             <Component />
-    //         </div>
-
-    //         <button
-    //             className="px-6 py-2.5 rounded-lg bg-[dodgerBlue] text-white"
-    //             onClick={async () => console.log(await save())}
-    //         >
-    //             Save
-    //         </button>
-    //     </div>
-    // );
+    const [mode, setMode] = useState<"editor" | "renderer">("editor");
+    const [blocks, setBlocks] = useState<Record<string, any>[]>([]);
 
     return (
-        <div className="px-4 py-2 space-y-5">
-            <Component blocks={blocks} />
+        <div className="max-w-2xl w-full">
+            <div className="flex items-center gap-4 mb-10">
+                <button
+                    className={`w-full p-2.5 text-white font-semibold rounded-2xl cursor-pointer bg-blue-500 disabled:bg-blue-700  disabled:cursor-not-allowed active:scale-95 transition-all`}
+                    onClick={() => setMode("editor")}
+                    disabled={mode === "editor"}
+                >
+                    Editor
+                </button>
+                <button
+                    className={`w-full p-2.5 text-white font-semibold rounded-2xl cursor-pointer bg-blue-500 disabled:bg-blue-700  disabled:cursor-not-allowed active:scale-95 transition-all`}
+                    onClick={() => setMode("renderer")}
+                    disabled={mode === "renderer"}
+                >
+                    renderer
+                </button>
+            </div>
+
+            <div className="w-full">
+                {mode === "editor" && (
+                    <EditorComponent blocks={blocks} setBlocks={setBlocks} />
+                )}
+
+                {mode === "renderer" && <RendererComponent blocks={blocks} />}
+            </div>
         </div>
     );
 };

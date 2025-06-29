@@ -4,7 +4,7 @@ import EditorComponent from "./components/EditorComponent";
 import "./index.css";
 
 const Editor = ({
-    values = [],
+    blocks = [],
     defaultBlock = "paragraph",
     plugins = [],
     config = {},
@@ -17,7 +17,7 @@ const Editor = ({
     const Component = () => (
         <EditorComponent
             registers={registers}
-            values={values}
+            values={blocks}
             ref={editorRef}
             defaultBlock={defaultBlock}
             config={config}

@@ -6,7 +6,7 @@ export type UserConfig = {
 };
 
 export interface EditorProps {
-    values?: EditorBlock[];
+    blocks?: EditorBlock[] | any[];
     defaultBlock?: AllTypes | (string & {});
     plugins?: PluginType[] | any[];
     config?: UserConfig;
