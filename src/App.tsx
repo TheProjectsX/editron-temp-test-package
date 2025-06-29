@@ -32,6 +32,15 @@ const App = () => {
                 style: {},
             },
         },
+        {
+            id: "LBDLHHJ3ui",
+            type: "code",
+            tag: "pre",
+            data: {
+                code: `print("Hello, World!")`,
+                style: {},
+            },
+        },
     ];
 
     const [Component] = Renderer();
@@ -52,7 +61,7 @@ const App = () => {
     // );
 
     return (
-        <div className="px-4 py-2">
+        <div className="px-4 py-2 space-y-5">
             <Component blocks={blocks} />
         </div>
     );

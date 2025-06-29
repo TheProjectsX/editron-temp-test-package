@@ -1,9 +1,17 @@
+import type { CodeBlock } from "../components/blockElements/Code/types";
 import type { DividerBlock } from "../components/blockElements/Divider/types";
 import type { HeadingBlock } from "../components/blockElements/Heading/types";
 import type { ParagraphBlock } from "../components/blockElements/Paragraph/types";
+import type { QuoteBlock } from "../components/blockElements/Quote/types";
 
 // All Block Types
-type AllBlocks = ParagraphBlock | HeadingBlock | ListBlock | DividerBlock;
+type AllBlocks =
+    | ParagraphBlock
+    | HeadingBlock
+    | ListBlock
+    | DividerBlock
+    | CodeBlock
+    | QuoteBlock;
 
 // Renderer Blocks
 export type RendererBlock = {

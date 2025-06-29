@@ -4,9 +4,11 @@ import Heading from "../components/blockElements/Heading";
 import Paragraph from "../components/blockElements/Paragraph";
 import Divider from "../components/blockElements/Divider";
 import List from "../components/blockElements/List";
+import Quote from "../components/blockElements/Quote";
+import Code from "../components/blockElements/Code";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List, Divider];
+const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote];
 
 export type RegisterReturn = {
     component: React.FC<any>;
