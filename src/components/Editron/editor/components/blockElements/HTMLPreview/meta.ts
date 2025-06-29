@@ -10,8 +10,7 @@ export const structure = {
     type: "html-preview",
     tags: "pre",
     data: {
-        head: "",
-        code: "",
+        html: "",
         mode: "reveal",
     },
 };
@@ -21,8 +20,7 @@ export const demo = {
     type: "html-preview",
     tag: "pre",
     data: {
-        head: "",
-        code: "",
+        html: "",
         mode: "reveal",
     },
 };

@@ -27,7 +27,7 @@ const App = () => {
 
             <div className="w-full">
                 {mode === "editor" && (
-                    <EditorComponent blocks={blocks} setBlocks={setBlocks} />
+                    <EditorComponent blocks={blocks} setBlocks={setBlocks} defaultBlock="html-preview" />
                 )}
 
                 {mode === "renderer" && <RendererComponent blocks={blocks} />}

@@ -4,7 +4,7 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github-dark-dimmed.css";
 import { FaClipboardList } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
-import { copyToClipboard } from "./Clipboard";
+import { copyToClipboard } from "../libs/utilities";
 
 const Code = ({ className = "", style, data }: CodeProps) => {
     const highlighted = useMemo(
@@ -48,7 +48,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
             </button>
 
             <code
-                className="hljs"
+                className="hljs text-sm"
                 dangerouslySetInnerHTML={{ __html: highlighted }}
             />
         </pre>

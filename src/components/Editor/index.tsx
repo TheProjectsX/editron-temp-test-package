@@ -1,15 +1,17 @@
 import Editor from "../Editron/editor";
 
 const EditorComponent = ({
+    defaultBlock,
     blocks,
     setBlocks,
 }: {
+    defaultBlock?: string;
     blocks: Record<string, any>[];
     setBlocks: React.Dispatch<React.SetStateAction<Record<string, any>[]>>;
 }) => {
     const [Component, save] = Editor({
         blocks: blocks,
-        defaultBlock: "paragraph",
+        defaultBlock: defaultBlock ?? "paragraph",
         config: {
             uploadImage() {
                 return new Promise((resolve) =>

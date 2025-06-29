@@ -2,6 +2,8 @@ type HTMLPreviewTags = "pre";
 type HTMLPreviewData = {
     head?: string;
     html: string;
+    css?: string;
+    js?: string;
     type: "preview" | "reveal";
 };
 

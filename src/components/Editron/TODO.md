@@ -14,3 +14,9 @@
 -   Create Inline Toolbar. Where the Toolbar will primarily use `document.execCommand` even if it's deprecated [X]
 
 -   Finish the Link Inline Tool [X]
+
+
+
+- Add a Code Expand or Scrollbar in Code view
+- Add resize the preview screen
+- HTML preview, remove layout edit. and add html, css, js tab mode
