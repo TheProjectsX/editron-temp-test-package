@@ -5,9 +5,9 @@ import { TbEyeCode } from "react-icons/tb";
 import type { EditorBlock } from "../../../register/types";
 
 export const structure = {
-    name: "Code Preview",
+    name: "HTML Preview",
     icon: TbEyeCode,
-    type: "code-preview",
+    type: "html-preview",
     tags: "pre",
     data: {
         code: "",
@@ -17,7 +17,7 @@ export const structure = {
 
 export const demo = {
     id: nanoid(10),
-    type: "code-preview",
+    type: "html-preview",
     tag: "pre",
     data: {
         code: "",

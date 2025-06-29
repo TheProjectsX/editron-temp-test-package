@@ -12,11 +12,21 @@ type ImageData = {
     type?: "free" | "fill" | "cover" | "contain";
 };
 
+type ImageOutputData = {
+    file: {
+        name: string;
+        src: string;
+        size?: number;
+    };
+    alt?: string;
+    type?: "free" | "fill" | "cover" | "contain";
+};
+
 export type ImageBlock = {
     type: "image";
     tag: ImageTags;
     data: ImageData;
-    output: ImageData;
+    output: ImageOutputData;
 };
 
 export type ImageProps = Omit<ImageBlock, "type" | "output"> & {

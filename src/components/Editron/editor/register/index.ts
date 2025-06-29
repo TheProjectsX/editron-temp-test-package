@@ -16,7 +16,7 @@ import Divider from "../components/blockElements/Divider";
 import Code from "../components/blockElements/Code";
 import Quote from "../components/blockElements/Quote";
 import Image from "../components/blockElements/Image";
-import CodePreview from "../components/blockElements/CodePreview";
+import HTMLPreview from "../components/blockElements/HTMLPreview";
 
 // All Blocks
 const AllBlocks = [
@@ -27,7 +27,7 @@ const AllBlocks = [
     Code,
     Quote,
     Image,
-    CodePreview,
+    HTMLPreview,
 ];
 
 // All Block Structures

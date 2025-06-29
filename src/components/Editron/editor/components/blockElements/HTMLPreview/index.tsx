@@ -1,7 +1,7 @@
 import { demo, settings, structure } from "./meta";
-import type { CodePreviewProps } from "./types";
+import type { HTMLPreviewProps } from "./types";
 
-const CodePreview = ({ className = "", data, onUpdate }: CodePreviewProps) => {
+const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
     return (
         <textarea
             className={`outline-none py-3 px-4 font-mono text-sm bg-zinc-100 text-gray-700 rounded-lg w-full ${className}`}
@@ -18,7 +18,7 @@ const CodePreview = ({ className = "", data, onUpdate }: CodePreviewProps) => {
 };
 
 export default {
-    component: CodePreview,
+    component: HTMLPreview,
     structure,
     demo,
     settings,
