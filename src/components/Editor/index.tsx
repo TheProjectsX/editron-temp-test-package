@@ -29,7 +29,11 @@ const EditorComponent = ({
 
             <button
                 className="mx-auto block px-6 py-2.5 rounded-lg bg-[dodgerBlue] text-white"
-                onClick={async () => setBlocks(await save())}
+                onClick={async () => {
+                    const data = await save();
+                    console.log("🚀 ~ onClick={ ~ data:", data);
+                    setBlocks(data);
+                }}
             >
                 Save
             </button>

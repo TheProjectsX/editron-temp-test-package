@@ -6,9 +6,20 @@ import Divider from "../components/blockElements/Divider";
 import List from "../components/blockElements/List";
 import Quote from "../components/blockElements/Quote";
 import Code from "../components/blockElements/Code";
+import Image from "../components/blockElements/Image";
+import HTMLPreview from "../components/blockElements/HTMLPreview";
 
 // All Blocks
-const AllBlocks = [Paragraph, Heading, List, Divider, Code, Quote];
+const AllBlocks = [
+    Paragraph,
+    Heading,
+    List,
+    Divider,
+    Code,
+    Quote,
+    Image,
+    HTMLPreview,
+];
 
 export type RegisterReturn = {
     component: React.FC<any>;

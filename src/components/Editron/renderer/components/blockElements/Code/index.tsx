@@ -20,7 +20,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
             <button
                 className="absolute right-1 top-1 p-1.5 rounded-sm text-lg
              bg-slate-800 text-slate-300 cursor-pointer
-             hover:bg-slate-700 active:bg-slate-900 copied [&_.copied>copy]:hidden"
+             hover:bg-slate-700 active:bg-slate-900"
                 title="Copy Code"
                 onClick={(e) => {
                     const btn = e.currentTarget as HTMLButtonElement;

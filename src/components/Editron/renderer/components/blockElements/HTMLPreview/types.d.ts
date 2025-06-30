@@ -2,8 +2,9 @@ type HTMLPreviewTags = "pre";
 type HTMLPreviewData = {
     head?: string;
     html: string;
+    css?: string;
+    js?: string;
     type: "preview" | "reveal";
-    layout: "auto" | "tabs" | "stack";
 };
 
 export type HTMLPreviewBlock = {
