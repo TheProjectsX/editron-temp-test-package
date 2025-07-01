@@ -39,7 +39,7 @@ const Controls = ({
 
     // Set position of the Controller
     useEffect(() => {
-        if (!wrapper || !focusedBlock?.element || newItemOpened) return;
+        if (!wrapper || !focusedBlock?.element || newItemOpened || settingsOpened) return;
 
         const wrapperRect = wrapper.getBoundingClientRect();
         const blockRect = focusedBlock.element.getBoundingClientRect();
@@ -105,7 +105,7 @@ const Controls = ({
 
     useEffect(() => {
         setControllerFocused(newItemOpened || settingsOpened);
-    }, [newItemOpened]);
+    }, [newItemOpened, settingsOpened]);
 
     return (
         <div

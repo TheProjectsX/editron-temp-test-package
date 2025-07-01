@@ -1,11 +1,10 @@
 import type { UserConfig } from "../..";
-import type { OutputBlock } from "../../../editor-bak/types/blocks";
-import type { EditorBlock } from "../../register/types";
+import type { EditorBlock, OutputDataBlock } from "../../register/types";
 
 export const processExport = async (
     blocks: EditorBlock[],
     config: UserConfig = {}
-): Promise<OutputBlock[]> => {
+): Promise<OutputDataBlock[]> => {
     const processed = await Promise.all(
         blocks.map(async (block) => {
             if (block.type !== "image") return block; // keep non-image blocks
@@ -16,17 +15,20 @@ export const processExport = async (
             // no file to upload ⇒ skip this block entirely
             if (!("file" in block.data) || !block.data.file) return undefined;
 
-            let file: { name: string; src: string; size?: number };
+            let file: File | { name: string; src: string; size?: number };
 
             // upload if it's a real File
             if (block.data.file instanceof File) {
                 const url = await config.uploadImage(block.data.file);
-                if (!url) return undefined; // upload failed ⇒ skip
-                file = {
-                    name: block.data.file.name,
-                    src: url,
-                    size: block.data.file.size,
-                };
+                if (url) {
+                    file = {
+                        name: block.data.file.name,
+                        src: url,
+                        size: block.data.file.size,
+                    };
+                } else {
+                    file = block.data.file;
+                }
             } else {
                 // already stored as {name,src,size}
                 file = block.data.file;
@@ -40,5 +42,5 @@ export const processExport = async (
     );
 
     // remove all undefined entries
-    return processed.filter(Boolean) as OutputBlock[];
+    return processed.filter(Boolean) as OutputDataBlock[];
 };

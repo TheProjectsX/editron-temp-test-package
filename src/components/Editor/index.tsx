@@ -1,3 +1,4 @@
+import { uploadToImgbb } from "../../util";
 import Editor from "../Editron/editor";
 
 const EditorComponent = ({
@@ -13,11 +14,7 @@ const EditorComponent = ({
         blocks: blocks,
         defaultBlock: defaultBlock ?? "paragraph",
         config: {
-            uploadImage() {
-                return new Promise((resolve) =>
-                    setTimeout(() => resolve("test"), 500)
-                );
-            },
+            uploadImage: uploadToImgbb,
         },
     });
 

@@ -14,6 +14,7 @@ interface BlockViewerProps {
     Component: BlockElement;
     metadata: EditorBlock;
     dispatch: React.Dispatch<BlockActions>;
+    controllerFocused: boolean;
     setFocusedBlock: React.Dispatch<
         React.SetStateAction<{
             element: HTMLElement | null;
@@ -27,6 +28,7 @@ const BlockViewer = ({
     Component,
     metadata,
     dispatch,
+    controllerFocused,
     setFocusedBlock,
 }: BlockViewerProps) => {
     const handleUpdateBlock = useCallback(
@@ -52,6 +54,8 @@ const BlockViewer = ({
             data-name="block-editor"
             className={`min-h-9 flex flex-col justify-center ${className}`}
             onMouseEnter={(e) => {
+                if (controllerFocused) return;
+
                 const target = (e.currentTarget ?? e.target) as HTMLElement;
                 if (target.dataset["name"] !== "block-editor") return;
 

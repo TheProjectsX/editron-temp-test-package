@@ -13,11 +13,13 @@ type ImageData = {
 };
 
 type ImageOutputData = {
-    file: {
-        name: string;
-        src: string;
-        size?: number;
-    };
+    file:
+        | File
+        | {
+              name: string;
+              src: string;
+              size?: number;
+          };
     alt?: string;
     type?: "free" | "fill" | "cover" | "contain";
 };

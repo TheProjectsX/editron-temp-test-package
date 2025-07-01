@@ -111,6 +111,7 @@ const EditorComponent = forwardRef<
                                 Component={currentBlockComponent}
                                 metadata={block}
                                 dispatch={dispatch}
+                                controllerFocused={controllerFocused}
                                 setFocusedBlock={setFocusedBlock}
                             />
                         );
