@@ -15,10 +15,9 @@
 
 -   Finish the Link Inline Tool [X]
 
-
-
-- Add a Code Expand or Scrollbar in Code view [X]
-- Add resize the preview screen
-- HTML preview, remove layout edit. and add html, css, js tab mode [X]
-- Add Line Wrap toggle [X]
-- Add scrollbar modifier
+-   Add a Code Expand or Scrollbar in Code view [X]
+-   Add resize the preview screen
+-   HTML preview, remove layout edit. and add html, css, js tab mode [X]
+-   Add Line Wrap toggle [X]
+-   Add scrollbar modifier
+-   Add pre processor in the Block itself [X]

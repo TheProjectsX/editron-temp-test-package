@@ -9,7 +9,11 @@ const Image = ({ className = "", style, data }: ImageProps) => {
             style={style ?? {}}
         >
             <img
-                src={data.file.src}
+                src={
+                    data.file instanceof File
+                        ? URL.createObjectURL(data.file as File)
+                        : data.file.src
+                }
                 alt={data.alt ?? data.file.name ?? "Image Preview"}
                 className={`${
                     data.type === "free"

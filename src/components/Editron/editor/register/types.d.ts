@@ -89,4 +89,5 @@ export type PluginType = {
     structure: PluginStructure;
     demo: PluginDemo;
     settings?: SettingsStructure[];
+    processor?: (block: Record<string, any>) => Promise<Record<string, any>>;
 };

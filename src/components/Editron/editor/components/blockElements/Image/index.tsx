@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { demo, settings, structure } from "./meta";
+import { demo, processor, settings, structure } from "./meta";
 import type { ImageData, ImageProps } from "./types";
 
 const Image = ({ className = "", data, onUpdate }: ImageProps) => {
@@ -74,5 +74,6 @@ export default {
     structure,
     demo,
     settings,
+    processor,
     inlineToolbar: false,
 };

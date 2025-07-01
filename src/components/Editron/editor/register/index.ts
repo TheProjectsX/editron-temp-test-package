@@ -2,6 +2,7 @@
 import type {
     BlockStructure,
     EditorBlock,
+    OutputDataBlock,
     PluginDemo,
     PluginStructure,
     PluginType,
@@ -17,6 +18,7 @@ import Code from "../components/blockElements/Code";
 import Quote from "../components/blockElements/Quote";
 import Image from "../components/blockElements/Image";
 import HTMLPreview from "../components/blockElements/HTMLPreview";
+import type { UserConfig } from "..";
 
 // All Blocks
 const AllBlocks = [
@@ -52,6 +54,12 @@ export type RegisterReturn = {
     structure: BlockStructure | PluginStructure;
     demo: EditorBlock | PluginDemo;
     settings?: SettingsStructure[];
+    processor?:
+        | ((block: EditorBlock, config: UserConfig) => Promise<OutputDataBlock>)
+        | ((
+              block: Record<string, any>,
+              config: UserConfig
+          ) => Promise<Record<string, any>>);
 };
 
 export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
@@ -64,12 +72,14 @@ export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
             "settings" in block
                 ? (block.settings as SettingsStructure[])
                 : undefined,
+        processor: "processor" in block ? (block as any).processor : undefined,
     }));
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
         structure: plugin.structure,
         demo: plugin.demo,
         settings: plugin.settings,
+        processor: plugin.processor,
     }));
     return [...blocks, ...pluginItems];
 };

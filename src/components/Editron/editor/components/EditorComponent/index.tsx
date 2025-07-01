@@ -45,6 +45,18 @@ const getFromRegister = (
     return target[valueOf];
 };
 
+const recordFromRegister = <
+    K extends keyof RegisterReturn
+>(
+    registers: RegisterReturn[],
+    property: K
+): Record<string, RegisterReturn[K]> => {
+    return registers.reduce<Record<string, RegisterReturn[K]>>((acc, item) => {
+        acc[item.structure.type] = item[property];
+        return acc;
+    }, {} as Record<string, RegisterReturn[K]>);
+};
+
 const EditorComponent = forwardRef<
     EditorComponentSaveHandle,
     EditorComponentProps
@@ -85,7 +97,12 @@ const EditorComponent = forwardRef<
 
     // Run the runSave Function
     useImperativeHandle(ref, () => ({
-        runSave: () => processExport(blocks, config),
+        runSave: () =>
+            processExport(
+                blocks,
+                config,
+                recordFromRegister(registers, "processor")
+            ),
     }));
 
     const wrapperRef = useRef<HTMLDivElement | null>(null);
