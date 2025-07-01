@@ -41,7 +41,10 @@ const CodeView = ({
     return (
         <div>
             {/* Head with Controls */}
-            <div className="flex items-center justify-between bg-gray-50">
+            <div
+                className="flex items-center justify-between bg-gray-50"
+                data-name="controls"
+            >
                 <div className="flex gap-[1px] bg-gray-200 border-x border-gray-200">
                     {html && html.length > 0 && (
                         <button
@@ -71,50 +74,77 @@ const CodeView = ({
                         </button>
                     )}
                 </div>
-                <button
-                    className="py-2 w-20 bg-gray-100 enabled:hover:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 border-x border-gray-200"
-                    title="Copy Code"
-                    onClick={(e) => {
-                        const btn = e.currentTarget as HTMLButtonElement;
-                        const copy = btn.querySelector(
-                            ".copy"
-                        ) as HTMLSpanElement;
-                        const copied = btn.querySelector(
-                            ".copied"
-                        ) as HTMLSpanElement;
+                <div className="flex items-center gap-2">
+                    <label className="items-center gap-2 text-sm font-semibold select-none hidden sm:flex">
+                        <input
+                            type="checkbox"
+                            name="toggle"
+                            onChange={(e) => {
+                                const target =
+                                    e.currentTarget as HTMLInputElement;
 
-                        copyToClipboard(
-                            section === "html"
-                                ? html
-                                : section === "css"
-                                ? css ?? ""
-                                : js ?? "",
-                            () => {
-                                copy.hidden = true;
-                                copied.hidden = false;
-                                setTimeout(() => {
-                                    copied.hidden = true;
-                                    copy.hidden = false;
-                                }, 1500);
-                            }
-                        );
-                    }}
-                >
-                    <span className="copy flex items-center justify-center gap-1.5">
-                        <FaClipboardList className="text-gray-700" /> Copy
-                    </span>
-                    <span
-                        className="copied flex items-center justify-center gap-1.5"
-                        hidden
+                                const controls = target.closest(
+                                    `[data-name="controls"]`
+                                );
+                                const pre =
+                                    controls?.parentElement?.querySelector(
+                                        ":scope > pre"
+                                    ) as HTMLPreElement;
+
+                                if (target.checked) {
+                                    pre.style.whiteSpace = "pre-wrap";
+                                } else {
+                                    pre.style.whiteSpace = "pre";
+                                }
+                            }}
+                        />
+                        Line Wrap
+                    </label>
+                    <button
+                        className="py-2 w-20 bg-gray-100 enabled:hover:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 border-x border-gray-200"
+                        title="Copy Code"
+                        onClick={(e) => {
+                            const btn = e.currentTarget as HTMLButtonElement;
+                            const copy = btn.querySelector(
+                                ".copy"
+                            ) as HTMLSpanElement;
+                            const copied = btn.querySelector(
+                                ".copied"
+                            ) as HTMLSpanElement;
+
+                            copyToClipboard(
+                                section === "html"
+                                    ? html
+                                    : section === "css"
+                                    ? css ?? ""
+                                    : js ?? "",
+                                () => {
+                                    copy.hidden = true;
+                                    copied.hidden = false;
+                                    setTimeout(() => {
+                                        copied.hidden = true;
+                                        copy.hidden = false;
+                                    }, 1500);
+                                }
+                            );
+                        }}
                     >
-                        <MdOutlineDone className="text-gray-700" /> Copied
-                    </span>
-                </button>
+                        <span className="copy flex items-center justify-center gap-1.5">
+                            <FaClipboardList className="text-gray-700" /> Copy
+                        </span>
+                        <span
+                            className="copied flex items-center justify-center gap-1.5"
+                            hidden
+                        >
+                            <MdOutlineDone className="text-gray-700" /> Copied
+                        </span>
+                    </button>
+                </div>
             </div>
 
-            <pre className={`whitespace-pre-wrap overflow-x-auto !relative`}>
+            <pre className={``}>
                 <code
-                    className="hljs text-sm"
+                    className="hljs text-sm min-h-20 max-h-60 overflow-y-auto"
                     dangerouslySetInnerHTML={{
                         __html:
                             section === "html"
@@ -124,6 +154,35 @@ const CodeView = ({
                                 : highlightedJS,
                     }}
                 />
+                <button
+                    hidden
+                    ref={(target) => {
+                        if (!target) return;
+                        const code = target.parentElement?.querySelector(
+                            ":scope > code"
+                        ) as HTMLElement;
+
+                        if (!code) return;
+
+                        const hasOverflow =
+                            code.scrollHeight > code.clientHeight ||
+                            code.scrollWidth > code.clientWidth;
+
+                        target.hidden = !hasOverflow;
+                    }}
+                    className="block w-full font-sans p-2 bg-slate-700 text-slate-300 border-t border-slate-600 cursor-pointer"
+                    onClick={(e) => {
+                        const target = e.currentTarget as HTMLButtonElement;
+                        const code = target.parentElement?.querySelector(
+                            ":scope > code"
+                        ) as HTMLElement;
+
+                        code.style.maxHeight = "none";
+                        target.hidden = true;
+                    }}
+                >
+                    Expand Code
+                </button>
             </pre>
         </div>
     );
