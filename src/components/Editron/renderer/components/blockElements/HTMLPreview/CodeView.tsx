@@ -144,7 +144,7 @@ const CodeView = ({
 
             <pre className={``}>
                 <code
-                    className="hljs text-sm min-h-20 max-h-60 overflow-y-auto"
+                    className="hljs text-sm min-h-20 max-h-60 overflow-y-auto scrollbar-thin"
                     dangerouslySetInnerHTML={{
                         __html:
                             section === "html"

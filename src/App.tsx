@@ -4,7 +4,60 @@ import RendererComponent from "./components/Renderer";
 
 const App = () => {
     const [mode, setMode] = useState<"editor" | "renderer">("editor");
-    const [blocks, setBlocks] = useState<Record<string, any>[]>([]);
+    const [blocks, setBlocks] = useState<Record<string, any>[]>([
+        {
+            tag: "h2",
+            type: "heading",
+            data: {
+                html: "This is a Heading!",
+            },
+            id: "o3mYCeewMt",
+        },
+        {
+            tag: "p",
+            type: "paragraph",
+            data: {
+                html: "Another Paragraph just to make it useable",
+            },
+            id: "kY21nhl78E",
+        },
+        {
+            tag: "ul",
+            type: "list",
+            data: {
+                values: [
+                    {
+                        html: "A List of Contents!",
+                    },
+                    {
+                        html: "Another one",
+                    },
+                    {
+                        html: "Another!",
+                    },
+                ],
+            },
+            id: "3cnt_sFlXT",
+        },
+        {
+            tag: "hr",
+            type: "divider",
+            data: {
+                text: "Divided",
+                type: "dotted",
+            },
+            id: "yifzaae0T4",
+        },
+        {
+            tag: "blockquote",
+            type: "quote",
+            data: {
+                quote: "Learn while you can, life is too short to waste",
+                type: "highlighted",
+            },
+            id: "sjhlIKsVh2",
+        },
+    ]);
 
     return (
         <div className="max-w-2xl w-full">

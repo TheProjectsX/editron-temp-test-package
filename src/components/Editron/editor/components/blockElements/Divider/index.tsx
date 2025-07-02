@@ -6,11 +6,11 @@ const Divider = ({ data, onUpdate }: DividerProps) => {
     const [dividerText, setDividerText] = useState<string | undefined>(
         data.text
     );
-
+    
     useEffect(() => {
         if (dividerText === "") return;
 
-        onUpdate(dividerText ? { text: dividerText } : {});
+        onUpdate(dividerText ? { ...data, text: dividerText } : {});
     }, [dividerText]);
 
     return (

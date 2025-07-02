@@ -109,7 +109,7 @@ const SettingsPopoverContent = ({
     }
 
     return (
-        <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-56 overflow-auto scrollbar-thin">
+        <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-64 overflow-auto scrollbar-thin">
             {BlockBasedSettings && (
                 <>
                     {BlockBasedSettings}

@@ -48,9 +48,38 @@ const Code = ({ className = "", style, data }: CodeProps) => {
             </button>
 
             <code
-                className="hljs text-sm"
+                className="hljs text-sm min-h-20 max-h-60 overflow-y-auto scrollbar-thin"
                 dangerouslySetInnerHTML={{ __html: highlighted }}
             />
+            <button
+                hidden
+                ref={(target) => {
+                    if (!target) return;
+                    const code = target.parentElement?.querySelector(
+                        ":scope > code"
+                    ) as HTMLElement;
+
+                    if (!code) return;
+
+                    const hasOverflow =
+                        code.scrollHeight > code.clientHeight ||
+                        code.scrollWidth > code.clientWidth;
+
+                    target.hidden = !hasOverflow;
+                }}
+                className="block w-full font-sans p-2 bg-slate-700 text-slate-300 border-t border-slate-600 cursor-pointer"
+                onClick={(e) => {
+                    const target = e.currentTarget as HTMLButtonElement;
+                    const code = target.parentElement?.querySelector(
+                        ":scope > code"
+                    ) as HTMLElement;
+
+                    code.style.maxHeight = "none";
+                    target.hidden = true;
+                }}
+            >
+                Expand Code
+            </button>
         </pre>
     );
 };
