@@ -3,11 +3,11 @@ import Editor from "../Editron/editor";
 
 const EditorComponent = ({
     defaultBlock,
-    blocks,
+    blocks = [],
     setBlocks,
 }: {
     defaultBlock?: string;
-    blocks: Record<string, any>[];
+    blocks?: Record<string, any>[];
     setBlocks: React.Dispatch<React.SetStateAction<Record<string, any>[]>>;
 }) => {
     const [Component, save] = Editor({

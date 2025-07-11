@@ -46,3 +46,15 @@ export const cleanInnerHTML = (html: string): string => {
 
     return div.innerHTML.trim();
 };
+
+export const replaceByIndex = <T,>(arr: T[], index: number, newItem: T): T[] =>
+    arr.map((item, i) => (i === index ? newItem : item));
+
+export const replaceBy2DIndex = <T,>(
+    arr: T[][],
+    [rowIdx, colIdx]: [number, number],
+    newItem: T
+): T[][] =>
+    arr.map((row, i) =>
+        row.map((item, j) => (i === rowIdx && j === colIdx ? newItem : item))
+    );

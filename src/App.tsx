@@ -80,7 +80,7 @@ const App = () => {
 
             <div className="w-full">
                 {mode === "editor" && (
-                    <EditorComponent blocks={blocks} setBlocks={setBlocks} />
+                    <EditorComponent defaultBlock="table" setBlocks={setBlocks} />
                 )}
 
                 {mode === "renderer" && <RendererComponent blocks={blocks} />}

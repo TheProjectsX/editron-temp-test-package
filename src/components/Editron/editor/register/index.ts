@@ -8,6 +8,7 @@ import type {
     PluginType,
     SettingsStructure,
 } from "./types";
+import type { UserConfig } from "..";
 
 // Blocks
 import Paragraph from "../components/blockElements/Paragraph";
@@ -18,7 +19,7 @@ import Code from "../components/blockElements/Code";
 import Quote from "../components/blockElements/Quote";
 import Image from "../components/blockElements/Image";
 import HTMLPreview from "../components/blockElements/HTMLPreview";
-import type { UserConfig } from "..";
+import Table from "../components/blockElements/Table";
 
 // All Blocks
 const AllBlocks = [
@@ -30,6 +31,7 @@ const AllBlocks = [
     Quote,
     Image,
     HTMLPreview,
+    Table
 ];
 
 // All Block Structures

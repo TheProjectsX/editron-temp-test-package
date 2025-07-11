@@ -45,9 +45,7 @@ const getFromRegister = (
     return target[valueOf];
 };
 
-const recordFromRegister = <
-    K extends keyof RegisterReturn
->(
+const recordFromRegister = <K extends keyof RegisterReturn>(
     registers: RegisterReturn[],
     property: K
 ): Record<string, RegisterReturn[K]> => {
@@ -55,6 +53,15 @@ const recordFromRegister = <
         acc[item.structure.type] = item[property];
         return acc;
     }, {} as Record<string, RegisterReturn[K]>);
+};
+
+const setCaretToEnd = (el: HTMLElement) => {
+    const range = document.createRange();
+    const sel = window.getSelection();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    sel?.removeAllRanges();
+    sel?.addRange(range);
 };
 
 const EditorComponent = forwardRef<
@@ -114,6 +121,33 @@ const EditorComponent = forwardRef<
                 <div
                     data-name="editor-blocks-wrapper"
                     className="space-y-5 overflow-hidden"
+                    onKeyDown={(e) => {
+                        const key = e.key;
+                        if (key !== "ArrowUp" && key !== "ArrowDown") return;
+
+                        const editables = Array.from(
+                            e.currentTarget.querySelectorAll(
+                                '[contenteditable="true"]'
+                            )
+                        );
+                        const current = e.target as HTMLElement;
+                        const index = editables.indexOf(current);
+                        if (index === -1) return;
+
+                        e.preventDefault();
+                        const next =
+                            key === "ArrowDown"
+                                ? editables[index + 1]
+                                : editables[index - 1];
+
+                        if (next) {
+                            (next as HTMLElement).focus();
+                            setTimeout(
+                                () => setCaretToEnd(next as HTMLElement),
+                                0
+                            );
+                        }
+                    }}
                 >
                     {blocks.map((block) => {
                         const currentBlockComponent = getFromRegister(

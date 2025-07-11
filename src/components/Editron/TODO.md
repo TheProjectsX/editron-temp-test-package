@@ -21,3 +21,4 @@
 -   Add Line Wrap toggle [X]
 -   Add scrollbar modifier
 -   Add pre processor in the Block itself [X]
+- Make a utils file for EditorComponent
