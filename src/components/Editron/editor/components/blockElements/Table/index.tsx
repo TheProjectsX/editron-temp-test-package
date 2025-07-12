@@ -1,21 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { demo, settings, structure } from "./meta";
 import type { TableProps } from "./types";
 import { preventNewLine } from "../libs/events";
 import { replaceBy2DIndex, replaceByIndex } from "../libs/utilities";
 import { IoAddOutline } from "react-icons/io5";
+import { TbSquareDot } from "react-icons/tb";
+import { ColumnControls, RowControls } from "./Controls";
 
 const Table = ({ className = "", data, onUpdate }: TableProps) => {
     const [currentData, setCurrentData] = useState({
         headers: data.headers,
         body: data.body,
     });
+    const [focusedRow, setFocusedRow] = useState<{
+        element: HTMLElement;
+        idx: number;
+    } | null>(null);
+
+    const [focusedColumn, setFocusedColumn] = useState<{
+        element: HTMLElement;
+        idx: number;
+    } | null>(null);
+
+    useEffect(() => {
+        setCurrentData({
+            headers: data.headers,
+            body: data.body,
+        });
+    }, [data]);
 
     return (
         <div
-            className={`space-y-0.5 ${className}`}
+            className={`space-y-0.5 relative ${className}`}
             onBlur={() => {
-                onUpdate(currentData);
+                onUpdate({ ...data, ...currentData });
             }}
         >
             <div className="flex gap-0.5">
@@ -35,6 +53,23 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                         <th
                                             className="px-3 py-2 border border-gray-200 overflow-hidden"
                                             key={idx}
+                                            onMouseEnter={(e) => {
+                                                const target =
+                                                    e.currentTarget ??
+                                                    (e.target as HTMLElement);
+
+                                                if (target.tagName !== "TH")
+                                                    return;
+
+                                                setFocusedColumn((prev) =>
+                                                    prev?.idx === idx
+                                                        ? prev
+                                                        : {
+                                                              element: target,
+                                                              idx,
+                                                          }
+                                                );
+                                            }}
                                         >
                                             <span
                                                 className="outline-none break-words block"
@@ -66,8 +101,24 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
                     <tbody className="">
                         {currentData.body.map((body, idx) => (
-                            <tr key={idx} className="">
-                                {body.map((item, idxs) => (
+                            <tr
+                                key={idx}
+                                className=""
+                                onMouseEnter={(e) => {
+                                    const target =
+                                        e.currentTarget ??
+                                        (e.target as HTMLElement);
+
+                                    if (target.tagName !== "TR") return;
+
+                                    setFocusedRow((prev) =>
+                                        prev?.idx === idx
+                                            ? prev
+                                            : { element: target, idx }
+                                    );
+                                }}
+                            >
+                                {body.map((item, idxc) => (
                                     <td
                                         className="px-3 py-2 border border-gray-200 outline-none break-words"
                                         onKeyDown={preventNewLine}
@@ -76,12 +127,28 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                                 headers: prev.headers,
                                                 body: replaceBy2DIndex(
                                                     prev.body,
-                                                    [idx, idxs],
+                                                    [idx, idxc],
                                                     e.target.innerHTML
                                                 ),
                                             }));
                                         }}
-                                        key={idxs}
+                                        onMouseEnter={(e) => {
+                                            const target =
+                                                e.currentTarget ??
+                                                (e.target as HTMLElement);
+
+                                            if (target.tagName !== "TD") return;
+
+                                            setFocusedColumn((prev) =>
+                                                prev?.idx === idxc
+                                                    ? prev
+                                                    : {
+                                                          element: target,
+                                                          idx: idxc,
+                                                      }
+                                            );
+                                        }}
+                                        key={idxc}
                                         contentEditable
                                         dangerouslySetInnerHTML={{
                                             __html: item,
@@ -125,6 +192,13 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
             >
                 <IoAddOutline />
             </button>
+
+            {/* Controls */}
+            {/* Column */}
+            <ColumnControls focused={focusedColumn} setData={setCurrentData}/>
+
+            {/* Row */}
+            <RowControls focused={focusedRow} setData={setCurrentData}/>
         </div>
     );
 };

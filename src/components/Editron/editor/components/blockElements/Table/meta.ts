@@ -1,6 +1,9 @@
 import { CiViewTable } from "react-icons/ci";
 import { AlignSettings } from "../libs/common";
 import { nanoid } from "nanoid";
+import { FaTableColumns } from "react-icons/fa6";
+import type { TableBlock } from "./types";
+import { LuTable } from "react-icons/lu";
 
 export const structure = {
     name: "Table",
@@ -21,7 +24,7 @@ export const demo = {
     type: "table",
     tag: "table",
     data: {
-        headers: ["", ""],
+        headers: [],
         body: [
             ["", ""],
             ["", ""],
@@ -29,4 +32,34 @@ export const demo = {
     },
 };
 
-export const settings = [AlignSettings];
+export const settings = [
+    {
+        name: "With Heading",
+        icon: FaTableColumns,
+        transform: (block: TableBlock) => {
+            return {
+                ...block,
+                data: {
+                    ...block.data,
+                    headers: new Array(block.data.body?.[0].length ?? 0).fill(
+                        ""
+                    ),
+                },
+            };
+        },
+    },
+    {
+        name: "Without Heading",
+        icon: LuTable,
+        transform: (block: TableBlock) => {
+            return {
+                ...block,
+                data: {
+                    ...block.data,
+                    headers: [],
+                },
+            };
+        },
+    },
+    AlignSettings,
+];
