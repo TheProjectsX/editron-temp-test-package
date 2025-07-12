@@ -21,4 +21,5 @@
 -   Add Line Wrap toggle [X]
 -   Add scrollbar modifier
 -   Add pre processor in the Block itself [X]
-- Make a utils file for EditorComponent
+-   Make a utils file for EditorComponent
+-   Modify react-popover so that if popover is closed, hover visible also does not work

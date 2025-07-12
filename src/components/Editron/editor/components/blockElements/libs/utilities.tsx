@@ -58,3 +58,60 @@ export const replaceBy2DIndex = <T,>(
     arr.map((row, i) =>
         row.map((item, j) => (i === rowIdx && j === colIdx ? newItem : item))
     );
+
+// Is given array with value
+export const isArray = (data: any) => Array.isArray(data) && data.length > 0;
+
+// Add column in 1d
+export const addColumn = (
+    row: string[],
+    pos?: number,
+    value: string = ""
+): string[] => {
+    const index = pos ?? row.length;
+    return [...row.slice(0, index), value, ...row.slice(index)];
+};
+
+// Add a row
+export const addRow2D = (
+    data: string[][],
+    pos?: number,
+    value: string = ""
+): string[][] => {
+    const columns = data[0]?.length || 0;
+    const newRow = new Array(columns).fill(value);
+    const index = pos ?? data.length;
+    return [...data.slice(0, index), newRow, ...data.slice(index)];
+};
+
+// Add a column
+export const addColumn2D = (
+    data: string[][],
+    pos?: number,
+    value: string = ""
+): string[][] => {
+    return data.map((row) => {
+        const index = pos ?? row.length;
+        return [...row.slice(0, index), value, ...row.slice(index)];
+    });
+};
+
+// Remove column in 1D
+export const removeColumn = (row: string[], pos: number): string[] => {
+    if (pos < 0 || pos >= row.length) return row;
+    return [...row.slice(0, pos), ...row.slice(pos + 1)];
+};
+
+// Remove a row
+export const removeRow2D = (data: string[][], pos: number): string[][] => {
+    if (pos < 0 || pos >= data.length) return data;
+    return [...data.slice(0, pos), ...data.slice(pos + 1)];
+};
+
+// Remove a column
+export const removeColumn2D = (data: string[][], pos: number): string[][] => {
+    return data.map((row) => {
+        if (pos < 0 || pos >= row.length) return row;
+        return [...row.slice(0, pos), ...row.slice(pos + 1)];
+    });
+};

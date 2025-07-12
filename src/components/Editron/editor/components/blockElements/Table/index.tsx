@@ -4,7 +4,6 @@ import type { TableProps } from "./types";
 import { preventNewLine } from "../libs/events";
 import { replaceBy2DIndex, replaceByIndex } from "../libs/utilities";
 import { IoAddOutline } from "react-icons/io5";
-import { TbSquareDot } from "react-icons/tb";
 import { ColumnControls, RowControls } from "./Controls";
 
 const Table = ({ className = "", data, onUpdate }: TableProps) => {
@@ -21,6 +20,9 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
         element: HTMLElement;
         idx: number;
     } | null>(null);
+
+    const [columnSetOpened, setColumnSetOpened] = useState<boolean>(false);
+    const [rowSetOpened, setRowSetOpened] = useState<boolean>(false);
 
     useEffect(() => {
         setCurrentData({
@@ -54,6 +56,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                             className="px-3 py-2 border border-gray-200 overflow-hidden"
                                             key={idx}
                                             onMouseEnter={(e) => {
+                                                if (columnSetOpened) return;
                                                 const target =
                                                     e.currentTarget ??
                                                     (e.target as HTMLElement);
@@ -105,6 +108,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                 key={idx}
                                 className=""
                                 onMouseEnter={(e) => {
+                                    if (rowSetOpened) return;
                                     const target =
                                         e.currentTarget ??
                                         (e.target as HTMLElement);
@@ -133,6 +137,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                             }));
                                         }}
                                         onMouseEnter={(e) => {
+                                            if (columnSetOpened) return;
                                             const target =
                                                 e.currentTarget ??
                                                 (e.target as HTMLElement);
@@ -195,10 +200,18 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
             {/* Controls */}
             {/* Column */}
-            <ColumnControls focused={focusedColumn} setData={setCurrentData}/>
+            <ColumnControls
+                focused={focusedColumn}
+                setData={setCurrentData}
+                setOpened={setColumnSetOpened}
+            />
 
             {/* Row */}
-            <RowControls focused={focusedRow} setData={setCurrentData}/>
+            <RowControls
+                focused={focusedRow}
+                setData={setCurrentData}
+                setOpened={setRowSetOpened}
+            />
         </div>
     );
 };
