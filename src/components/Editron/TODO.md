@@ -23,3 +23,6 @@
 -   Add pre processor in the Block itself [X]
 -   Make a utils file for EditorComponent
 -   Modify react-popover so that if popover is closed, hover visible also does not work
+
+-   ISSUE:
+    -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working

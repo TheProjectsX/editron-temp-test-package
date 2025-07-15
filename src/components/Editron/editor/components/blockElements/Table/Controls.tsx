@@ -1,5 +1,10 @@
 import Popover from "@theprojectsx/react-popover";
-import React, { useEffect, useState } from "react";
+import React, {
+    forwardRef,
+    useEffect,
+    useImperativeHandle,
+    useState,
+} from "react";
 import {
     FaArrowDown,
     FaArrowLeft,
@@ -17,8 +22,9 @@ import {
     removeColumn2D,
     removeRow2D,
 } from "../libs/utilities";
+import type { Focused } from ".";
 
-const getCenterX = (el: HTMLElement): number => {
+export const getCenterX = (el: HTMLElement): number => {
     const parent = el.offsetParent as HTMLElement;
     const elRect = el.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
@@ -29,7 +35,7 @@ const getCenterX = (el: HTMLElement): number => {
     return relativeX;
 };
 
-const getCenterY = (el: HTMLElement): number => {
+export const getCenterY = (el: HTMLElement): number => {
     const parent = el.offsetParent as HTMLElement;
     const elRect = el.getBoundingClientRect();
     const parentRect = parent.getBoundingClientRect();
@@ -40,25 +46,28 @@ const getCenterY = (el: HTMLElement): number => {
     return relativeY;
 };
 
-export const ColumnControls = React.memo(
-    ({
-        focused,
-        setData,
-        setOpened,
-    }: {
-        focused: {
-            element: HTMLElement;
-            idx: number;
-        } | null;
-        setData: React.Dispatch<
-            React.SetStateAction<{
-                headers: string[] | undefined;
-                body: string[][];
-            }>
-        >;
-        setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-    }) => {
-        const [left, setLeft] = useState<number>();
+type ControllerSetFocused = {
+    setFocused: React.Dispatch<React.SetStateAction<Focused | null>>;
+};
+
+type ControllerProps = {
+    setData: React.Dispatch<
+        React.SetStateAction<{
+            headers: string[] | undefined;
+            body: string[][];
+        }>
+    >;
+    setOpened: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
+    ({ setData, setOpened }, ref) => {
+        const [left, setLeft] = useState(0);
+        const [focused, setFocused] = useState<Focused | null>(null);
+
+        useImperativeHandle(ref, () => ({
+            setFocused,
+        }));
 
         useEffect(() => {
             if (!focused) return;
@@ -150,6 +159,7 @@ export const ColumnControls = React.memo(
                 }
             >
                 <button
+                    data-name="column-controls"
                     className="absolute -top-6 p-1 -translate-x-1/2 cursor-pointer text-gray-600 hover:text-gray-800"
                     style={{ left }}
                     hidden={!focused}
@@ -161,29 +171,17 @@ export const ColumnControls = React.memo(
     }
 );
 
-export const RowControls = React.memo(
-    ({
-        focused,
-        setData,
-        setOpened,
-    }: {
-        focused: {
-            element: HTMLElement;
-            idx: number;
-        } | null;
-        setData: React.Dispatch<
-            React.SetStateAction<{
-                headers: string[] | undefined;
-                body: string[][];
-            }>
-        >;
-        setOpened: React.Dispatch<React.SetStateAction<boolean>>;
-    }) => {
-        const [top, setTop] = useState<number>();
+export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
+    ({ setData, setOpened }, ref) => {
+        const [top, setTop] = useState(0);
+        const [focused, setFocused] = useState<Focused | null>(null);
+
+        useImperativeHandle(ref, () => ({
+            setFocused,
+        }));
 
         useEffect(() => {
             if (!focused) return;
-
             setTop(getCenterY(focused.element));
         }, [focused]);
 
@@ -250,6 +248,7 @@ export const RowControls = React.memo(
                 }
             >
                 <button
+                    data-name="row-controls"
                     className="absolute -left-5 -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800"
                     style={{ top }}
                     hidden={!focused}

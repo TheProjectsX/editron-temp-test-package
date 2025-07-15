@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { createRef, useEffect, useState } from "react";
 import { demo, settings, structure } from "./meta";
 import type { TableProps } from "./types";
 import { preventNewLine } from "../libs/events";
@@ -6,20 +6,24 @@ import { replaceBy2DIndex, replaceByIndex } from "../libs/utilities";
 import { IoAddOutline } from "react-icons/io5";
 import { ColumnControls, RowControls } from "./Controls";
 
+export type Focused = {
+    element: HTMLElement;
+    idx: number;
+};
+
 const Table = ({ className = "", data, onUpdate }: TableProps) => {
     const [currentData, setCurrentData] = useState({
         headers: data.headers,
         body: data.body,
     });
-    const [focusedRow, setFocusedRow] = useState<{
-        element: HTMLElement;
-        idx: number;
-    } | null>(null);
 
-    const [focusedColumn, setFocusedColumn] = useState<{
-        element: HTMLElement;
-        idx: number;
-    } | null>(null);
+    const columnControlRef = createRef<{
+        setFocused: React.Dispatch<React.SetStateAction<Focused | null>>;
+    }>();
+
+    const rowControlRef = createRef<{
+        setFocused: React.Dispatch<React.SetStateAction<Focused | null>>;
+    }>();
 
     const [columnSetOpened, setColumnSetOpened] = useState<boolean>(false);
     const [rowSetOpened, setRowSetOpened] = useState<boolean>(false);
@@ -33,8 +37,11 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
     return (
         <div
-            className={`space-y-0.5 relative ${className}`}
-            onBlur={() => {
+            data-name="table-wrapper"
+            className={`space-y-0.5 relative ${className} hover:[&_[data-name="column-controls"]]:inline hover:[&_[data-name="row-controls"]]:inline`}
+            onBlur={(e) => {
+                if (e.target !== e.currentTarget) return;
+
                 onUpdate({ ...data, ...currentData });
             }}
         >
@@ -55,6 +62,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                         <th
                                             className="px-3 py-2 border border-gray-200 overflow-hidden"
                                             key={idx}
+                                            data-idx={idx}
                                             onMouseEnter={(e) => {
                                                 if (columnSetOpened) return;
                                                 const target =
@@ -64,13 +72,15 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                                 if (target.tagName !== "TH")
                                                     return;
 
-                                                setFocusedColumn((prev) =>
-                                                    prev?.idx === idx
-                                                        ? prev
-                                                        : {
-                                                              element: target,
-                                                              idx,
-                                                          }
+                                                columnControlRef.current?.setFocused(
+                                                    (prev) =>
+                                                        prev?.idx === idx
+                                                            ? prev
+                                                            : {
+                                                                  element:
+                                                                      target,
+                                                                  idx,
+                                                              }
                                                 );
                                             }}
                                         >
@@ -115,7 +125,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
                                     if (target.tagName !== "TR") return;
 
-                                    setFocusedRow((prev) =>
+                                    rowControlRef.current?.setFocused((prev) =>
                                         prev?.idx === idx
                                             ? prev
                                             : { element: target, idx }
@@ -144,13 +154,14 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
                                             if (target.tagName !== "TD") return;
 
-                                            setFocusedColumn((prev) =>
-                                                prev?.idx === idxc
-                                                    ? prev
-                                                    : {
-                                                          element: target,
-                                                          idx: idxc,
-                                                      }
+                                            columnControlRef.current?.setFocused(
+                                                (prev) =>
+                                                    prev?.idx === idxc
+                                                        ? prev
+                                                        : {
+                                                              element: target,
+                                                              idx: idxc,
+                                                          }
                                             );
                                         }}
                                         key={idxc}
@@ -164,6 +175,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                         ))}
                     </tbody>
                 </table>
+
                 <div className="flex items-stretch">
                     <button
                         className="px-2 py-3 hover:bg-gray-50 cursor-pointer transition-colors h-full flex items-start"
@@ -201,16 +213,16 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
             {/* Controls */}
             {/* Column */}
             <ColumnControls
-                focused={focusedColumn}
                 setData={setCurrentData}
                 setOpened={setColumnSetOpened}
+                ref={columnControlRef}
             />
 
             {/* Row */}
             <RowControls
-                focused={focusedRow}
                 setData={setCurrentData}
                 setOpened={setRowSetOpened}
+                ref={rowControlRef}
             />
         </div>
     );
