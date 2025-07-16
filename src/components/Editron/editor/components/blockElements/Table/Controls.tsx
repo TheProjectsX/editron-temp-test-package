@@ -160,9 +160,8 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
             >
                 <button
                     data-name="column-controls"
-                    className="absolute -top-6 p-1 -translate-x-1/2 cursor-pointer text-gray-600 hover:text-gray-800"
+                    className="absolute -top-6 p-1 -translate-x-1/2 cursor-pointer text-gray-600 hover:text-gray-800 hidden"
                     style={{ left }}
-                    hidden={!focused}
                 >
                     <PiGearFineLight />
                 </button>
@@ -249,9 +248,8 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
             >
                 <button
                     data-name="row-controls"
-                    className="absolute -left-5 -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800"
+                    className="absolute -left-6 p-1 -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800 hidden"
                     style={{ top }}
-                    hidden={!focused}
                 >
                     <PiGearFineLight />
                 </button>

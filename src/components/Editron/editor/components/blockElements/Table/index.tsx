@@ -29,21 +29,31 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
     const [rowSetOpened, setRowSetOpened] = useState<boolean>(false);
 
     useEffect(() => {
+        const isSame =
+            JSON.stringify(currentData.headers) ===
+                JSON.stringify(data.headers) &&
+            JSON.stringify(currentData.body) === JSON.stringify(data.body);
+
+        if (isSame) return;
+
         setCurrentData({
             headers: data.headers,
             body: data.body,
         });
     }, [data]);
 
+    useEffect(() => {
+        onUpdate({ ...data, ...currentData });
+    }, [currentData]);
+
     return (
         <div
             data-name="table-wrapper"
-            className={`space-y-0.5 relative ${className} hover:[&_[data-name="column-controls"]]:inline hover:[&_[data-name="row-controls"]]:inline`}
-            onBlur={(e) => {
-                if (e.target !== e.currentTarget) return;
-
-                onUpdate({ ...data, ...currentData });
-            }}
+            className={`space-y-0.5 relative ${className} hover:[&_[data-name="column-controls"]]:inline hover:[&_[data-name="row-controls"]]:inline ${
+                columnSetOpened
+                    ? `[&_[data-name="column-controls"]]:inline`
+                    : ""
+            } ${rowSetOpened ? `[&_[data-name="row-controls"]]:inline` : ""}`}
         >
             <div className="flex gap-0.5">
                 <table
@@ -135,7 +145,31 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                 {body.map((item, idxc) => (
                                     <td
                                         className="px-3 py-2 border border-gray-200 outline-none break-words"
-                                        onKeyDown={preventNewLine}
+                                        onKeyDown={(e) => {
+                                            preventNewLine(e);
+                                            // const target = (e.currentTarget ??
+                                            //     e.target) as HTMLElement;
+
+                                            // if (e.key === "Enter") {
+                                            //     setCurrentData((prev) => ({
+                                            //         headers: prev.headers,
+                                            //         body: addRow2D(
+                                            //             prev.body,
+                                            //             idxc + 1,
+                                            //             ""
+                                            //         ),
+                                            //     }));
+
+                                            //     setTimeout(() => {
+                                            //         const nextTD =
+                                            //             target.parentElement?.nextElementSibling?.querySelector(
+                                            //                 "td"
+                                            //             );
+
+                                            //         nextTD?.focus();
+                                            //     }, 0);
+                                            // }
+                                        }}
                                         onBlur={(e) => {
                                             setCurrentData((prev) => ({
                                                 headers: prev.headers,

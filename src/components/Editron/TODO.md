@@ -24,5 +24,7 @@
 -   Make a utils file for EditorComponent
 -   Modify react-popover so that if popover is closed, hover visible also does not work
 
+-   Add Enter and Backspace func for Table
+
 -   ISSUE:
     -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working
