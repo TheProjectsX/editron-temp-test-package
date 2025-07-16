@@ -5,6 +5,7 @@ import type { HTMLPreviewBlock } from "../components/blockElements/HTMLPreview/t
 import type { ImageBlock } from "../components/blockElements/Image/types";
 import type { ParagraphBlock } from "../components/blockElements/Paragraph/types";
 import type { QuoteBlock } from "../components/blockElements/Quote/types";
+import type { TableBlock } from "../components/blockElements/Table/types";
 
 // All Block Types
 type AllBlocks =
@@ -15,7 +16,8 @@ type AllBlocks =
     | CodeBlock
     | QuoteBlock
     | ImageBlock
-    | HTMLPreviewBlock;
+    | HTMLPreviewBlock
+    | TableBlock;
 
 // Renderer Blocks
 export type RendererBlock = {

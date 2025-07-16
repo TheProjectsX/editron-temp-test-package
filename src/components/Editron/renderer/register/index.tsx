@@ -8,6 +8,7 @@ import Quote from "../components/blockElements/Quote";
 import Code from "../components/blockElements/Code";
 import Image from "../components/blockElements/Image";
 import HTMLPreview from "../components/blockElements/HTMLPreview";
+import Table from "../components/blockElements/Table";
 
 // All Blocks
 const AllBlocks = [
@@ -19,6 +20,7 @@ const AllBlocks = [
     Quote,
     Image,
     HTMLPreview,
+    Table
 ];
 
 export type RegisterReturn = {
