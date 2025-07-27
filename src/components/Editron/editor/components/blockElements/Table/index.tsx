@@ -2,7 +2,13 @@ import React, { createRef, useEffect, useState } from "react";
 import { demo, settings, structure } from "./meta";
 import type { TableProps } from "./types";
 import { preventNewLine } from "../libs/events";
-import { replaceBy2DIndex, replaceByIndex } from "../libs/utilities";
+import {
+    addRow2D,
+    cleanInnerHTML,
+    removeRow2D,
+    replaceBy2DIndex,
+    replaceByIndex,
+} from "../libs/utilities";
 import { IoAddOutline } from "react-icons/io5";
 import { ColumnControls, RowControls } from "./Controls";
 
@@ -104,7 +110,10 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                                         headers: replaceByIndex(
                                                             currentData.headers!,
                                                             idx,
-                                                            e.target.innerHTML
+                                                            cleanInnerHTML(
+                                                                e.target
+                                                                    .innerHTML
+                                                            )
                                                         ),
                                                         body: prev.body,
                                                     }));
@@ -147,28 +156,96 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                         className="px-3 py-2 border border-gray-200 outline-none break-words"
                                         onKeyDown={(e) => {
                                             preventNewLine(e);
-                                            // const target = (e.currentTarget ??
-                                            //     e.target) as HTMLElement;
+                                            const target = (e.currentTarget ??
+                                                e.target) as HTMLElement;
 
-                                            // if (e.key === "Enter") {
-                                            //     setCurrentData((prev) => ({
-                                            //         headers: prev.headers,
-                                            //         body: addRow2D(
-                                            //             prev.body,
-                                            //             idxc + 1,
-                                            //             ""
-                                            //         ),
-                                            //     }));
+                                            if (
+                                                e.key === "Enter" &&
+                                                idx ===
+                                                    currentData.body.length - 1
+                                            ) {
+                                                setCurrentData((prev) => ({
+                                                    headers: prev.headers,
+                                                    body: replaceBy2DIndex(
+                                                        prev.body,
+                                                        [idx, idxc],
+                                                        cleanInnerHTML(
+                                                            target.innerHTML
+                                                        )
+                                                    ),
+                                                }));
 
-                                            //     setTimeout(() => {
-                                            //         const nextTD =
-                                            //             target.parentElement?.nextElementSibling?.querySelector(
-                                            //                 "td"
-                                            //             );
+                                                setCurrentData((prev) => ({
+                                                    headers: prev.headers,
+                                                    body: addRow2D(
+                                                        prev.body,
+                                                        idx + 1
+                                                    ),
+                                                }));
 
-                                            //         nextTD?.focus();
-                                            //     }, 0);
-                                            // }
+                                                setTimeout(() => {
+                                                    const nextRow = target
+                                                        .parentElement
+                                                        ?.nextElementSibling as HTMLTableRowElement | null;
+                                                    if (nextRow) {
+                                                        const nextCell =
+                                                            nextRow.querySelectorAll(
+                                                                "td"
+                                                            )[idxc] as
+                                                                | HTMLElement
+                                                                | undefined;
+                                                        nextCell?.focus();
+                                                    }
+                                                }, 0);
+                                            } else if (
+                                                e.key === "Backspace" &&
+                                                target.textContent === ""
+                                            ) {
+                                                // If the td is 1st td and there is no data left in the row, delete the row
+                                                if (
+                                                    idxc == 0 &&
+                                                    target.textContent === ""
+                                                ) {
+                                                    if (
+                                                        !body
+                                                            .slice(1)
+                                                            .every(
+                                                                (item) =>
+                                                                    item === ""
+                                                            )
+                                                    )
+                                                        return;
+
+                                                    const prevRow = target
+                                                        .parentElement
+                                                        ?.previousElementSibling as HTMLTableRowElement | null;
+
+                                                    if (prevRow) {
+                                                        const prevCell =
+                                                            prevRow.querySelectorAll(
+                                                                "td"
+                                                            )[
+                                                                body.length - 1
+                                                            ] as
+                                                                | HTMLElement
+                                                                | undefined;
+                                                        prevCell?.focus();
+                                                    }
+
+                                                    setCurrentData((prev) => ({
+                                                        headers: prev.headers,
+                                                        body: removeRow2D(
+                                                            prev.body,
+                                                            idx
+                                                        ),
+                                                    }));
+                                                } else {
+                                                    // If the td is not first, focus the before td
+                                                    const previous =
+                                                        target.previousElementSibling as HTMLTableCellElement | null;
+                                                    previous?.focus();
+                                                }
+                                            }
                                         }}
                                         onBlur={(e) => {
                                             setCurrentData((prev) => ({
@@ -176,7 +253,9 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                                                 body: replaceBy2DIndex(
                                                     prev.body,
                                                     [idx, idxc],
-                                                    e.target.innerHTML
+                                                    cleanInnerHTML(
+                                                        e.target.innerHTML
+                                                    )
                                                 ),
                                             }));
                                         }}

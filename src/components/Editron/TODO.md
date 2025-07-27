@@ -2,7 +2,7 @@
 -   Create a html filter / parser [X]
 -   Make Modular Blocks
 
-    -   export a object containing `component`, `demo`, `structure` etc
+    -   export a object containing `component`, `demo`, `structure` etc [X]
 
 -   Create EditorBlock and add in `editor/components/controls` , `editor/components/BlockViewer` [X]
 -   After creating "register" update `editor/components/controls/AddButtonPopoverContent` for BlockStructure [XXX] ''
@@ -24,7 +24,7 @@
 -   Make a utils file for EditorComponent [X]
 -   Modify react-popover so that if popover is closed, hover visible also does not work [X]
 
--   Add Enter and Backspace func for Table
+-   Add Enter and Backspace func for Table [X]
 
 -   ISSUE:
     -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working [X]
