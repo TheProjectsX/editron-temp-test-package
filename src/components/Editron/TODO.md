@@ -19,12 +19,12 @@
 -   Add resize the preview screen
 -   HTML preview, remove layout edit. and add html, css, js tab mode [X]
 -   Add Line Wrap toggle [X]
--   Add scrollbar modifier
+-   Add scrollbar modifier [X]
 -   Add pre processor in the Block itself [X]
--   Make a utils file for EditorComponent
--   Modify react-popover so that if popover is closed, hover visible also does not work
+-   Make a utils file for EditorComponent [X]
+-   Modify react-popover so that if popover is closed, hover visible also does not work [X]
 
 -   Add Enter and Backspace func for Table
 
 -   ISSUE:
-    -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working
+    -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working [X]

@@ -1,5 +1,3 @@
-import useBlockForge from "../../hooks/useBlockForge";
-import BlockViewer, { type BlockElement } from "../BlockViewer";
 import {
     forwardRef,
     useEffect,
@@ -7,62 +5,22 @@ import {
     useRef,
     useState,
 } from "react";
+
+import useBlockForge from "../../hooks/useBlockForge";
+
+import type { BlockStructure, EditorBlock } from "../../register/types";
+
+import BlockViewer, { type BlockElement } from "../BlockViewer";
 import Controls from "../controls";
-import type {
-    AllTypes,
-    BlockStructure,
-    EditorBlock,
-    OutputDataBlock,
-} from "../../register/types";
-import type { RegisterReturn } from "../../register";
 import InlineToolbar from "../InlineToolbar";
-import type { UserConfig } from "../..";
-import { processExport } from "./processor";
 
-export type EditorComponentProps = {
-    values?: EditorBlock[];
-    defaultBlock?: AllTypes;
-    registers: RegisterReturn[];
-    config?: UserConfig;
-};
-
-export type EditorComponentSaveHandle = {
-    runSave: () => Promise<OutputDataBlock[]>;
-};
-
-// Util func to get registered value
-const getFromRegister = (
-    registers: RegisterReturn[],
-    type: AllTypes,
-    valueOf: "component" | "structure" | "demo"
-) => {
-    const target = registers.find(
-        (register) => register.structure.type === type
-    );
-
-    if (!target) return null;
-
-    return target[valueOf];
-};
-
-const recordFromRegister = <K extends keyof RegisterReturn>(
-    registers: RegisterReturn[],
-    property: K
-): Record<string, RegisterReturn[K]> => {
-    return registers.reduce<Record<string, RegisterReturn[K]>>((acc, item) => {
-        acc[item.structure.type] = item[property];
-        return acc;
-    }, {} as Record<string, RegisterReturn[K]>);
-};
-
-const setCaretToEnd = (el: HTMLElement) => {
-    const range = document.createRange();
-    const sel = window.getSelection();
-    range.selectNodeContents(el);
-    range.collapse(false);
-    sel?.removeAllRanges();
-    sel?.addRange(range);
-};
+import {
+    getFromRegister,
+    handleArrowKeyDown,
+    processExport,
+    recordFromRegister,
+} from "./utils";
+import type { EditorComponentProps, EditorComponentSaveHandle } from "./types";
 
 const EditorComponent = forwardRef<
     EditorComponentSaveHandle,
@@ -121,33 +79,7 @@ const EditorComponent = forwardRef<
                 <div
                     data-name="editor-blocks-wrapper"
                     className="space-y-5"
-                    onKeyDown={(e) => {
-                        const key = e.key;
-                        if (key !== "ArrowUp" && key !== "ArrowDown") return;
-
-                        const editables = Array.from(
-                            e.currentTarget.querySelectorAll(
-                                '[contenteditable="true"]'
-                            )
-                        );
-                        const current = e.target as HTMLElement;
-                        const index = editables.indexOf(current);
-                        if (index === -1) return;
-
-                        e.preventDefault();
-                        const next =
-                            key === "ArrowDown"
-                                ? editables[index + 1]
-                                : editables[index - 1];
-
-                        if (next) {
-                            (next as HTMLElement).focus();
-                            setTimeout(
-                                () => setCaretToEnd(next as HTMLElement),
-                                0
-                            );
-                        }
-                    }}
+                    onKeyDown={handleArrowKeyDown}
                 >
                     {blocks.map((block) => {
                         const currentBlockComponent = getFromRegister(
