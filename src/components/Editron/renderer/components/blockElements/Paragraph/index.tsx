@@ -4,7 +4,7 @@ import type { ParagraphProps } from "./types";
 const Paragraph = ({ className = "", style, data }: ParagraphProps) => {
     return (
         <p
-            className={`${spacingConfig["paragraph"]} ${className}`}
+            className={`${spacingConfig["paragraph"]} dark:text-gray-200 ${className}`}
             style={{
                 ...(data.style ?? {}),
                 ...(style ?? {}),

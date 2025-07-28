@@ -42,13 +42,16 @@ const CodeView = ({
         <div>
             {/* Head with Controls */}
             <div
-                className="flex items-center justify-between bg-gray-50"
+                className="flex items-center justify-between bg-gray-50 dark:bg-slate-700"
                 data-name="controls"
             >
-                <div className="flex gap-[1px] bg-gray-200 border-x border-gray-200">
+                <div
+                    className="flex gap-[1px]
+                 border-x border-gray-200 dark:border-gray-600"
+                >
                     {html && html.length > 0 && (
                         <button
-                            className="py-2 w-18 bg-gray-100 enabled:hover:bg-gray-200 disabled:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800"
+                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
                             onClick={() => setSection("html")}
                             disabled={section === "html"}
                         >
@@ -57,7 +60,7 @@ const CodeView = ({
                     )}
                     {css && css.length > 0 && (
                         <button
-                            className="py-2 w-18 bg-gray-100 enabled:hover:bg-gray-200 disabled:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800"
+                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
                             onClick={() => setSection("css")}
                             disabled={section === "css"}
                         >
@@ -66,7 +69,7 @@ const CodeView = ({
                     )}
                     {js && js.length > 0 && (
                         <button
-                            className="py-2 w-18 bg-gray-100 enabled:hover:bg-gray-200 disabled:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800"
+                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
                             onClick={() => setSection("js")}
                             disabled={section === "js"}
                         >
@@ -101,7 +104,7 @@ const CodeView = ({
                         Line Wrap
                     </label>
                     <button
-                        className="py-2 w-20 bg-gray-100 enabled:hover:bg-gray-200 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 border-x border-gray-200"
+                        className="py-2 w-20 bg-gray-100 dark:bg-gray-700 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 dark:text-gray-100 border-x border-gray-200 dark:border-gray-600"
                         title="Copy Code"
                         onClick={(e) => {
                             const btn = e.currentTarget as HTMLButtonElement;
@@ -130,13 +133,14 @@ const CodeView = ({
                         }}
                     >
                         <span className="copy flex items-center justify-center gap-1.5">
-                            <FaClipboardList className="text-gray-700" /> Copy
+                            <FaClipboardList className="text-gray-700 dark:text-white" /> Copy
                         </span>
                         <span
                             className="copied flex items-center justify-center gap-1.5"
                             hidden
                         >
-                            <MdOutlineDone className="text-gray-700" /> Copied
+                            <MdOutlineDone className="text-gray-700 dark:text-white" />{" "}
+                            Copied
                         </span>
                     </button>
                 </div>

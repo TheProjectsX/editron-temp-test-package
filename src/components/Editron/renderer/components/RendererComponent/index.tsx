@@ -26,6 +26,7 @@ const RendererComponent = ({
 
                 return (
                     <BlockViewer
+                        className="dark:text-gray-100"
                         key={block.id}
                         Component={currentBlock.component}
                         metadata={block}

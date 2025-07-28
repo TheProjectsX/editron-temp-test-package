@@ -24,7 +24,7 @@ const Iframe = ({ srcDoc }: { srcDoc: string }) => {
     }, [srcDoc]);
 
     return (
-        <div className="px-4 py-4 md:resize-x overflow-auto w-full max-w-full bg-white">
+        <div className="px-4 py-4 md:resize-x overflow-auto w-full max-w-full bg-white dark:bg-slate-800">
             {loading && <div>Loading</div>}
 
             <iframe className="w-full h-0" ref={ref} srcDoc={srcDoc} />
