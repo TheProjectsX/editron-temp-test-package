@@ -19,7 +19,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                     </span>
                 </p>
                 <textarea
-                    className={`outline-none py-3 px-4 font-mono text-sm bg-zinc-200 text-gray-800 rounded-sm w-full ${className}`}
+                    className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-sm w-full scrollbar-thin ${className}`}
                     rows={2}
                     onBlur={(e) => {
                         const target = e.currentTarget ?? e.target;
@@ -63,7 +63,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
 
                 {content === "html" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-zinc-200 text-gray-800 rounded-b-sm w-full ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;
@@ -76,7 +76,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                 )}
                 {content === "css" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-zinc-200 text-gray-800 rounded-b-sm w-full ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;
@@ -89,7 +89,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                 )}
                 {content === "js" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-zinc-200 text-gray-800 rounded-b-sm w-full ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;

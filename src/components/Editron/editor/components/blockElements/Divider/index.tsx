@@ -15,7 +15,7 @@ const Divider = ({ data, onUpdate }: DividerProps) => {
 
     return (
         <div
-            className="h-6 flex items-center cursor-pointer"
+            className="h-6 mb-2 flex items-center cursor-pointer"
             onClick={(e) => {
                 if (e.target !== e.currentTarget) return;
                 setDividerText((prev) => {
