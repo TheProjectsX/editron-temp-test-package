@@ -2,6 +2,7 @@ import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
 import { demo, settings, structure } from "./meta";
+import { spacingConfig } from "../libs/styles";
 
 const Heading = ({
     className = "",
@@ -9,18 +10,9 @@ const Heading = ({
     data,
     onUpdate,
 }: HeadingProps) => {
-    const headingStyles: Record<string, string> = {
-        h1: "text-3xl font-bold",
-        h2: "text-2xl font-semibold",
-        h3: "text-xl font-semibold",
-        h4: "text-lg font-semibold",
-        h5: "text-lg font-medium",
-        h6: "text-base font-medium",
-    };
-
     return (
         <Tag
-            className={`outline-none py-1 ${headingStyles[Tag]} ${className}`}
+            className={`outline-none ${spacingConfig["heading"][Tag]} ${className}`}
             onKeyDown={preventNewLine}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;

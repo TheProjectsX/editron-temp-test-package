@@ -78,7 +78,6 @@ const EditorComponent = forwardRef<
             <div className="grid grid-cols-[1fr_60px] gap-2 relative">
                 <div
                     data-name="editor-blocks-wrapper"
-                    className="space-y-5"
                     onKeyDown={handleArrowKeyDown}
                 >
                     {blocks.map((block) => {

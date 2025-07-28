@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { focusElement } from "../libs/events";
 import type { ListProps } from "./types";
 import { demo, settings, structure } from "./meta";
+import { spacingConfig } from "../libs/styles";
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
@@ -12,7 +13,7 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
 
     return (
         <Tag
-            className={`list-outside py-1 pl-5 ${
+            className={`list-outside py-1 pl-5 ${spacingConfig["list"]} ${
                 Tag === "ol" ? "list-decimal" : "list-disc"
             } ${className}`}
             style={data.style ?? {}}

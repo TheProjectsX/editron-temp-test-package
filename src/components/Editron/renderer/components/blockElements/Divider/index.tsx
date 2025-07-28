@@ -14,7 +14,7 @@ const Divider = ({ className = "", style, data }: DividerProps) => {
             ></span>
             {data.text && (
                 <>
-                    <span className="text-sm px-1.5 text-gray-600 font-medium outline-none cursor-text">
+                    <span className="text-sm px-1.5 text-gray-500 font-medium outline-none cursor-text">
                         {data.text}
                     </span>
                     <span

@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { demo, settings, structure } from "./meta";
 import type { HTMLPreviewProps } from "./types";
+import { spacingConfig } from "../libs/styles";
 
 const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
     const [content, setContent] = useState<"html" | "css" | "js">("html");
 
     return (
-        <div className="space-y-2">
+        <div className={`space-y-2 ${spacingConfig["htmlPreview"]}`}>
             <label className="space-y-1.5 block">
                 <p className="text-sm font-semibold">
                     Head Content{" "}

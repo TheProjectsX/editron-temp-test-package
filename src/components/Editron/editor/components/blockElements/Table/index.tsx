@@ -11,6 +11,7 @@ import {
 } from "../libs/utilities";
 import { IoAddOutline } from "react-icons/io5";
 import { ColumnControls, RowControls } from "./Controls";
+import { spacingConfig } from "../libs/styles";
 
 export type Focused = {
     element: HTMLElement;
@@ -55,7 +56,9 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
     return (
         <div
             data-name="table-wrapper"
-            className={`space-y-0.5 relative ${className} hover:[&_[data-name="column-controls"]]:inline hover:[&_[data-name="row-controls"]]:inline ${
+            className={`space-y-0.5 relative ${
+                spacingConfig["table"]
+            } ${className} hover:[&_[data-name="column-controls"]]:inline hover:[&_[data-name="row-controls"]]:inline ${
                 columnSetOpened
                     ? `[&_[data-name="column-controls"]]:inline`
                     : ""
