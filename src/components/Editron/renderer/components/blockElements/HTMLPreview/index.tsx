@@ -11,7 +11,7 @@ const HTMLPreview = ({ className = "", style, data }: HTMLPreviewProps) => {
             style={style ?? {}}
         >
             {/* Preview */}
-            <div className="border border-gray-200">
+            <div className="border border-gray-200 bg-gray-400 flex justify-center">
                 <Iframe srcDoc={makeSrcDoc(data)} />
             </div>
 
