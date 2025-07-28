@@ -5,6 +5,7 @@ import "highlight.js/styles/github-dark-dimmed.css";
 import { FaClipboardList } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { copyToClipboard } from "../libs/utilities";
+import { spacingConfig } from "../libs/styles";
 
 const Code = ({ className = "", style, data }: CodeProps) => {
     const highlighted = useMemo(
@@ -14,7 +15,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
 
     return (
         <pre
-            className={`whitespace-pre-wrap overflow-x-auto !relative ${className}`}
+            className={`whitespace-pre-wrap overflow-x-auto !relative ${spacingConfig["code"]} ${className}`}
             style={style ?? {}}
         >
             <button

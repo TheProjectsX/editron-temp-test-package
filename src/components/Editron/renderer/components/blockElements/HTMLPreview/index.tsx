@@ -1,3 +1,4 @@
+import { spacingConfig } from "../libs/styles";
 import { makeSrcDoc } from "../libs/utilities";
 import CodeView from "./CodeView";
 import Iframe from "./Iframe";
@@ -5,9 +6,12 @@ import type { HTMLPreviewProps } from "./types";
 
 const HTMLPreview = ({ className = "", style, data }: HTMLPreviewProps) => {
     return (
-        <div className={`${className}`} style={style ?? {}}>
+        <div
+            className={`${spacingConfig["htmlPreview"]} ${className}`}
+            style={style ?? {}}
+        >
             {/* Preview */}
-            <div className="px-4 py-4 border border-gray-200">
+            <div className="border border-gray-200">
                 <Iframe srcDoc={makeSrcDoc(data)} />
             </div>
 

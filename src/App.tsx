@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditorComponent from "./components/Editor";
 import RendererComponent from "./components/Renderer";
+import { demo } from "./components/blank/demo";
 
 const App = () => {
     const [mode, setMode] = useState<"editor" | "renderer">("editor");
@@ -58,7 +59,7 @@ const App = () => {
     //         id: "sjhlIKsVh2",
     //     },
     // ]);
-    const [blocks, setBlocks] = useState<Record<string, any>[]>([]);
+    const [blocks, setBlocks] = useState<Record<string, any>[]>(demo);
     return (
         <div className="max-w-2xl w-full">
             <div className="flex items-center gap-4 mb-10">
@@ -80,11 +81,7 @@ const App = () => {
 
             <div className="w-full">
                 {mode === "editor" && (
-                    <EditorComponent
-                        defaultBlock="table"
-                        blocks={blocks}
-                        setBlocks={setBlocks}
-                    />
+                    <EditorComponent blocks={blocks} setBlocks={setBlocks} />
                 )}
 
                 {mode === "renderer" && <RendererComponent blocks={blocks} />}

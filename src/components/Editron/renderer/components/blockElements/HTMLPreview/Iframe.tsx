@@ -12,7 +12,7 @@ const Iframe = ({ srcDoc }: { srcDoc: string }) => {
             const doc =
                 iframe.contentDocument || iframe.contentWindow?.document;
             if (!doc) return;
-            iframe.style.height = doc.body.scrollHeight + "px";
+            iframe.style.height = doc.documentElement.scrollHeight + "px";
             setLoading(false);
         };
 
@@ -24,7 +24,7 @@ const Iframe = ({ srcDoc }: { srcDoc: string }) => {
     }, [srcDoc]);
 
     return (
-        <div>
+        <div className="px-4 py-4">
             {loading && <div>Loading</div>}
 
             <iframe className="w-full h-0" ref={ref} srcDoc={srcDoc} />

@@ -1,3 +1,4 @@
+import { spacingConfig } from "../libs/styles";
 import type { QuoteProps } from "./types";
 
 const Quote = ({ className = "", style, data }: QuoteProps) => {
@@ -7,7 +8,7 @@ const Quote = ({ className = "", style, data }: QuoteProps) => {
                 data.type === "highlighted"
                     ? "p-4 border-s-4 border-gray-300 bg-gray-50"
                     : ""
-            } ${className}`}
+            } ${spacingConfig["quote"]} ${className}`}
             style={style ?? {}}
         >
             <p

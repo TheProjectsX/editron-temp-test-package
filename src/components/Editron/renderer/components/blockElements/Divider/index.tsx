@@ -3,11 +3,11 @@ import type { DividerProps } from "./types";
 const Divider = ({ className = "", style, data }: DividerProps) => {
     return (
         <div
-            className={`h-8 flex items-center cursor-pointer ${className}`}
+            className={`mb-4 flex items-center cursor-pointer ${className}`}
             style={style ?? {}}
         >
             <span
-                className="border-t border-gray-600 flex-1"
+                className="border-t border-gray-400 flex-1"
                 style={{
                     borderStyle: data.type ?? "solid",
                 }}
@@ -18,7 +18,7 @@ const Divider = ({ className = "", style, data }: DividerProps) => {
                         {data.text}
                     </span>
                     <span
-                        className="border-t border-gray-600 flex-1"
+                        className="border-t border-gray-400 flex-1"
                         style={{
                             borderStyle: data.type ?? "solid",
                         }}

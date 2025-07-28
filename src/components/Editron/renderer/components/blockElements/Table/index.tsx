@@ -1,9 +1,10 @@
+import { spacingConfig } from "../libs/styles";
 import type { TableProps } from "./types";
 
 const Table = ({ className = "", style, data }: TableProps) => {
     return (
         <div
-            className={`relative overflow-x-auto shadow-md sm:rounded-lg ${className}`}
+            className={`relative overflow-x-auto shadow-md sm:rounded-lg ${spacingConfig["table"]} ${className}`}
             style={style ?? {}}
         >
             <table
