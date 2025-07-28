@@ -13,7 +13,7 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
 
     return (
         <Tag
-            className={`list-outside py-1 pl-5 ${spacingConfig["list"]} ${
+            className={`list-outside dark:text-gray-200 py-1 pl-5 ${spacingConfig["list"]} ${
                 Tag === "ol" ? "list-decimal" : "list-disc"
             } ${className}`}
             style={data.style ?? {}}

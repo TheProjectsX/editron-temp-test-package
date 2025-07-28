@@ -7,7 +7,7 @@ import { spacingConfig } from "../libs/styles";
 const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
     return (
         <p
-            className={`outline-none overflow-hidden ${spacingConfig["paragraph"]} ${className}`}
+            className={`outline-none overflow-hidden dark:text-gray-200 ${spacingConfig["paragraph"]} ${className}`}
             onKeyDown={preventNewLine}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;

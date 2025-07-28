@@ -75,11 +75,11 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                 >
                     {Array.isArray(currentData.headers) &&
                         currentData.headers.length > 0 && (
-                            <thead className="bg-white text-gray-800 font-medium">
+                            <thead className="bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 font-medium">
                                 <tr>
                                     {currentData.headers.map((item, idx) => (
                                         <th
-                                            className="px-3 py-2 border border-gray-200 overflow-hidden"
+                                            className="px-3 py-2 border border-gray-200 dark:border-gray-600 overflow-hidden"
                                             key={idx}
                                             data-idx={idx}
                                             onMouseEnter={(e) => {
@@ -134,7 +134,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                             </thead>
                         )}
 
-                    <tbody className="">
+                    <tbody className="dark:bg-gray-800 dark:text-gray-200">
                         {currentData.body.map((body, idx) => (
                             <tr
                                 key={idx}
@@ -156,7 +156,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
                             >
                                 {body.map((item, idxc) => (
                                     <td
-                                        className="px-3 py-2 border border-gray-200 outline-none break-words"
+                                        className="px-3 py-2 border border-gray-200 dark:border-gray-600 outline-none break-words"
                                         onKeyDown={(e) => {
                                             preventNewLine(e);
                                             const target = (e.currentTarget ??
@@ -294,7 +294,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 
                 <div className="flex items-stretch">
                     <button
-                        className="px-2 py-3 hover:bg-gray-50 cursor-pointer transition-colors h-full flex items-start"
+                        className="px-2 py-3 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 cursor-pointer transition-colors h-full flex items-start"
                         onClick={() => {
                             setCurrentData((prev) => ({
                                 headers:
@@ -312,7 +312,7 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
             </div>
 
             <button
-                className="px-2 py-3 hover:bg-gray-50 cursor-pointer transition-colors w-full"
+                className="px-3 py-2 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 cursor-pointer transition-colors w-full"
                 onClick={() => {
                     setCurrentData((prev) => ({
                         headers: prev.headers,

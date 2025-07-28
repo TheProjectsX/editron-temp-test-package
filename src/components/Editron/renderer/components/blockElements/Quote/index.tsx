@@ -6,13 +6,13 @@ const Quote = ({ className = "", style, data }: QuoteProps) => {
         <blockquote
             className={`${
                 data.type === "highlighted"
-                    ? "p-4 border-s-4 border-gray-300 bg-gray-50"
+                    ? "p-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
                     : ""
             } ${spacingConfig["quote"]} ${className}`}
             style={style ?? {}}
         >
             <p
-                className="outline-none text-xl leading-relaxed text-gray-900 cursor-text"
+                className="outline-none text-xl leading-relaxed text-gray-900 dark:text-white cursor-text"
                 style={data.style ?? {}}
             >
                 <em>“{data.quote}”</em>

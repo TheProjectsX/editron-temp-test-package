@@ -133,7 +133,7 @@ const Controls = ({
                 }
             >
                 <button
-                    className="p-1.5 rounded-lg text-lg text-gray-900 hover:bg-gray-100 cursor-pointer"
+                    className="p-1.5 rounded-lg text-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer"
                     onClick={() => setSettingsOpened((prev) => !prev)}
                 >
                     <GoGear />
@@ -155,7 +155,7 @@ const Controls = ({
                 }
             >
                 <button
-                    className="p-1.5 rounded-lg text-lg text-gray-900 hover:bg-gray-100 cursor-pointer"
+                    className="p-1.5 rounded-lg text-lg text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer"
                     onClick={() => setNewItemOpened((prev) => !prev)}
                 >
                     <IoAddOutline />

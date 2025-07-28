@@ -19,7 +19,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                     </span>
                 </p>
                 <textarea
-                    className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-sm w-full scrollbar-thin ${className}`}
+                    className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-sm w-full scrollbar-thin ${className}`}
                     rows={2}
                     onBlur={(e) => {
                         const target = e.currentTarget ?? e.target;
@@ -41,13 +41,13 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                         (?)
                     </span>
                 </p>
-                <div className="rounded-t-sm flex items-center bg-slate-200 gap-0.5">
+                <div className="rounded-t-sm flex items-center bg-slate-200 dark:bg-slate-700 gap-0.5">
                     {(["html", "css", "js"] as ("html" | "css" | "js")[]).map(
                         (item) => (
                             <button
                                 key={item}
                                 className={`w-20 py-2 font-semibold text-sm cursor-pointer disabled:cursor-not-allowed ${
-                                    content === item ? "" : "bg-gray-300"
+                                    content === item ? "" : "bg-slate-300 dark:bg-slate-600"
                                 }`}
                                 onClick={() => setContent(item)}
                                 disabled={content === item}
@@ -63,7 +63,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
 
                 {content === "html" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;
@@ -76,7 +76,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                 )}
                 {content === "css" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;
@@ -89,7 +89,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                 )}
                 {content === "js" && (
                     <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] text-gray-800 rounded-b-sm w-full scrollbar-thin ${className}`}
+                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
                         rows={5}
                         onBlur={(e) => {
                             const target = e.currentTarget ?? e.target;

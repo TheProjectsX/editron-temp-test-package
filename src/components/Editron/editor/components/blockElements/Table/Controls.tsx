@@ -160,7 +160,7 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
             >
                 <button
                     data-name="column-controls"
-                    className="absolute -top-7 py-2 -translate-x-1/2 cursor-pointer text-gray-600 hover:text-gray-800 hidden"
+                    className="absolute -top-7 py-2 -translate-x-1/2 cursor-pointer text-gray-600 dark:text-white hover:text-gray-800 dark:hover:text-gray-300 hidden"
                     style={{
                         left,
                         width: focused
@@ -253,7 +253,7 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
             >
                 <button
                     data-name="row-controls"
-                    className="absolute -left-7 px-2 -translate-y-1/2 cursor-pointer text-gray-600 hover:text-gray-800 hidden"
+                    className="absolute -left-7 px-2 -translate-y-1/2 cursor-pointer text-gray-600 dark:text-white hover:text-gray-800 dark:hover:text-gray-300 hidden"
                     style={{
                         top,
                         height: focused

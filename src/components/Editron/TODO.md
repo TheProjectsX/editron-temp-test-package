@@ -27,4 +27,7 @@
 -   Add Enter and Backspace func for Table [X]
 
 -   ISSUE:
+
     -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working [X]
+
+-   Add Dark mode support

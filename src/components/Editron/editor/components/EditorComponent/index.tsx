@@ -75,10 +75,11 @@ const EditorComponent = forwardRef<
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
             <InlineToolbar focusedBlock={focusedBlock} />
-            <div className="grid grid-cols-[1fr_60px] gap-2 relative">
+            <div className="relative">
                 <div
                     data-name="editor-blocks-wrapper"
                     onKeyDown={handleArrowKeyDown}
+                    className="dark:text-gray-100"
                 >
                     {blocks.map((block) => {
                         const currentBlockComponent = getFromRegister(
@@ -89,6 +90,7 @@ const EditorComponent = forwardRef<
 
                         return (
                             <BlockViewer
+                            className="pr-[68px]"
                                 key={block.id}
                                 Component={currentBlockComponent}
                                 metadata={block}
