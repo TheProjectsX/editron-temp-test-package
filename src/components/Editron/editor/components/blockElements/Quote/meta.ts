@@ -21,6 +21,7 @@ export const demo = {
     tag: "blockquote",
     data: {
         quote: "",
+        author: "",
     },
 };
 

@@ -1,6 +1,7 @@
 export type QuoteTags = "blockquote";
 export type QuoteData = {
     quote: string;
+    author: string;
     type?: "plain" | "highlighted";
     style?: Record<string, string>;
 };

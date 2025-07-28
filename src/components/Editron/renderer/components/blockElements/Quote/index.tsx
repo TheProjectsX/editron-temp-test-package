@@ -12,11 +12,17 @@ const Quote = ({ className = "", style, data }: QuoteProps) => {
             style={style ?? {}}
         >
             <p
-                className="outline-none text-xl leading-relaxed italic font-semibold text-gray-900 py-1 cursor-text"
+                className="outline-none text-xl leading-relaxed text-gray-900 cursor-text"
                 style={data.style ?? {}}
             >
-                “{data.quote}”
+                <em>“{data.quote}”</em>
             </p>
+
+            {data.author.length > 0 && (
+                <h3 className="text-base font-semibold text-gray-800 dark:text-neutral-400 text-right mt-1.5">
+                    - {data.author}
+                </h3>
+            )}
         </blockquote>
     );
 };

@@ -150,6 +150,7 @@ export const demo = [
         type: "quote",
         data: {
             quote: "The best way to learn is by building. Keep creating, keep failing and keep learning.",
+            author: "Unknown Programmer",
             type: "highlighted",
         },
         id: "1gnEJlJ3Z_",
