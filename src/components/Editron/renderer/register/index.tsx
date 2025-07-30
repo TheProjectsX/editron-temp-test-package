@@ -1,4 +1,4 @@
-import type { AllBlocks, AllTypes } from "./types";
+import type { AllBlocks, AllTypes, PluginType } from "./types";
 
 import Heading from "../components/blockElements/Heading";
 import Paragraph from "../components/blockElements/Paragraph";
@@ -20,7 +20,7 @@ const AllBlocks = [
     Quote,
     Image,
     HTMLPreview,
-    Table
+    Table,
 ];
 
 export type RegisterReturn = {
@@ -28,11 +28,16 @@ export type RegisterReturn = {
     type: AllTypes;
 };
 
-export const register = (): RegisterReturn[] => {
+export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
     const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
         type: block.type as AllTypes,
         component: block.component,
     }));
 
-    return blocks;
+    const pluginItems: RegisterReturn[] = plugins.map((block) => ({
+        type: block.type as AllTypes,
+        component: block.component,
+    }));
+
+    return [...blocks, ...pluginItems];
 };

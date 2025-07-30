@@ -217,6 +217,19 @@ export const demo = [
         id: "CFOKbKr2_K",
     },
     {
+        tag: "img",
+        type: "image",
+        data: {
+            file: {
+                name: "Screenshot (35).jpg",
+                src: "https://i.ibb.co/k2t0Fqjr/Screenshot-35.jpg",
+                size: 522950,
+            },
+            type: "free",
+        },
+        id: "XOrh7Y3-mX",
+    },
+    {
         tag: "hr",
         type: "divider",
         data: {},

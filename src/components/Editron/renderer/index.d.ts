@@ -1,16 +1,17 @@
 import type { CSSProperties } from "react";
-import type { AllTypes } from "./register/types";
+import type { AllTypes, PluginType } from "./register/types";
 
 export type UserConfig = Record<
     AllTypes,
     {
         className?: string;
-        style?: CSSProperties
+        style?: CSSProperties;
     }
 >;
 
 export interface RendererProps {
-    config: UserConfig;
+    plugins?: PluginType[] | any[];
+    config?: UserConfig;
 }
 
 export type RendererReturn = [React.FC<{ blocks: any[] }>];

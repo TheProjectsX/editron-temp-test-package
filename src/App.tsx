@@ -61,7 +61,7 @@ const App = () => {
     // ]);
     const [blocks, setBlocks] = useState<Record<string, any>[]>(demo);
     return (
-        <div className="max-w-2xl w-full">
+        <div className="max-w-3xl w-full">
             <div className="flex items-center gap-4 mb-10">
                 <button
                     className={`w-full p-2.5 text-white font-semibold rounded-2xl cursor-pointer bg-blue-500 disabled:bg-blue-700  disabled:cursor-not-allowed active:scale-95 transition-all`}

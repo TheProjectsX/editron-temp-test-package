@@ -1,8 +1,8 @@
 import RendererComponent from "./components/RendererComponent";
 import { register } from "./register";
 
-const Renderer = ({ config = {} } = {}) => {
-    const registers = register();
+const Renderer = ({ config = {}, plugins = [] } = {}) => {
+    const registers = register(plugins);
 
     const Component = ({ blocks }) => {
         return (

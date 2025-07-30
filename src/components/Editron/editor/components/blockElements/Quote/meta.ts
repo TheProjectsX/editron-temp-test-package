@@ -11,6 +11,7 @@ export const structure = {
     type: "quote",
     tags: "blockquote",
     data: {
+        author: "",
         quote: "",
     },
 };

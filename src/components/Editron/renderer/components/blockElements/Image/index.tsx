@@ -4,7 +4,7 @@ import type { ImageProps } from "./types";
 const Image = ({ className = "", style, data }: ImageProps) => {
     return (
         <div
-            className={`border border-gray-400 rounded-lg flex items-center justify-center ${
+            className={`border border-gray-400 dark:border-gray-700 rounded-lg flex items-center justify-center ${
                 spacingConfig["image"]
             } ${className} ${data.type === "free" ? "min-h-52" : "h-52"}`}
             style={style ?? {}}

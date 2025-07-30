@@ -32,3 +32,17 @@ export type AllTags = AllBlocks["tag"];
 
 // All Data
 export type AllData = AllBlocks["data"];
+
+// Plugin Props
+export type PluginProps = {
+    className: string;
+    style?: Record<string, string>;
+    tag: string;
+    data: Record<string, any>;
+};
+
+// Plugin Type
+export type PluginType = {
+    type: "string";
+    component: React.FC<PluginProps>;
+};
