@@ -11,7 +11,7 @@ const AddButtonPopoverContent = ({
     handleAddNewBlock: (structure: BlockStructure) => void;
 }) => {
     return (
-        <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-64 overflow-auto scrollbar-thin">
+        <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-md min-w-40 w-full bg-white dark:bg-gray-800 max-h-64 overflow-auto scrollbar-thin">
             {structures.map((structure) => {
                 if (typeof structure.tags === "string")
                     return (
@@ -37,7 +37,7 @@ const AddButtonPopoverContent = ({
                         viewOnHover
                         content={
                             newItemOpened && (
-                                <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-56 overflow-auto scrollbar-thin">
+                                <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-lg min-w-40 w-full bg-white dark:bg-gray-800 max-h-56 overflow-auto scrollbar-thin">
                                     {structure.tags.map((sub) => (
                                         <button
                                             className="popoverButton"

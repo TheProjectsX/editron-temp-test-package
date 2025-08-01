@@ -47,8 +47,18 @@
     font-size: 0.875rem;
 }
 
+/* Dark mode support */
+.dark .popoverButton,
+.dark .popoverButton * {
+    color: #c8d0db;
+}
+
 .popoverButton:hover {
     background-color: #f3f4f6;
+}
+
+.dark .popoverButton:hover {
+    background-color: #313b4b;
 }
 
 /* Set sub and super. cause it does not normally toggle in Chrome */

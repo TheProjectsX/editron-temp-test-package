@@ -82,7 +82,7 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
                 parentStyles={{ position: "static" }}
                 onStatusChanged={setOpened}
                 content={
-                    <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-64 overflow-auto scrollbar-thin">
+                    <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-md min-w-40 w-full bg-white dark:bg-gray-800 max-h-64 overflow-auto scrollbar-thin">
                         <button
                             className="popoverButton !gap-3"
                             onClick={() => {
@@ -197,7 +197,7 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
                 parentStyles={{ position: "static" }}
                 onStatusChanged={setOpened}
                 content={
-                    <div className="shadow-md border border-gray-200 rounded-lg min-w-40 w-full bg-white max-h-64 overflow-auto scrollbar-thin">
+                    <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-md min-w-40 w-full bg-white dark:bg-gray-800 max-h-64 overflow-auto scrollbar-thin">
                         <button
                             className="popoverButton !gap-3"
                             onClick={() => {
