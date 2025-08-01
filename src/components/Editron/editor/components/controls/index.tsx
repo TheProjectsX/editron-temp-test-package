@@ -39,7 +39,13 @@ const Controls = ({
 
     // Set position of the Controller
     useEffect(() => {
-        if (!wrapper || !focusedBlock?.element || newItemOpened || settingsOpened) return;
+        if (
+            !wrapper ||
+            !focusedBlock?.element ||
+            newItemOpened ||
+            settingsOpened
+        )
+            return;
 
         const wrapperRect = wrapper.getBoundingClientRect();
         const blockRect = focusedBlock.element.getBoundingClientRect();
@@ -55,6 +61,8 @@ const Controls = ({
 
     // Handle Add new Block
     const handleAddNewBlock = (structure: BlockStructure) => {
+        const currentFocusedElement = focusedBlock.element;
+
         const payload = {
             tag: structure.tags,
             type: structure.type,
@@ -68,6 +76,15 @@ const Controls = ({
         });
 
         setNewItemOpened(false);
+
+        setTimeout(() => {
+            const newBlock = currentFocusedElement?.nextElementSibling;
+            (
+                newBlock?.querySelector(
+                    `[contenteditable]`
+                ) as HTMLElement | null
+            )?.focus();
+        }, 0);
     };
 
     // Handle Hard Update (Hard update, not only `data` property, but also other properties)

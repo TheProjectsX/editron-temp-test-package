@@ -27,7 +27,6 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                     }}
                     placeholder="Write your head (Optional)"
                     defaultValue={data.head}
-                    autoFocus
                 />
             </label>
 
@@ -47,7 +46,9 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                             <button
                                 key={item}
                                 className={`w-20 py-2 font-semibold text-sm cursor-pointer disabled:cursor-not-allowed ${
-                                    content === item ? "" : "bg-slate-300 dark:bg-slate-600"
+                                    content === item
+                                        ? ""
+                                        : "bg-slate-300 dark:bg-slate-600"
                                 }`}
                                 onClick={() => setContent(item)}
                                 disabled={content === item}
@@ -71,7 +72,6 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                         }}
                         placeholder={`Write your HTML`}
                         defaultValue={data.html}
-                        autoFocus
                     />
                 )}
                 {content === "css" && (
@@ -84,7 +84,6 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                         }}
                         placeholder={`Write your CSS`}
                         defaultValue={data.css}
-                        autoFocus
                     />
                 )}
                 {content === "js" && (
@@ -97,7 +96,6 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                         }}
                         placeholder={`Write your JS`}
                         defaultValue={data.js}
-                        autoFocus
                     />
                 )}
             </label>

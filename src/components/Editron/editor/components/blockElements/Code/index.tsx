@@ -13,7 +13,6 @@ const Code = ({ className = "", data, onUpdate }: CodeProps) => {
             }}
             placeholder="Write your code"
             defaultValue={data.code}
-            autoFocus
         ></textarea>
     );
 };

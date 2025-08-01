@@ -59,7 +59,7 @@ const App = () => {
     //         id: "sjhlIKsVh2",
     //     },
     // ]);
-    const [blocks, setBlocks] = useState<Record<string, any>[]>(demo);
+    const [blocks, setBlocks] = useState<Record<string, any>[]>([]);
     return (
         <div className="max-w-3xl w-full">
             <div className="flex items-center gap-4 mb-10">

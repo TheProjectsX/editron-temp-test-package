@@ -35,7 +35,7 @@
     text-align: right;
 }
 
-.popoverButton {
+.editron__popover-button {
     width: 100%;
     padding: 0.625rem 1rem;
     color: #4a5565;
@@ -48,16 +48,16 @@
 }
 
 /* Dark mode support */
-.dark .popoverButton,
-.dark .popoverButton * {
+.dark .editron__popover-button,
+.dark .editron__popover-button * {
     color: #c8d0db;
 }
 
-.popoverButton:hover {
+.editron__popover-button:hover {
     background-color: #f3f4f6;
 }
 
-.dark .popoverButton:hover {
+.dark .editron__popover-button:hover {
     background-color: #313b4b;
 }
 

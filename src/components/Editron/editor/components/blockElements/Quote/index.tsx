@@ -37,7 +37,6 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
                         });
                     }}
                     contentEditable
-                    autoFocus
                     className="min-w-[1ch] min-h-[1em] outline-none"
                 >
                     {data.quote ?? ""}

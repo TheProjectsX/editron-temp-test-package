@@ -21,7 +21,6 @@ const Heading = ({
             style={data.style ?? {}}
             data-placeholder={`Enter your heading...`}
             data-align={data.style?.textAlign ?? ""}
-            autoFocus
             contentEditable
             dangerouslySetInnerHTML={{ __html: data.html }}
         ></Tag>

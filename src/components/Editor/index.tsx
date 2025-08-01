@@ -20,7 +20,7 @@ const EditorComponent = ({
 
     return (
         <>
-            <div className="bg-white dark:bg-slate-900 rounded-2xl w-full p-6 mb-5">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl w-full p-6 pb-1.5 mb-5">
                 <Component />
             </div>
 

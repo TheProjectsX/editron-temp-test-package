@@ -30,7 +30,7 @@ const SettingsPopoverContent = ({
                         return (
                             <button
                                 key={setting.name}
-                                className="popoverButton"
+                                className="editron__popover-button"
                                 onClick={() => {
                                     const transformedData =
                                         setting.transform!(currentBlock);
@@ -64,7 +64,7 @@ const SettingsPopoverContent = ({
                                             {setting.actions.map((action) => (
                                                 <button
                                                     key={action.name}
-                                                    className="popoverButton"
+                                                    className="editron__popover-button"
                                                     onClick={() => {
                                                         const transformedData =
                                                             action.transform(
@@ -91,7 +91,7 @@ const SettingsPopoverContent = ({
                             >
                                 <button
                                     key={setting.name}
-                                    className="popoverButton"
+                                    className="editron__popover-button"
                                 >
                                     {setting.icon ? (
                                         <setting.icon className="w-5" />
@@ -117,18 +117,18 @@ const SettingsPopoverContent = ({
                     <div className="border-t-1 border-gray-300 pt-1 mt-1 mx-2"></div>
                 </>
             )}
-            <button className="popoverButton" onClick={() => handleMoveUp()}>
+            <button className="editron__popover-button" onClick={() => handleMoveUp()}>
                 <ImMoveUp className="w-5" />
                 <span>Move Up</span>
             </button>
 
-            <button className="popoverButton" onClick={() => handleMoveDown()}>
+            <button className="editron__popover-button" onClick={() => handleMoveDown()}>
                 <ImMoveDown className="w-5" />
                 <span>Move Down</span>
             </button>
 
             <button
-                className="popoverButton"
+                className="editron__popover-button"
                 onClick={() => handleDeleteBlock()}
             >
                 <TbRowRemove className="w-5" />

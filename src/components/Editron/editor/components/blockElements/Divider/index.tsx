@@ -45,7 +45,6 @@ const Divider = ({ data, onUpdate }: DividerProps) => {
                                     : undefined
                             );
                         }}
-                        autoFocus
                         contentEditable
                     >
                         {dividerText}
