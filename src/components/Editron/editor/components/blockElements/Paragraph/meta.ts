@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { BiParagraph } from "react-icons/bi";
 import { AlignSettings } from "../libs/common";
 

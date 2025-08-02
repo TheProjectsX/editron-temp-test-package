@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { BsChatLeftQuoteFill } from "react-icons/bs";
 import { FaQuoteRight } from "react-icons/fa";
 import { IoMdQuote } from "react-icons/io";

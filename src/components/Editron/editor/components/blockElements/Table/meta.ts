@@ -1,6 +1,6 @@
 import { CiViewTable } from "react-icons/ci";
 import { AlignSettings } from "../libs/common";
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { FaTableColumns } from "react-icons/fa6";
 import type { TableBlock } from "./types";
 import { LuTable } from "react-icons/lu";

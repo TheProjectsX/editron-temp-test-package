@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import type { EditorBlock } from "../../register/types";
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 
 export type BlockActions =
     | {

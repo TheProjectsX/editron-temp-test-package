@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { IoMdCode } from "react-icons/io";
 
 export const structure = {

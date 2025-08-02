@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { MdAutoMode } from "react-icons/md";
 import { TbEyeCode } from "react-icons/tb";

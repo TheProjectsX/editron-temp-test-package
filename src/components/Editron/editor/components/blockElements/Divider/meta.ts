@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { CgFormatSeparator } from "react-icons/cg";
 import type { EditorBlock } from "../../../register/types";
 import { RxBorderDashed, RxBorderDotted, RxBorderSolid } from "react-icons/rx";

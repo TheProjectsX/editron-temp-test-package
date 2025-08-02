@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid/non-secure";
 import { GiResize } from "react-icons/gi";
 import { IoImageOutline } from "react-icons/io5";
 import { MdPhotoSizeSelectLarge } from "react-icons/md";
