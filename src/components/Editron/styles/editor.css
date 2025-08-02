@@ -35,7 +35,7 @@
     text-align: right;
 }
 
-.editron__popover-button {
+.articwriter__popover-button {
     width: 100%;
     padding: 0.625rem 1rem;
     color: #4a5565;
@@ -48,29 +48,29 @@
 }
 
 /* Dark mode support */
-.dark .editron__popover-button,
-.dark .editron__popover-button * {
+.dark .articwriter__popover-button,
+.dark .articwriter__popover-button * {
     color: #c8d0db;
 }
 
-.editron__popover-button:hover {
+.articwriter__popover-button:hover {
     background-color: #f3f4f6;
 }
 
-.dark .editron__popover-button:hover {
+.dark .articwriter__popover-button:hover {
     background-color: #313b4b;
 }
 
 /* Set sub and super. cause it does not normally toggle in Chrome */
-sub {
+[data-name="block-editor"] sub {
     vertical-align: sub;
 }
 
-sup {
+[data-name="block-editor"] sup {
     vertical-align: super;
 }
 
-a {
+[data-name="block-editor"] a {
     color: #016ad3;
     text-decoration: underline;
 }

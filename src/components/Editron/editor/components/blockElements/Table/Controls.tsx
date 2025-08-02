@@ -84,7 +84,7 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
                 content={
                     <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-md min-w-40 w-full bg-white dark:bg-gray-800 max-h-64 overflow-auto scrollbar-thin">
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers: isArray(prev.headers)
@@ -108,7 +108,7 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
                             Add Column to Right
                         </button>
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers: isArray(prev.headers)
@@ -132,7 +132,7 @@ export const ColumnControls = forwardRef<ControllerSetFocused, ControllerProps>(
                             Add Column to Left
                         </button>
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers:
@@ -199,7 +199,7 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
                 content={
                     <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-md min-w-40 w-full bg-white dark:bg-gray-800 max-h-64 overflow-auto scrollbar-thin">
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers: prev.headers,
@@ -217,7 +217,7 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
                             Add Column to Up
                         </button>
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers: prev.headers,
@@ -235,7 +235,7 @@ export const RowControls = forwardRef<ControllerSetFocused, ControllerProps>(
                             Add Column to Down
                         </button>
                         <button
-                            className="editron__popover-button !gap-3"
+                            className="articwriter__popover-button !gap-3"
                             onClick={() => {
                                 setData((prev) => ({
                                     headers: prev.headers,

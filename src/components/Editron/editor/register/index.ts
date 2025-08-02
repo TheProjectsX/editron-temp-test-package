@@ -44,11 +44,6 @@ export const BlockDemos: EditorBlock[] = AllBlocks.map(
     (block) => block.demo as EditorBlock
 );
 
-// Inline Toolbar not Supported
-export const NoInlineToolbar = AllBlocks.filter(
-    (block) =>
-        "inlineToolbar" in block && (block as any).inlineToolbar === false
-).map((block) => block.structure.type);
 
 // Register and return new Structure
 export type RegisterReturn = {

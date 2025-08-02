@@ -16,7 +16,7 @@ const AddButtonPopoverContent = ({
                 if (typeof structure.tags === "string")
                     return (
                         <button
-                            className="editron__popover-button"
+                            className="articwriter__popover-button"
                             key={structure.type}
                             onClick={() =>
                                 handleAddNewBlock(structure as BlockStructure)
@@ -40,7 +40,7 @@ const AddButtonPopoverContent = ({
                                 <div className="shadow-md border border-gray-200 dark:border-gray-700 rounded-lg min-w-40 w-full bg-white dark:bg-gray-800 max-h-56 overflow-auto scrollbar-thin">
                                     {structure.tags.map((sub) => (
                                         <button
-                                            className="editron__popover-button"
+                                            className="articwriter__popover-button"
                                             key={sub.tag}
                                             onClick={() =>
                                                 handleAddNewBlock({
@@ -57,7 +57,7 @@ const AddButtonPopoverContent = ({
                             )
                         }
                     >
-                        <button className="editron__popover-button">
+                        <button className="articwriter__popover-button">
                             <structure.icon className="w-5" />
                             <span>{structure.name}</span>
                         </button>

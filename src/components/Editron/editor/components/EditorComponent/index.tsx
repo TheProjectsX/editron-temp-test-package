@@ -73,7 +73,7 @@ const EditorComponent = forwardRef<
     const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <div data-name="editron-editor" ref={wrapperRef}>
+        <div data-name="articwriter-editor" ref={wrapperRef}>
             <div className="relative">
                 <div
                     data-name="editor-blocks-wrapper"

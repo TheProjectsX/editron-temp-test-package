@@ -1,5 +1,6 @@
 import RendererComponent from "./components/RendererComponent";
 import { register } from "./register";
+import "../styles/renderer.css"
 
 const Renderer = ({ config = {}, plugins = [] } = {}) => {
     const registers = register(plugins);
