@@ -15,7 +15,7 @@ const Quote = ({ className = "", style, data }: QuoteProps) => {
                 className="outline-none text-xl leading-relaxed text-gray-900 dark:text-white cursor-text"
                 style={data.style ?? {}}
             >
-                <em>“{data.quote}”</em>
+                <em dangerouslySetInnerHTML={{ __html: `“${data.quote}”` }}></em>
             </p>
 
             {data.author.length > 0 && (

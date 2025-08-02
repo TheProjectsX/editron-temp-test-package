@@ -76,5 +76,4 @@ export default {
     demo,
     settings,
     processor,
-    inlineToolbar: false,
 };

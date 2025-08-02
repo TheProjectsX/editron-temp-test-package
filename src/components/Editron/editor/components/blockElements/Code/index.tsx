@@ -21,5 +21,4 @@ export default {
     component: Code,
     structure,
     demo,
-    inlineToolbar: false,
 };

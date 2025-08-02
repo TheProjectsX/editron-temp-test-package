@@ -1,5 +1,6 @@
 import { preventNewLine } from "../libs/events";
 import { spacingConfig } from "../libs/styles";
+import { cleanInnerHTML } from "../libs/utilities";
 import { demo, settings, structure } from "./meta";
 import type { QuoteProps } from "./types";
 
@@ -31,16 +32,16 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
                     onKeyDown={preventNewLine}
                     onBlur={(e) => {
                         const target = e.currentTarget ?? e.target;
+
                         onUpdate({
                             ...data,
-                            quote: target.textContent ?? "",
+                            quote: cleanInnerHTML(target.innerHTML) ?? "",
                         });
                     }}
-                    contentEditable
                     className="min-w-[1ch] min-h-[1em] outline-none"
-                >
-                    {data.quote ?? ""}
-                </span>
+                    dangerouslySetInnerHTML={{ __html: data.quote }}
+                    contentEditable
+                ></span>
                 <span>”</span>
             </p>
             <h3 className="text-base font-semibold text-gray-800 dark:text-neutral-300 flex justify-end gap-1.5">
@@ -71,5 +72,4 @@ export default {
     structure,
     demo,
     settings,
-    inlineToolbar: false,
 };

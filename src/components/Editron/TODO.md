@@ -31,3 +31,6 @@
     -   On mouseEnter and focus changed, the whole component is rerendering, thus, the onBlur is not working [X]
 
 -   Add Dark mode support [X]
+
+
+- Fix Toolbar Position [X]

@@ -56,5 +56,4 @@ export default {
     component: Webpage,
     structure,
     demo,
-    inlineToolbar: false,
 };

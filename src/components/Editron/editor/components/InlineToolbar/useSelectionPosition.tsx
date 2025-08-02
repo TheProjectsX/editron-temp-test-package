@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
 const useSelectionPosition = (preventSelectEvent: boolean) => {
-    const [position, setPosition] = useState<DOMRect | null>(null);
+    const [data, setData] = useState<{
+        position: DOMRect;
+        element: HTMLElement;
+    } | null>(null);
 
     useEffect(() => {
         const handleSelectionChange = () => {
@@ -10,7 +13,7 @@ const useSelectionPosition = (preventSelectEvent: boolean) => {
             const selection = window.getSelection();
 
             if (!selection || selection.isCollapsed) {
-                setPosition(null);
+                setData(null);
                 return;
             }
 
@@ -23,26 +26,19 @@ const useSelectionPosition = (preventSelectEvent: boolean) => {
 
             const element = node as HTMLElement | null;
             if (!element) {
-                setPosition(null);
+                setData(null);
                 return;
             }
 
             const editorRoot = element.closest('[data-name="block-editor"]');
             if (!editorRoot) {
-                setPosition(null);
+                setData(null);
                 return;
             }
 
             const rect = range.getBoundingClientRect();
 
-            setPosition(rect);
-
-            // setPosition({
-            //     top: rect.top + window.scrollY,
-            //     left: rect.left + window.scrollX,
-            //     bottom: rect.bottom + window.scrollY,
-            //     right: rect.right + window.scrollX,
-            // });
+            setData({ position: rect, element: editorRoot as HTMLElement });
         };
 
         const handleWindowBlur = () => {
@@ -60,7 +56,7 @@ const useSelectionPosition = (preventSelectEvent: boolean) => {
         };
     }, [preventSelectEvent]);
 
-    return position;
+    return data;
 };
 
 export default useSelectionPosition;

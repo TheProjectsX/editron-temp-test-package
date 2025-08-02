@@ -74,7 +74,6 @@ const EditorComponent = forwardRef<
 
     return (
         <div data-name="editron-editor" ref={wrapperRef}>
-            <InlineToolbar focusedBlock={focusedBlock} />
             <div className="relative">
                 <div
                     data-name="editor-blocks-wrapper"
@@ -90,7 +89,7 @@ const EditorComponent = forwardRef<
 
                         return (
                             <BlockViewer
-                            className="pr-[68px]"
+                                className="pr-[68px]"
                                 key={block.id}
                                 Component={currentBlockComponent}
                                 metadata={block}
@@ -118,6 +117,8 @@ const EditorComponent = forwardRef<
                     controllerFocused={controllerFocused}
                     setControllerFocused={setControllerFocused}
                 />
+
+                <InlineToolbar />
             </div>
         </div>
     );

@@ -108,5 +108,4 @@ export default {
     structure,
     demo,
     settings,
-    inlineToolbar: false,
 };

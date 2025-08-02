@@ -7,18 +7,18 @@ const Divider = ({ className = "", style, data }: DividerProps) => {
             style={style ?? {}}
         >
             <span
-                className="border-t border-gray-400 flex-1"
+                className="border-t border-gray-400 dark:border-gray-500 flex-1"
                 style={{
                     borderStyle: data.type ?? "solid",
                 }}
             ></span>
             {data.text && (
                 <>
-                    <span className="text-sm px-1.5 text-gray-500 font-medium outline-none cursor-text">
+                    <span className="text-sm px-1.5 text-gray-500 dark:text-gray-200 font-medium outline-none cursor-text">
                         {data.text}
                     </span>
                     <span
-                        className="border-t border-gray-400 flex-1"
+                        className="border-t border-gray-400 dark:border-gray-500 flex-1"
                         style={{
                             borderStyle: data.type ?? "solid",
                         }}

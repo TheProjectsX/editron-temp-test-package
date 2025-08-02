@@ -1,7 +1,7 @@
 import { createRef } from "react";
 import { register } from "./register";
 import EditorComponent from "./components/EditorComponent";
-import "./index.css";
+import "../styles/index.css";
 
 const Editor = ({
     blocks = [],

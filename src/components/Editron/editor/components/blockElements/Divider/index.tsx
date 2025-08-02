@@ -6,7 +6,7 @@ const Divider = ({ data, onUpdate }: DividerProps) => {
     const [dividerText, setDividerText] = useState<string | undefined>(
         data.text
     );
-    
+
     useEffect(() => {
         if (dividerText === "") return;
 
@@ -33,22 +33,19 @@ const Divider = ({ data, onUpdate }: DividerProps) => {
             ></span>
             {typeof dividerText === "string" && (
                 <>
-                    <span
-                        className="text-sm px-1.5 text-gray-500 font-medium outline-none cursor-text"
+                    <input
+                        type="text"
+                        className="text-sm text-gray-500 dark:text-gray-200 font-medium outline-none w-fit px-1.5 text-center"
                         data-name="divider-text"
+                        value={dividerText ?? ""}
+                        maxLength={26}
+                        onChange={(e) => setDividerText(e.target.value)}
                         onBlur={(e) => {
-                            const target = e.currentTarget ?? e.target;
-
-                            setDividerText(
-                                (target.textContent ?? "").length > 0
-                                    ? target.textContent ?? ""
-                                    : undefined
-                            );
+                            const val = e.target.value;
+                            setDividerText(val.length > 0 ? val : undefined);
                         }}
-                        contentEditable
-                    >
-                        {dividerText}
-                    </span>
+                    />
+
                     <span
                         className="border-t border-gray-400 flex-1"
                         style={{
@@ -66,5 +63,4 @@ export default {
     structure,
     demo,
     settings,
-    inlineToolbar: false,
 };
