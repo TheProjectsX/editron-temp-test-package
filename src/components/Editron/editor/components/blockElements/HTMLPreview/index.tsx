@@ -35,7 +35,7 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                     Main Content{" "}
                     <span
                         className="text-xs font-bold font-mono cursor-pointer"
-                        title="These codes will be used to Render and View the HTMl"
+                        title="These codes will be used to Render and View the HTML"
                     >
                         (?)
                     </span>

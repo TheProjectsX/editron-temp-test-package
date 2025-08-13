@@ -1,5 +1,6 @@
 export type CodeTags = "pre";
 export type CodeData = {
+    label?: string;
     code: string;
 };
 

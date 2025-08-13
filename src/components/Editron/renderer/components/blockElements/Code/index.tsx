@@ -6,7 +6,6 @@ import { FaClipboardList } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { copyToClipboard } from "../libs/utilities";
 import { spacingConfig } from "../libs/styles";
-import { LuWrapText } from "react-icons/lu";
 
 const Code = ({ className = "", style, data }: CodeProps) => {
     const highlighted = useMemo(
@@ -15,80 +14,95 @@ const Code = ({ className = "", style, data }: CodeProps) => {
     );
 
     return (
-        <pre
+        <div
             className={`overflow-x-auto !relative ${spacingConfig["code"]} ${className}`}
             style={style ?? {}}
         >
-            <div className="absolute right-1 top-1 flex">
-                <label
-                    className="p-1.5 rounded-sm text-lg
-             bg-slate-800 cursor-pointer
-             hover:bg-slate-700 active:bg-slate-900"
-                >
-                    <input
-                        type="checkbox"
-                        name="toggle"
-                        className="peer"
-                        onChange={(e) => {
-                            const target = e.currentTarget as HTMLInputElement;
+            <div className="w-full flex justify-between items-center bg-gray-100 dark:bg-slate-700">
+                <div>
+                    {data.label && (
+                        <p className="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-mono font-medium text-sm">
+                            {data.label}
+                        </p>
+                    )}
+                </div>
+                <div className="flex gap-2">
+                    <label className="items-center gap-2 text-sm font-semibold select-none hidden sm:flex">
+                        <input
+                            type="checkbox"
+                            name="toggle"
+                            onChange={(e) => {
+                                const target =
+                                    e.currentTarget as HTMLInputElement;
 
-                            const pre = target.closest("pre") as HTMLPreElement;
+                                const currentParent =
+                                    target.closest(`div`)?.parentElement;
 
-                            if (target.checked) {
-                                pre.style.whiteSpace = "pre-wrap";
-                            } else {
-                                pre.style.whiteSpace = "pre";
-                            }
+                                const pre =
+                                    currentParent?.parentElement?.querySelector(
+                                        ":scope > pre"
+                                    ) as HTMLPreElement;
+
+                                if (target.checked) {
+                                    pre.style.whiteSpace = "pre-wrap";
+                                } else {
+                                    pre.style.whiteSpace = "pre";
+                                }
+                            }}
+                        />
+                        Line Wrap
+                    </label>
+                    <button
+                        className="py-2 w-20 bg-gray-100 dark:bg-gray-700 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 dark:text-gray-100 border-x border-gray-200 dark:border-gray-600"
+                        title="Copy Code"
+                        onClick={(e) => {
+                            const target = e.currentTarget as HTMLButtonElement;
+
+                            const copy = target.querySelector(
+                                ".copy"
+                            ) as HTMLSpanElement;
+                            const copied = target.querySelector(
+                                ".copied"
+                            ) as HTMLSpanElement;
+
+                            copyToClipboard(data.code, () => {
+                                copy.hidden = true;
+                                copied.hidden = false;
+                                setTimeout(() => {
+                                    copied.hidden = true;
+                                    copy.hidden = false;
+                                }, 1000);
+                            });
                         }}
-                        hidden
-                    />
-                    <LuWrapText className="text-slate-300 peer-checked:text-blue-400" />
-                </label>
-
-                <button
-                    className="p-1.5 rounded-sm text-lg
-             bg-slate-800 text-slate-300 cursor-pointer
-             hover:bg-slate-700 active:bg-slate-900"
-                    title="Copy Code"
-                    onClick={(e) => {
-                        const target = e.currentTarget as HTMLButtonElement;
-
-                        const copy = target.querySelector(
-                            ".copy"
-                        ) as HTMLSpanElement;
-                        const copied = target.querySelector(
-                            ".copied"
-                        ) as HTMLSpanElement;
-
-                        copyToClipboard(data.code, () => {
-                            copy.hidden = true;
-                            copied.hidden = false;
-                            setTimeout(() => {
-                                copied.hidden = true;
-                                copy.hidden = false;
-                            }, 1000);
-                        });
-                    }}
-                >
-                    <span className="copy">
-                        <FaClipboardList />
-                    </span>
-                    <span className="copied" hidden>
-                        <MdOutlineDone />
-                    </span>
-                </button>
+                    >
+                        <span className="copy flex items-center justify-center gap-1.5">
+                            <FaClipboardList className="text-gray-700 dark:text-white" />{" "}
+                            Copy
+                        </span>
+                        <span
+                            className="copied flex items-center justify-center gap-1.5"
+                            hidden
+                        >
+                            <MdOutlineDone className="text-gray-700 dark:text-white" />{" "}
+                            Copied
+                        </span>
+                    </button>
+                </div>
             </div>
 
-            <code
-                className="hljs text-sm min-h-20 max-h-60 overflow-y-auto scrollbar-thin"
-                dangerouslySetInnerHTML={{ __html: highlighted }}
-            />
+            <pre>
+                <code
+                    className="hljs text-sm min-h-20 max-h-60 overflow-y-auto scrollbar-thin"
+                    dangerouslySetInnerHTML={{ __html: highlighted }}
+                />
+            </pre>
+
             <button
                 hidden
                 ref={(target) => {
                     if (!target) return;
                     const code = target.parentElement?.querySelector(
-                        ":scope > code"
+                        ":scope > pre > code"
                     ) as HTMLElement;
 
                     if (!code) return;
@@ -103,7 +117,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
                 onClick={(e) => {
                     const target = e.currentTarget as HTMLButtonElement;
                     const code = target.parentElement?.querySelector(
-                        ":scope > code"
+                        ":scope > pre > code"
                     ) as HTMLElement;
 
                     code.style.maxHeight = "none";
@@ -112,7 +126,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
             >
                 Expand Code
             </button>
-        </pre>
+        </div>
     );
 };
 

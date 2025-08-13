@@ -48,7 +48,7 @@ export const InlineTools = RegularInlineTools.map((tool) => () => (
     <button
         key={tool.name}
         title={tool.name}
-        className={`text-sm p-1.5 hover:bg-gray-100 rounded-sm cursor-pointer ${
+        className={`text-sm p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-sm cursor-pointer ${
             tool.isActive() ? "text-blue-500" : ""
         }`}
         onMouseDown={(e) => e.preventDefault()}
@@ -131,7 +131,7 @@ export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
         <div className="flex items-center gap-2">
             <button
                 title={"Insert Link (Under construction)"}
-                className={`text-sm p-1.5 hover:bg-gray-100 rounded-sm cursor-pointer`}
+                className={`text-sm p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-sm cursor-pointer`}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => setInputVisible((prev) => !prev)}
             >
@@ -149,7 +149,7 @@ export const InlineLinkTool: React.FC<InlineLinkToolProps> = ({
                         // }}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Enter an URL"
-                        className="text-sm border border-gray-200 rounded px-2 py-0.5 outline-none"
+                        className="text-sm border border-gray-200 dark:border-gray-700 rounded px-2 py-0.5 outline-none"
                     />
                 </form>
             )}

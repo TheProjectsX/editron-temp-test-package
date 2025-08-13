@@ -15,9 +15,9 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
 
     return (
         <div
-            className={`border border-gray-400 rounded-lg flex items-center justify-center ${spacingConfig["image"]} ${className} ${
-                data.type === "free" ? "min-h-52" : "h-52"
-            }`}
+            className={`flex items-center justify-center ${
+                spacingConfig["image"]
+            } ${className} ${data.type === "free" ? "min-h-52" : "h-52"}`}
         >
             {currentFile && (
                 <label className="w-full h-full cursor-pointer">
@@ -32,7 +32,7 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
                         alt="Preview Image"
                         className={`${
                             data.type === "free"
-                                ? ""
+                                ? "w-full"
                                 : data.type === "cover"
                                 ? "w-full h-full object-cover"
                                 : data.type === "fill"

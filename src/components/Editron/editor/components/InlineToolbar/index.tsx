@@ -29,7 +29,7 @@ const InlineToolbar = () => {
 
     const Toolbar = (
         <div
-            className="absolute bg-white p-1.5 shadow-[0_0_6px_rgba(0,0,0,0.15)] rounded-sm flex gap-0.5"
+            className="absolute bg-white dark:bg-gray-800 dark:text-gray-200 p-1.5 shadow-[0_0_6px_rgba(0,0,0,0.15)] rounded-sm flex gap-0.5"
             style={{
                 top: selectionData.position.bottom + window.scrollY + 4,
                 left: selectionData.position.left + window.scrollX,

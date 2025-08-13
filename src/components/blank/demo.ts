@@ -199,22 +199,25 @@ export const demo = [
         tag: "table",
         type: "table",
         data: {
+            style: {
+                textAlign: "center",
+            },
             headers: ["Task Name", "Status", "Priority"],
             body: [
-                [
-                    "Learn HTML",
-                    '<table><tbody><tr><td data-start="2583" data-end="2599" data-col-size="sm"></td></tr></tbody></table><table><tbody><tr><td data-col-size="sm" data-start="2599" data-end="2612">✅ Done</td></tr></tbody></table>',
-                    "High",
-                ],
-                [
-                    "Style with CSS",
-                    '<table><tbody><tr><td data-start="2626" data-end="2642" data-col-size="sm"></td></tr></tbody></table><table><tbody><tr><td data-col-size="sm" data-start="2642" data-end="2655">🕒 Pending</td></tr></tbody></table>',
-                    "Medium",
-                ],
+                ["Learn HTML", "✅ Done", "High"],
+                ["Style with CSS", "🕒 Pending", "Medium"],
                 ["Write JS", "❌ Not Started", "High"],
             ],
         },
         id: "CFOKbKr2_K",
+    },
+    {
+        tag: "h2",
+        type: "heading",
+        data: {
+            html: 'Alexia Midgar from <i>The Eminence in Shadow</i>',
+        },
+        id: "ifu6jNx5n6",
     },
     {
         tag: "img",
@@ -222,7 +225,7 @@ export const demo = [
         data: {
             file: {
                 name: "Screenshot (35).jpg",
-                src: "https://i.ibb.co/k2t0Fqjr/Screenshot-35.jpg",
+                src: "https://i.ibb.co.com/7xJXPy0C/alexia-midgar-teis-2.png",
                 size: 522950,
             },
             type: "free",
