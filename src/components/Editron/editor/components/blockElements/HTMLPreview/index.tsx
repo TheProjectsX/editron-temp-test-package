@@ -57,46 +57,25 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                             </button>
                         )
                     )}
-
-                    {/* <button>CSS</button>
-                    <button>JS</button> */}
                 </div>
 
-                {content === "html" && (
-                    <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
-                        rows={5}
-                        onBlur={(e) => {
-                            const target = e.currentTarget ?? e.target;
-                            onUpdate({ ...data, html: target.value });
-                        }}
-                        placeholder={`Write your HTML`}
-                        defaultValue={data.html}
-                    />
-                )}
-                {content === "css" && (
-                    <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
-                        rows={5}
-                        onBlur={(e) => {
-                            const target = e.currentTarget ?? e.target;
-                            onUpdate({ ...data, css: target.value });
-                        }}
-                        placeholder={`Write your CSS`}
-                        defaultValue={data.css}
-                    />
-                )}
-                {content === "js" && (
-                    <textarea
-                        className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
-                        rows={5}
-                        onBlur={(e) => {
-                            const target = e.currentTarget ?? e.target;
-                            onUpdate({ ...data, js: target.value });
-                        }}
-                        placeholder={`Write your JS`}
-                        defaultValue={data.js}
-                    />
+                {(["html", "css", "js"] as const).map(
+                    (type) =>
+                        content === type && (
+                            <textarea
+                                key={type}
+                                className={`outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-b-sm w-full scrollbar-thin ${className}`}
+                                rows={8}
+                                value={data[type]}
+                                onChange={(e) =>
+                                    onUpdate({
+                                        ...data,
+                                        [type]: e.target.value,
+                                    })
+                                }
+                                placeholder={`Write your ${type.toUpperCase()}`}
+                            />
+                        )
                 )}
             </label>
         </div>
