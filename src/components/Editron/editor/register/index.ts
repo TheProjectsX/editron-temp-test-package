@@ -2,8 +2,6 @@
 import type {
     BlockStructure,
     EditorBlock,
-    OutputDataBlock,
-    PluginDemo,
     PluginStructure,
     PluginType,
     SettingsStructure,
@@ -31,7 +29,7 @@ const AllBlocks = [
     Quote,
     Image,
     HTMLPreview,
-    Table
+    Table,
 ];
 
 // All Block Structures
@@ -39,20 +37,16 @@ export const BlockStructures: BlockStructure[] = AllBlocks.map(
     (block) => block.structure
 );
 
-// All Demo
-export const BlockDemos: EditorBlock[] = AllBlocks.map(
-    (block) => block.demo as EditorBlock
-);
-
-
 // Register and return new Structure
 export type RegisterReturn = {
     component: React.FC;
     structure: BlockStructure | PluginStructure;
-    demo: EditorBlock | PluginDemo;
     settings?: SettingsStructure[];
     processor?:
-        | ((block: EditorBlock, config: UserConfig) => Promise<OutputDataBlock>)
+        | ((
+              block: EditorBlock,
+              config: UserConfig
+          ) => Promise<Record<string, any>>)
         | ((
               block: Record<string, any>,
               config: UserConfig
@@ -64,7 +58,6 @@ export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
     const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
         component: block.component as React.FC<any>,
         structure: block.structure,
-        demo: block.demo,
         settings:
             "settings" in block
                 ? (block.settings as SettingsStructure[])
@@ -74,7 +67,6 @@ export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
         structure: plugin.structure,
-        demo: plugin.demo,
         settings: plugin.settings,
         processor: plugin.processor,
     }));

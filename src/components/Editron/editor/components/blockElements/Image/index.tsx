@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { demo, processor, settings, structure } from "./meta";
+import {  processor, settings, structure } from "./meta";
 import type { ImageData, ImageProps } from "./types";
 import { spacingConfig } from "../libs/styles";
 
@@ -73,7 +73,6 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
 export default {
     component: Image,
     structure,
-    demo,
     settings,
     processor,
 };

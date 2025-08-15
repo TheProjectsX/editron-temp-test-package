@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useState } from "react";
-import { demo, settings, structure } from "./meta";
+import { settings, structure } from "./meta";
 import type { TableProps } from "./types";
 import { preventNewLine } from "../libs/events";
 import {
@@ -347,6 +347,5 @@ const Table = ({ className = "", data, onUpdate }: TableProps) => {
 export default {
     component: Table,
     structure,
-    demo,
     settings,
 };

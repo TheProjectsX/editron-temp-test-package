@@ -32,5 +32,45 @@
 
 -   Add Dark mode support [X]
 
+-   Fix Toolbar Position [X]
 
-- Fix Toolbar Position [X]
+-   EDITED: (Editor)
+    code => index.ts
+    htmlpreview => index.ts
+    heading => index.ts (!)
+
+Remove Demos -> Removed from use, just remove from blocks
+No need for block's `output` type
+Instead, we need `config` type with `defaults` in the block FC
+
+For reference >
+from block types >
+
+-   adding `tag` inside `data` and not separate
+-   Changing names from `XXData` to `data`
+-   adding `config`
+    -Remove `export` from `data` and `config`
+
+Final example:
+
+```
+type data = {
+    tag: "pre";
+    label?: string;
+    code: string;
+};
+
+type config = {};
+
+export type CodeBlock = {
+    type: "code";
+    data: data;
+    config: config;
+};
+
+export type CodeProps = Omit<CodeBlock, "type"> & {
+    className?: string;
+    onUpdate: (value: data) => void;
+};
+
+```

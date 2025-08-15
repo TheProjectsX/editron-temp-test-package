@@ -1,18 +1,19 @@
-type TableTags = "table";
-type TableData = {
-    headers?: string[]
+type data = {
+    tag: "table";
+    headers?: string[];
     body: string[][];
     style?: Record<string, string>;
 };
 
+type config = {};
+
 export type TableBlock = {
     type: "table";
-    tag: TableTags;
-    data: TableData;
-    output: TableData;
+    data: data;
+    config: config;
 };
 
-export type TableProps = Omit<TableBlock, "type" | "output"> & {
+export type TableProps = Omit<TableBlock, "type"> & {
     className?: string;
-    onUpdate: (value: TableData) => void;
+    onUpdate: (value: data) => void;
 };

@@ -1,7 +1,7 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
-import { demo, settings, structure } from "./meta";
+import {settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 import { FaBookmark } from "react-icons/fa";
 
@@ -42,6 +42,5 @@ const Heading = ({
 export default {
     component: Heading,
     structure,
-    demo,
     settings,
 };

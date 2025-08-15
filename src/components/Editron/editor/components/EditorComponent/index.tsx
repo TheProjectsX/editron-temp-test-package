@@ -15,6 +15,7 @@ import Controls from "../controls";
 import InlineToolbar from "../InlineToolbar";
 
 import {
+    genDemo,
     getFromRegister,
     handleArrowKeyDown,
     processExport,
@@ -26,8 +27,14 @@ const EditorComponent = forwardRef<
     EditorComponentSaveHandle,
     EditorComponentProps
 >(({ values = [], defaultBlock = "paragraph", registers, config }, ref) => {
-    const defaultDemo = (getFromRegister(registers, defaultBlock, "demo") ??
-        getFromRegister(registers, "paragraph", "demo")) as EditorBlock;
+    const defaultDemo = genDemo(
+        (getFromRegister(registers, defaultBlock, "structure") ??
+            getFromRegister(
+                registers,
+                "paragraph",
+                "structure"
+            )) as BlockStructure
+    ) as EditorBlock;
 
     const [blocks, dispatch] = useBlockForge(
         values.length === 0 ? [defaultDemo] : values

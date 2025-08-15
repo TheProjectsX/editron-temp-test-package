@@ -1,7 +1,7 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { ParagraphProps } from "./types";
-import { demo, settings, structure } from "./meta";
+import {settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 
 const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
@@ -25,6 +25,5 @@ const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
 export default {
     component: Paragraph,
     structure,
-    demo,
     settings,
 };

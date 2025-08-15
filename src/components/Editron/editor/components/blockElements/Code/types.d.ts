@@ -1,17 +1,18 @@
-export type CodeTags = "pre";
-export type CodeData = {
+type data = {
+    tag: "pre";
     label?: string;
     code: string;
 };
 
+type config = {};
+
 export type CodeBlock = {
     type: "code";
-    tag: CodeTags;
-    data: CodeData;
-    output: CodeData;
+    data: data;
+    config: config;
 };
 
-export type CodeProps = Omit<CodeBlock, "type" | "output"> & {
+export type CodeProps = Omit<CodeBlock, "type"> & {
     className?: string;
-    onUpdate: (value: CodeData) => void;
+    onUpdate: (value: data) => void;
 };

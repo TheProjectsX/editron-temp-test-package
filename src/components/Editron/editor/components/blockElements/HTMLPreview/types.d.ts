@@ -1,5 +1,5 @@
-type HTMLPreviewTags = "pre";
-type HTMLPreviewData = {
+type data = {
+    tag: "pre";
     head?: string;
     html: string;
     css?: string;
@@ -7,14 +7,15 @@ type HTMLPreviewData = {
     type: "preview" | "reveal";
 };
 
+type config = {};
+
 export type HTMLPreviewBlock = {
     type: "html-preview";
-    tag: HTMLPreviewTags;
-    data: HTMLPreviewData;
-    output: HTMLPreviewData;
+    data: data;
+    config: config;
 };
 
-export type HTMLPreviewProps = Omit<HTMLPreviewBlock, "type" | "output"> & {
+export type HTMLPreviewProps = Omit<HTMLPreviewBlock, "type"> & {
     className?: string;
-    onUpdate: (value: HTMLPreviewData) => void;
+    onUpdate: (value: data) => void;
 };

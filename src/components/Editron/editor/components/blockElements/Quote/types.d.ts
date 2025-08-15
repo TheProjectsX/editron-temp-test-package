@@ -1,19 +1,20 @@
-export type QuoteTags = "blockquote";
-export type QuoteData = {
+type data = {
+    tag: "blockquote";
     quote: string;
     author: string;
     type?: "plain" | "highlighted";
     style?: Record<string, string>;
 };
 
+type config = {};
+
 export type QuoteBlock = {
     type: "quote";
-    tag: QuoteTags;
-    data: QuoteData;
-    output: QuoteData;
+    data: data;
+    config: config;
 };
 
-export type QuoteProps = Omit<QuoteBlock, "type" | "output"> & {
+export type QuoteProps = Omit<QuoteBlock, "type"> & {
     className?: string;
-    onUpdate: (value: QuoteData) => void;
+    onUpdate: (value: data) => void;
 };

@@ -1,19 +1,20 @@
-export type ListTags = "ul" | "ol";
-export type ListData = {
+export type data = {
+    tag: "ul" | "ol";
     values: {
         html: string;
     }[];
     style?: Record<string, string>;
 };
 
+type config = {};
+
 export type ListBlock = {
     type: "list";
-    tag: ListTags;
-    data: ListData;
-    output: ListData;
+    data: data;
+    config: config;
 };
 
-export type ListProps = Omit<ListBlock, "type" | "output"> & {
+export type ListProps = Omit<ListBlock, "type"> & {
     className?: string;
-    onUpdate: (value: ListData) => void;
+    onUpdate: (value: data) => void;
 };

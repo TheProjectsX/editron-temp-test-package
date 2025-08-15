@@ -1,5 +1,5 @@
-type ImageTags = "img";
-type ImageData = {
+type data = {
+    tag: "img";
     file:
         | File
         | {
@@ -12,26 +12,15 @@ type ImageData = {
     type?: "free" | "fill" | "cover" | "contain";
 };
 
-type ImageOutputData = {
-    file:
-        | File
-        | {
-              name: string;
-              src: string;
-              size?: number;
-          };
-    alt?: string;
-    type?: "free" | "fill" | "cover" | "contain";
-};
+type config = {};
 
 export type ImageBlock = {
     type: "image";
-    tag: ImageTags;
-    data: ImageData;
-    output: ImageOutputData;
+    data: data;
+    config: config;
 };
 
-export type ImageProps = Omit<ImageBlock, "type" | "output"> & {
+export type ImageProps = Omit<ImageBlock, "type"> & {
     className?: string;
-    onUpdate: (value: ImageData) => void;
+    onUpdate: (value: data) => void;
 };

@@ -1,17 +1,18 @@
-export type DividerTags = "hr";
-export type DividerData = {
+type data = {
+    tag: "hr";
     text?: string;
     type?: "solid" | "dashed" | "dotted";
 };
 
+type config = {};
+
 export type DividerBlock = {
     type: "divider";
-    tag: DividerTags;
-    data: DividerData;
-    output: DividerData;
+    data: data;
+    config: config;
 };
 
-export type DividerProps = Omit<DividerBlock, "type" | "output"> & {
+export type DividerProps = Omit<DividerBlock, "type"> & {
     className?: string;
-    onUpdate: (value: DividerData) => void;
+    onUpdate: (value: data) => void;
 };

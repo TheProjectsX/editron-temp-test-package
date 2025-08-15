@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { demo, settings, structure } from "./meta";
+import { settings, structure } from "./meta";
 import type { HTMLPreviewProps } from "./types";
 import { spacingConfig } from "../libs/styles";
 
@@ -85,6 +85,5 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
 export default {
     component: HTMLPreview,
     structure,
-    demo,
     settings,
 };

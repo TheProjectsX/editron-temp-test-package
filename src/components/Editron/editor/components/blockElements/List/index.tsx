@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { focusElement } from "../libs/events";
 import type { ListProps } from "./types";
-import { demo, settings, structure } from "./meta";
+import {settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 
 const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
@@ -80,6 +80,5 @@ const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
 export default {
     component: List,
     structure,
-    demo,
     settings,
 };

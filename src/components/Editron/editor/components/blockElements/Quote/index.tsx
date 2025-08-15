@@ -1,7 +1,7 @@
 import { preventNewLine } from "../libs/events";
 import { spacingConfig } from "../libs/styles";
 import { cleanInnerHTML } from "../libs/utilities";
-import { demo, settings, structure } from "./meta";
+import { settings, structure } from "./meta";
 import type { QuoteProps } from "./types";
 
 const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
@@ -70,6 +70,5 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
 export default {
     component: Quote,
     structure,
-    demo,
     settings,
 };

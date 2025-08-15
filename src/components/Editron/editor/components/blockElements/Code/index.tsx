@@ -1,5 +1,5 @@
 import { spacingConfig } from "../libs/styles";
-import { demo, structure } from "./meta";
+import { structure } from "./meta";
 import type { CodeProps } from "./types";
 
 const Code = ({ className = "", data, onUpdate }: CodeProps) => {
@@ -32,5 +32,4 @@ const Code = ({ className = "", data, onUpdate }: CodeProps) => {
 export default {
     component: Code,
     structure,
-    demo,
 };

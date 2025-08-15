@@ -3,6 +3,7 @@ import type { AllTypes, EditorBlock, PluginType } from "./register/types";
 
 export type UserConfig = {
     uploadImage?: (file: File) => Promise<string>;
+    flagSection?: boolean;
 };
 
 export interface EditorProps {

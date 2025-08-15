@@ -28,15 +28,8 @@ export type EditorBlock = {
     id: string;
 } & Omit<AllBlocks, "output">;
 
-// Output Data Block
-export type OutputDataBlock = {
-    id: string;
-} & Omit<AllBlocks, "data" | "output"> & {
-        data: AllBlocks["output"];
-    };
-
 // All Tags
-export type AllTags = AllBlocks["tag"];
+export type AllTags = AllBlocks["data"]["tag"];
 
 // All Types
 export type AllTypes = AllBlocks["type"];
@@ -44,13 +37,20 @@ export type AllTypes = AllBlocks["type"];
 // All Data
 export type AllData = AllBlocks["data"];
 
+// Structure Tag Type
+type SubTag = {
+    name: string;
+    tag: string;
+    icon: IconType;
+};
+
 // Block Structure
 export type BlockStructure = {
     name: string;
     icon: IconType;
     type: string;
-    tags: string | SubTags[];
-    data: AllData;
+    tags: string | SubTag[];
+    data: Omit<AllData, "tag">;
 };
 
 // Settings Structure
@@ -67,14 +67,7 @@ export type SettingsStructure = {
 
 // Plugin Structure
 export type PluginStructure = Omit<BlockStructure, "data"> & {
-    data: Record<string, any>;
-};
-
-// Plugin Demo
-export type PluginDemo = {
-    type: string;
-    tag: string;
-    data: Record<string, any>;
+    data: { tag: string } & Record<string, any>;
 };
 
 // Plugin Props
@@ -89,7 +82,6 @@ export type PluginProps = {
 export type PluginType = {
     component: React.FC<PluginProps>;
     structure: PluginStructure;
-    demo: PluginDemo;
     settings?: SettingsStructure[];
     processor?: (block: Record<string, any>) => Promise<Record<string, any>>;
 };
