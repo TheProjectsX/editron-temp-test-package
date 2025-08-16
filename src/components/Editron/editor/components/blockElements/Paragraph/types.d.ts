@@ -9,7 +9,7 @@ type config = {};
 export type ParagraphBlock = {
     type: "paragraph";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type ParagraphProps = Omit<ParagraphBlock, "type"> & {

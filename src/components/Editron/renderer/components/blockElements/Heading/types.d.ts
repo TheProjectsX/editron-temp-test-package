@@ -1,13 +1,12 @@
-type HeadingTags = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type HeadingData = {
+type data = {
+    tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     html: string;
     style: Record<string, string>;
 };
 
 export type HeadingBlock = {
     type: "heading";
-    tag: HeadingTags;
-    data: HeadingData;
+    data: data;
 };
 
 export type HeadingProps = Omit<HeadingBlock, "type"> & {

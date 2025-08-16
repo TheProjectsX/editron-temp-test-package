@@ -1,7 +1,7 @@
-import { nanoid } from "nanoid/non-secure";
 import { CgFormatSeparator } from "react-icons/cg";
-import type { EditorBlock } from "../../../register/types";
 import { RxBorderDashed, RxBorderDotted, RxBorderSolid } from "react-icons/rx";
+import type { EditorBlock } from "../libs/types";
+import type { DividerBlock } from "./types";
 
 export const structure = {
     name: "Divider",
@@ -11,18 +11,11 @@ export const structure = {
     data: {},
 };
 
-export const demo = {
-    id: nanoid(10),
-    type: "divider",
-    tag: "hr",
-    data: {},
-};
-
 export const settings = [
     {
         name: "Solid",
         icon: RxBorderSolid,
-        transform: (block: EditorBlock) => {
+        transform: (block: EditorBlock<DividerBlock>) => {
             return {
                 data: {
                     ...block.data,
@@ -34,7 +27,7 @@ export const settings = [
     {
         name: "Dashed",
         icon: RxBorderDashed,
-        transform: (block: EditorBlock) => {
+        transform: (block: EditorBlock<DividerBlock>) => {
             return {
                 data: {
                     ...block.data,
@@ -46,7 +39,7 @@ export const settings = [
     {
         name: "Dotted",
         icon: RxBorderDotted,
-        transform: (block: EditorBlock) => {
+        transform: (block: EditorBlock<DividerBlock>) => {
             return {
                 data: {
                     ...block.data,

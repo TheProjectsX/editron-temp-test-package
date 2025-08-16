@@ -1,16 +1,13 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
-import {settings, structure } from "./meta";
+import { processor, settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 import { FaBookmark } from "react-icons/fa";
 
-const Heading = ({
-    className = "",
-    tag: Tag,
-    data,
-    onUpdate,
-}: HeadingProps) => {
+const Heading = ({ className = "", data, onUpdate }: HeadingProps) => {
+    const Tag = data.tag;
+
     return (
         <Tag className={`${spacingConfig["heading"][Tag]} ${className}`}>
             <span
@@ -43,4 +40,5 @@ export default {
     component: Heading,
     structure,
     settings,
+    processor,
 };

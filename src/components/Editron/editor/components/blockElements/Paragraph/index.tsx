@@ -1,7 +1,7 @@
 import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { ParagraphProps } from "./types";
-import {settings, structure } from "./meta";
+import { settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 
 const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
@@ -11,7 +11,7 @@ const Paragraph = ({ className = "", data, onUpdate }: ParagraphProps) => {
             onKeyDown={preventNewLine}
             onBlur={(e) => {
                 const target = e.currentTarget ?? e.target;
-                onUpdate({ html: cleanInnerHTML(target.innerHTML) });
+                onUpdate({ ...data, html: cleanInnerHTML(target.innerHTML) });
             }}
             style={data.style ?? {}}
             data-placeholder={`Enter some text...`}

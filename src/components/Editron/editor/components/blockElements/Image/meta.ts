@@ -1,11 +1,11 @@
-import { nanoid } from "nanoid/non-secure";
 import { GiResize } from "react-icons/gi";
 import { IoImageOutline } from "react-icons/io5";
 import { MdPhotoSizeSelectLarge } from "react-icons/md";
 import { SlSizeActual, SlSizeFullscreen } from "react-icons/sl";
-import type { EditorBlock } from "../../../register/types";
 import { LiaVectorSquareSolid } from "react-icons/lia";
 import type { UserConfig } from "../../..";
+import type { EditorBlock } from "../libs/types";
+import type { ImageBlock } from "./types";
 
 export const structure = {
     name: "Image",
@@ -17,13 +17,6 @@ export const structure = {
     },
 };
 
-export const demo = {
-    id: nanoid(10),
-    type: "image",
-    tag: "img",
-    data: { file: null },
-};
-
 export const settings = [
     {
         name: "Stretching",
@@ -32,28 +25,28 @@ export const settings = [
             {
                 name: "Free Size",
                 icon: MdPhotoSizeSelectLarge,
-                transform: (block: EditorBlock) => {
+                transform: (block: EditorBlock<ImageBlock>) => {
                     return { data: { ...block.data, type: "free" } };
                 },
             },
             {
                 name: "Fill",
                 icon: LiaVectorSquareSolid,
-                transform: (block: EditorBlock) => {
+                transform: (block: EditorBlock<ImageBlock>) => {
                     return { data: { ...block.data, type: "fill" } };
                 },
             },
             {
                 name: "Cover",
                 icon: GiResize,
-                transform: (block: EditorBlock) => {
+                transform: (block: EditorBlock<ImageBlock>) => {
                     return { data: { ...block.data, type: "cover" } };
                 },
             },
             {
                 name: "Contain",
                 icon: SlSizeActual,
-                transform: (block: EditorBlock) => {
+                transform: (block: EditorBlock<ImageBlock>) => {
                     return { data: { ...block.data, type: "contain" } };
                 },
             },
@@ -61,7 +54,10 @@ export const settings = [
     },
 ];
 
-export const processor = async (block: EditorBlock, config: UserConfig) => {
+export const processor = async (
+    block: EditorBlock<ImageBlock>,
+    config: UserConfig
+) => {
     if (!config.uploadImage) return block;
 
     // no file to upload ⇒ skip this block entirely

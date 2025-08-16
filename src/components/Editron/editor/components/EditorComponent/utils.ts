@@ -1,18 +1,13 @@
 import { nanoid } from "nanoid/non-secure";
 import type { UserConfig } from "../..";
 import type { RegisterReturn } from "../../register";
-import type {
-    AllTypes,
-    BlockStructure,
-    EditorBlock,
-    OutputDataBlock,
-} from "../../register/types";
+import type { BlockStructure, EditorBlock } from "../../register/types";
 
 // From register get the desired value
 export const getFromRegister = (
     registers: RegisterReturn[],
-    type: AllTypes,
-    valueOf: "component" | "structure"
+    type: RegisterReturn["structure"]["type"],
+    valueOf: keyof RegisterReturn
 ) => {
     const target = registers.find(
         (register) => register.structure.type === type
@@ -80,7 +75,7 @@ export const processExport = async (
     blocks: EditorBlock[],
     config: UserConfig = {},
     processors: Record<string, RegisterReturn["processor"]>
-): Promise<OutputDataBlock[]> => {
+): Promise<any[]> => {
     const processed = await Promise.all(
         blocks.map(async (block) => {
             const processor = processors[block.type];
@@ -91,14 +86,13 @@ export const processExport = async (
     );
 
     // remove all undefined entries
-    return processed.filter(Boolean) as OutputDataBlock[];
+    return processed.filter(Boolean) as any[];
 };
 
 // Generate a Demo block from structure
 export const genDemo = (structure: BlockStructure) => {
     const demo = {
         id: nanoid(10),
-        tag: structure.tags,
         type: structure.type,
         data: structure.data,
     };

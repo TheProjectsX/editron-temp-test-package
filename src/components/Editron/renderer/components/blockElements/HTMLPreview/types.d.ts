@@ -1,5 +1,5 @@
-type HTMLPreviewTags = "pre";
-type HTMLPreviewData = {
+type data = {
+    tag: "pre";
     head?: string;
     html: string;
     css?: string;
@@ -9,8 +9,7 @@ type HTMLPreviewData = {
 
 export type HTMLPreviewBlock = {
     type: "html-preview";
-    tag: HTMLPreviewTags;
-    data: HTMLPreviewData;
+    data: data;
 };
 
 export type HTMLPreviewProps = Omit<HTMLPreviewBlock, "type"> & {

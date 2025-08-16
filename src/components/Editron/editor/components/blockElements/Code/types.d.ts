@@ -9,7 +9,7 @@ type config = {};
 export type CodeBlock = {
     type: "code";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type CodeProps = Omit<CodeBlock, "type"> & {

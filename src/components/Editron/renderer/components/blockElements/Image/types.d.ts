@@ -1,5 +1,5 @@
-type ImageTags = "img";
-type ImageData = {
+type data = {
+    tag: "img";
     file: {
         name: string;
         src: string;
@@ -11,8 +11,7 @@ type ImageData = {
 
 export type ImageBlock = {
     type: "image";
-    tag: ImageTags;
-    data: ImageData;
+    data: data;
 };
 
 export type ImageProps = Omit<ImageBlock, "type"> & {

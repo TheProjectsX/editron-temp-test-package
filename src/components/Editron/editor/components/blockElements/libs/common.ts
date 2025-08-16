@@ -5,8 +5,9 @@ import {
     FiAlignRight,
 } from "react-icons/fi";
 import { MdAlignHorizontalCenter } from "react-icons/md";
-import type { AllBlocks } from "../../../register/types";
+import type { AllBlocks } from "./types";
 
+// Align Settings
 export const AlignSettings = {
     name: "Align",
     icon: MdAlignHorizontalCenter,

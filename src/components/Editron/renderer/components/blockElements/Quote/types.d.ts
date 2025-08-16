@@ -1,5 +1,5 @@
-export type QuoteTags = "blockquote";
-export type QuoteData = {
+type data = {
+    tag: "blockquote";
     quote: string;
     author: string;
     type?: "plain" | "highlighted";
@@ -9,7 +9,7 @@ export type QuoteData = {
 export type QuoteBlock = {
     type: "quote";
     tag: QuoteTags;
-    data: QuoteData;
+    data: data;
 };
 
 export type QuoteProps = Omit<QuoteBlock, "type"> & {

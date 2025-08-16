@@ -88,18 +88,28 @@ const EditorComponent = forwardRef<
                     className="dark:text-gray-100"
                 >
                     {blocks.map((block) => {
-                        const currentBlockComponent = getFromRegister(
+                        const Component = getFromRegister(
                             registers,
                             block.type,
                             "component"
                         ) as BlockElement;
+                        const config = getFromRegister(
+                            registers,
+                            block.type,
+                            "config"
+                        ) as BlockElement;
+
+                        const metadata = {
+                            config,
+                            ...block,
+                        };
 
                         return (
                             <BlockViewer
                                 className="pr-[68px]"
                                 key={block.id}
-                                Component={currentBlockComponent}
-                                metadata={block}
+                                Component={Component}
+                                metadata={metadata}
                                 dispatch={dispatch}
                                 controllerFocused={controllerFocused}
                                 setFocusedBlock={setFocusedBlock}

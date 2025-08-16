@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import {  processor, settings, structure } from "./meta";
-import type { ImageData, ImageProps } from "./types";
+import { processor, settings, structure } from "./meta";
+import type { data as ImageData, ImageProps } from "./types";
 import { spacingConfig } from "../libs/styles";
 
 const Image = ({ className = "", data, onUpdate }: ImageProps) => {

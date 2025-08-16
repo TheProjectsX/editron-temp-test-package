@@ -32,16 +32,50 @@ const AllBlocks = [
     Table,
 ];
 
-// All Block Structures
-export const BlockStructures: BlockStructure[] = AllBlocks.map(
-    (block) => block.structure
-);
+// Structure `block structure` to be useable in the register throughout the app
+const genStructure = (
+    block: Record<string, any>,
+    config: UserConfig
+): BlockStructure | PluginStructure => {
+    const structure: BlockStructure = { ...block.structure };
+
+    let tag;
+    if (Array.isArray(structure.tags)) {
+        const blockConf = config.block?.[structure.type];
+
+        if (!blockConf?.defaultTag) {
+            tag = structure.data.tag;
+        } else {
+            if (
+                structure.tags
+                    .map((item) => item.tag)
+                    .includes(blockConf.defaultTag)
+            ) {
+                tag = blockConf.defaultTag;
+            } else {
+                tag = structure.data.tag;
+            }
+
+            tag = tag ?? structure.tags[0].tag;
+        }
+    } else {
+        tag = structure.tags;
+    }
+    structure["data"]["tag"] = tag ?? structure;
+
+    if (config.enableSectionLinks && structure.type === "heading") {
+        structure["data"]["flaggable"] = true;
+    }
+
+    return structure;
+};
 
 // Register and return new Structure
 export type RegisterReturn = {
     component: React.FC;
     structure: BlockStructure | PluginStructure;
     settings?: SettingsStructure[];
+    config?: Record<string, any>;
     processor?:
         | ((
               block: EditorBlock,
@@ -53,20 +87,26 @@ export type RegisterReturn = {
           ) => Promise<Record<string, any>>);
 };
 
-export const register = (plugins: PluginType[] = []): RegisterReturn[] => {
+export const register = (
+    plugins: PluginType[] = [],
+    config: UserConfig
+): RegisterReturn[] => {
     // Ensure all items conform to RegisterReturn type
     const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
         component: block.component as React.FC<any>,
-        structure: block.structure,
+        structure: genStructure(block, config),
+        config: config.block?.[block.structure.type] ?? undefined,
         settings:
             "settings" in block
                 ? (block.settings as SettingsStructure[])
                 : undefined,
         processor: "processor" in block ? (block as any).processor : undefined,
     }));
+
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
-        structure: plugin.structure,
+        structure: genStructure(plugin, config),
+        config: config.block?.[plugin.structure.type] ?? undefined,
         settings: plugin.settings,
         processor: plugin.processor,
     }));

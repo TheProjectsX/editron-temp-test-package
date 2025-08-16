@@ -11,7 +11,7 @@ type config = {};
 export type ListBlock = {
     type: "list";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type ListProps = Omit<ListBlock, "type"> & {

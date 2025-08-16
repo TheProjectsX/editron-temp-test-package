@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid/non-secure";
 import { BsChatLeftQuoteFill } from "react-icons/bs";
 import { FaQuoteRight } from "react-icons/fa";
 import { IoMdQuote } from "react-icons/io";
@@ -13,16 +12,6 @@ export const structure = {
     data: {
         author: "",
         quote: "",
-    },
-};
-
-export const demo = {
-    id: nanoid(10),
-    type: "quote",
-    tag: "blockquote",
-    data: {
-        quote: "",
-        author: "",
     },
 };
 

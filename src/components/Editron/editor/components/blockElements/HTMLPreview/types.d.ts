@@ -12,7 +12,7 @@ type config = {};
 export type HTMLPreviewBlock = {
     type: "html-preview";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type HTMLPreviewProps = Omit<HTMLPreviewBlock, "type"> & {

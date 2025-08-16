@@ -9,7 +9,7 @@ type config = {};
 export type DividerBlock = {
     type: "divider";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type DividerProps = Omit<DividerBlock, "type"> & {

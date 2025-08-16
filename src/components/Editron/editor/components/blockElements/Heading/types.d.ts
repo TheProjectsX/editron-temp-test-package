@@ -2,6 +2,7 @@ type data = {
     tag: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
     html: string;
     style: Record<string, string>;
+    flaggable?: boolean;
 };
 
 type config = {};
@@ -9,7 +10,7 @@ type config = {};
 export type HeadingBlock = {
     type: "heading";
     data: data;
-    config: {};
+    config?: config;
 };
 
 export type HeadingProps = Omit<HeadingBlock, "type"> & {

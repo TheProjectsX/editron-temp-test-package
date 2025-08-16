@@ -17,7 +17,7 @@ type config = {};
 export type ImageBlock = {
     type: "image";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type ImageProps = Omit<ImageBlock, "type"> & {

@@ -1,5 +1,7 @@
 import type { IconType } from "react-icons";
 
+/*
+// ---------------------------------- NOT USING ---------------------------------- //
 import type { ParagraphBlock } from "../components/blockElements/Paragraph/types";
 import type { HeadingBlock } from "../components/blockElements/Heading/types";
 import type { ListBlock } from "../components/blockElements/List/types";
@@ -23,19 +25,25 @@ type AllBlocks =
     | HTMLPreviewBlock
     | TableBlock;
 
+// All Tags
+type AllTags = AllBlocks["data"]["tag"];
+
+// All Types
+type AllTypes = AllBlocks["type"];
+
+// All Data
+type AllData = AllBlocks["data"];
+
+// ---------------------------------- NOT USING ---------------------------------- //
+*/
+
 // Editor Block
 export type EditorBlock = {
     id: string;
-} & Omit<AllBlocks, "output">;
-
-// All Tags
-export type AllTags = AllBlocks["data"]["tag"];
-
-// All Types
-export type AllTypes = AllBlocks["type"];
-
-// All Data
-export type AllData = AllBlocks["data"];
+    type: string;
+    config?: Record<string, any>;
+    data: { tag: string } & Record<string, any>;
+};
 
 // Structure Tag Type
 type SubTag = {
@@ -50,7 +58,7 @@ export type BlockStructure = {
     icon: IconType;
     type: string;
     tags: string | SubTag[];
-    data: Omit<AllData, "tag">;
+    data: { tag: string } & Record<string, any>;
 };
 
 // Settings Structure

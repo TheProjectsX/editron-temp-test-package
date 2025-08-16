@@ -49,33 +49,22 @@ const CodeView = ({
                     className="flex gap-[1px]
                  border-x border-gray-200 dark:border-gray-600"
                 >
-                    {html && html.length > 0 && (
-                        <button
-                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
-                            onClick={() => setSection("html")}
-                            disabled={section === "html"}
-                        >
-                            HTML
-                        </button>
-                    )}
-                    {css && css.length > 0 && (
-                        <button
-                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
-                            onClick={() => setSection("css")}
-                            disabled={section === "css"}
-                        >
-                            CSS
-                        </button>
-                    )}
-                    {js && js.length > 0 && (
-                        <button
-                            className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-600 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-700 disabled:bg-gray-200 disabled:dark:bg-slate-700 cursor-pointer disabled:cursor-default text-sm font-medium"
-                            onClick={() => setSection("js")}
-                            disabled={section === "js"}
-                        >
-                            JS
-                        </button>
-                    )}
+                    {(["html", "css", "js"] as const).map((type) => {
+                        const value = { html, css, js }[type];
+                        return (
+                            value &&
+                            value.length > 0 && (
+                                <button
+                                    key={type}
+                                    className="py-2 w-18 text-gray-800 dark:text-gray-100 bg-gray-200 dark:bg-slate-700 enabled:hover:bg-gray-200 enabled:dark:hover:bg-slate-600 disabled:bg-gray-300 disabled:dark:bg-slate-600 cursor-pointer disabled:cursor-default text-sm font-medium"
+                                    onClick={() => setSection(type)}
+                                    disabled={section === type}
+                                >
+                                    {type.toUpperCase()}
+                                </button>
+                            )
+                        );
+                    })}
                 </div>
                 <div className="flex items-center gap-2">
                     <label className="items-center gap-2 text-sm font-semibold select-none hidden sm:flex">
@@ -133,7 +122,8 @@ const CodeView = ({
                         }}
                     >
                         <span className="copy flex items-center justify-center gap-1.5">
-                            <FaClipboardList className="text-gray-700 dark:text-white" /> Copy
+                            <FaClipboardList className="text-gray-700 dark:text-white" />{" "}
+                            Copy
                         </span>
                         <span
                             className="copied flex items-center justify-center gap-1.5"

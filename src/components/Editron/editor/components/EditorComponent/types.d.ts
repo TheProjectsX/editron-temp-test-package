@@ -1,14 +1,10 @@
 import type { UserConfig } from "../..";
 import type { RegisterReturn } from "../../register";
-import type {
-    AllTypes,
-    EditorBlock,
-    OutputDataBlock,
-} from "../../register/types";
+import type { EditorBlock, OutputDataBlock } from "../../register/types";
 
 export type EditorComponentProps = {
     values?: EditorBlock[];
-    defaultBlock?: AllTypes;
+    defaultBlock?: string;
     registers: RegisterReturn[];
     config?: UserConfig;
 };

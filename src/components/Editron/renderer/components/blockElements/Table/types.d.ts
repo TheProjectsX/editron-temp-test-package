@@ -1,5 +1,5 @@
-type TableTags = "table";
-type TableData = {
+type data = {
+    tag: "table";
     headers?: string[];
     body: string[][];
     style?: Record<string, string>;
@@ -7,8 +7,7 @@ type TableData = {
 
 export type TableBlock = {
     type: "table";
-    tag: TableTags;
-    data: TableData;
+    data: data;
 };
 
 export type TableProps = Omit<TableBlock, "type"> & {

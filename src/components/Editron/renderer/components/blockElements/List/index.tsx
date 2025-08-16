@@ -1,12 +1,14 @@
 import { spacingConfig } from "../libs/styles";
 import type { ListProps } from "./types";
 
-const List = ({ className = "", style, tag: Tag, data }: ListProps) => {
+const List = ({ className = "", style, data }: ListProps) => {
+    const Tag = data.tag;
+
     return (
         <Tag
-            className={`list-outside dark:text-gray-200 py-1 pl-5 ${spacingConfig["list"]} ${
-                Tag === "ol" ? "list-decimal" : "list-disc"
-            } ${className}`}
+            className={`list-outside dark:text-gray-200 py-1 pl-5 ${
+                spacingConfig["list"]
+            } ${Tag === "ol" ? "list-decimal" : "list-disc"} ${className}`}
             style={{
                 ...(data.style ?? {}),
                 ...(style ?? {}),

@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import { focusElement } from "../libs/events";
 import type { ListProps } from "./types";
-import {settings, structure } from "./meta";
+import { settings, structure } from "./meta";
 import { spacingConfig } from "../libs/styles";
 
-const List = ({ className = "", tag: Tag, data, onUpdate }: ListProps) => {
+const List = ({ className = "", data, onUpdate }: ListProps) => {
     const [listData, setListData] = useState<{ html: string }[]>(data.values);
 
     useEffect(() => {
         onUpdate({ ...data, values: listData });
     }, [listData]);
 
+    const Tag = data.tag;
+
     return (
         <Tag
-            className={`list-outside dark:text-gray-200 py-1 pl-5 ${spacingConfig["list"]} ${
-                Tag === "ol" ? "list-decimal" : "list-disc"
-            } ${className}`}
+            className={`list-outside dark:text-gray-200 py-1 pl-5 ${
+                spacingConfig["list"]
+            } ${data.tag === "ol" ? "list-decimal" : "list-disc"} ${className}`}
             style={data.style ?? {}}
         >
             {listData.map((itemData, idx) => (

@@ -1,6 +1,5 @@
 import { CiViewTable } from "react-icons/ci";
 import { AlignSettings } from "../libs/common";
-import { nanoid } from "nanoid/non-secure";
 import { FaTableColumns } from "react-icons/fa6";
 import type { TableBlock } from "./types";
 import { LuTable } from "react-icons/lu";
@@ -10,19 +9,6 @@ export const structure = {
     icon: CiViewTable,
     type: "table",
     tags: "table",
-    data: {
-        headers: [],
-        body: [
-            ["", ""],
-            ["", ""],
-        ],
-    },
-};
-
-export const demo = {
-    id: nanoid(10),
-    type: "table",
-    tag: "table",
     data: {
         headers: [],
         body: [

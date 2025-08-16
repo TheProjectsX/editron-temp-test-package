@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid/non-secure";
 import {
     LuHeading,
     LuHeading1,
@@ -10,6 +9,9 @@ import {
 } from "react-icons/lu";
 import { TbTransform } from "react-icons/tb";
 import { AlignSettings } from "../libs/common";
+import type { EditorBlock } from "../libs/types";
+import type { HeadingBlock } from "./types";
+import type { UserConfig } from "../../..";
 
 export const structure = {
     name: "Heading",
@@ -48,15 +50,9 @@ export const structure = {
         },
     ],
     data: {
+        tag: "h2",
         html: "",
     },
-};
-
-export const demo = {
-    id: nanoid(10),
-    type: "heading",
-    tag: "h2",
-    data: { html: "" },
 };
 
 export const settings = [
@@ -110,3 +106,17 @@ export const settings = [
     },
     AlignSettings,
 ];
+
+export const processor = (
+    block: EditorBlock<HeadingBlock>,
+    config: UserConfig
+) => {
+    if (!config.enableSectionLinks) return block;
+
+    const { flaggable, ...data } = block.data;
+
+    return {
+        ...block,
+        data,
+    };
+};

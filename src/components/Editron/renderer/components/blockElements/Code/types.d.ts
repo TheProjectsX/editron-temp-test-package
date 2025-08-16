@@ -1,13 +1,12 @@
-export type CodeTags = "pre";
-export type CodeData = {
+type data = {
+    tag: "pre";
     label?: string;
     code: string;
 };
 
-export type CodeBlock = {
+type CodeBlock = {
     type: "code";
-    tag: CodeTags;
-    data: CodeData;
+    data: data;
 };
 
 export type CodeProps = Omit<CodeBlock, "type"> & {

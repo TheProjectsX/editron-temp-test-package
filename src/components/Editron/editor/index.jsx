@@ -9,7 +9,7 @@ const Editor = ({
     plugins = [],
     config = {},
 } = {}) => {
-    const registers = register(plugins);
+    const registers = register(plugins, config);
 
     const editorRef = createRef();
     const saveRunner = () => editorRef.current?.runSave() ?? [];

@@ -1,14 +1,20 @@
 import type { OutputBlock } from "../editor-bak/types/blocks";
-import type { AllTypes, EditorBlock, PluginType } from "./register/types";
+import type { EditorBlock, PluginType } from "./register/types";
 
 export type UserConfig = {
     uploadImage?: (file: File) => Promise<string>;
-    flagSection?: boolean;
+    enableSectionLinks?: boolean;
+    block?: {
+        [name: string]: {
+            inlineToolbar?: boolean;
+            defaultTag?: string;
+        };
+    };
 };
 
 export interface EditorProps {
     blocks?: EditorBlock[] | any[];
-    defaultBlock?: AllTypes | (string & {});
+    defaultBlock?: string;
     plugins?: PluginType[] | any[];
     config?: UserConfig;
 }

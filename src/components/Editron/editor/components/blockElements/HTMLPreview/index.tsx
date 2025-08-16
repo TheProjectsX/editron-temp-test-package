@@ -41,22 +41,20 @@ const HTMLPreview = ({ className = "", data, onUpdate }: HTMLPreviewProps) => {
                     </span>
                 </p>
                 <div className="rounded-t-sm flex items-center bg-slate-200 dark:bg-slate-700 gap-0.5">
-                    {(["html", "css", "js"] as ("html" | "css" | "js")[]).map(
-                        (item) => (
-                            <button
-                                key={item}
-                                className={`w-20 py-2 font-semibold text-sm cursor-pointer disabled:cursor-not-allowed ${
-                                    content === item
-                                        ? ""
-                                        : "bg-slate-300 dark:bg-slate-600"
-                                }`}
-                                onClick={() => setContent(item)}
-                                disabled={content === item}
-                            >
-                                {item.toUpperCase()}
-                            </button>
-                        )
-                    )}
+                    {(["html", "css", "js"] as const).map((type) => (
+                        <button
+                            key={type}
+                            className={`w-20 py-2 font-semibold text-sm cursor-pointer disabled:cursor-not-allowed ${
+                                content === type
+                                    ? ""
+                                    : "bg-slate-300 dark:bg-slate-600"
+                            }`}
+                            onClick={() => setContent(type)}
+                            disabled={content === type}
+                        >
+                            {type.toUpperCase()}
+                        </button>
+                    ))}
                 </div>
 
                 {(["html", "css", "js"] as const).map(

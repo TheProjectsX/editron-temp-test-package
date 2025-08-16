@@ -11,7 +11,7 @@ type config = {};
 export type QuoteBlock = {
     type: "quote";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type QuoteProps = Omit<QuoteBlock, "type"> & {

@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from "react";
 import type { BlockActions } from "../../hooks/useBlockForge";
-import type { EditorBlock, AllTags, AllData } from "../../register/types";
+import type { EditorBlock } from "../../register/types";
 
 export type BlockElement = React.FC<{
+    data: Record<string, any>;
     className?: string;
-    tag: AllTags;
-    data: AllData;
-    onUpdate: (value: AllData) => void;
+    config?: Record<string, any>;
+    onUpdate: (value: Record<string, any>) => void;
 }>;
 
 interface BlockViewerProps {
@@ -32,7 +32,7 @@ const BlockViewer = ({
     setFocusedBlock,
 }: BlockViewerProps) => {
     const handleUpdateBlock = useCallback(
-        (data: AllData) => {
+        (data: Record<string, any>) => {
             if (
                 Array.isArray((data as any)?.values) &&
                 (data as any).values.length === 0
@@ -75,8 +75,8 @@ const BlockViewer = ({
             {useMemo(
                 () => (
                     <Component
-                        tag={metadata.tag}
                         data={metadata.data}
+                        config={metadata.config}
                         onUpdate={handleUpdateBlock}
                     />
                 ),

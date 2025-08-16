@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid/non-secure";
 import { GrList } from "react-icons/gr";
 import {
     MdFormatListNumbered,
@@ -23,19 +22,7 @@ export const structure = {
         },
     ],
     data: {
-        values: [
-            {
-                html: "",
-            },
-        ],
-    },
-};
-
-export const demo = {
-    id: nanoid(10),
-    type: "list",
-    tag: "ul",
-    data: {
+        tag: "ul",
         values: [
             {
                 html: "",
@@ -59,5 +46,5 @@ export const settings = [
             return { tag: "ul" };
         },
     },
-    AlignSettings
+    AlignSettings,
 ];

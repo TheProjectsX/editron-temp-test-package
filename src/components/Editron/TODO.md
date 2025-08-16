@@ -50,6 +50,7 @@ from block types >
 -   Changing names from `XXData` to `data`
 -   adding `config`
     -Remove `export` from `data` and `config`
+-   Fix `structure`
 
 Final example:
 
@@ -74,3 +75,10 @@ export type CodeProps = Omit<CodeBlock, "type"> & {
 };
 
 ```
+
+-   Removed `demo` from all `meta` of blocks
+-   Changed `EditorBlock` to explicit type
+-   Removed use of Types from Block
+-   Changed `AllBlocks` to explicit type
+-   Added `config` in props data and sending them to the `blocks`
+-   Updated `renderer` blocks and types based on the editor changes

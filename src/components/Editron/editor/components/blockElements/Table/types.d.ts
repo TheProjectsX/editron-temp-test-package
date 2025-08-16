@@ -10,7 +10,7 @@ type config = {};
 export type TableBlock = {
     type: "table";
     data: data;
-    config: config;
+    config?: config;
 };
 
 export type TableProps = Omit<TableBlock, "type"> & {
