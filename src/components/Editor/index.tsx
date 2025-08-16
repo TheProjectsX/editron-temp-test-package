@@ -14,6 +14,7 @@ const EditorComponent = ({
         blocks: blocks,
         defaultBlock: defaultBlock ?? "paragraph",
         config: {
+            enableSectionLinks: true,
             uploadImage: uploadToImgbb,
         },
     });

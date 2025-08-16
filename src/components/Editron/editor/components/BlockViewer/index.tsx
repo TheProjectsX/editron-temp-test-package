@@ -60,7 +60,10 @@ const BlockViewer = ({
                 if (target.dataset["name"] !== "block-editor") return;
 
                 setFocusedBlock((prev) => {
-                    if (prev.element === target) {
+                    if (
+                        prev.element === target ||
+                        prev.block?.id === metadata.id
+                    ) {
                         return prev;
                     }
 
@@ -86,4 +89,9 @@ const BlockViewer = ({
     );
 };
 
-export default React.memo(BlockViewer);
+export default React.memo(BlockViewer, (prev, next) => {
+    if (prev.controllerFocused !== next.controllerFocused) {
+        return false;
+    }
+    return true;
+});

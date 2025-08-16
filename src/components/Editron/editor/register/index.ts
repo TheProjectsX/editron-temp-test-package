@@ -35,13 +35,13 @@ const AllBlocks = [
 // Structure `block structure` to be useable in the register throughout the app
 const genStructure = (
     block: Record<string, any>,
-    config: UserConfig
+    config: UserConfig["block"]
 ): BlockStructure | PluginStructure => {
     const structure: BlockStructure = { ...block.structure };
 
     let tag;
     if (Array.isArray(structure.tags)) {
-        const blockConf = config.block?.[structure.type];
+        const blockConf = config?.[structure.type];
 
         if (!blockConf?.defaultTag) {
             tag = structure.data.tag;
@@ -63,11 +63,18 @@ const genStructure = (
     }
     structure["data"]["tag"] = tag ?? structure;
 
-    if (config.enableSectionLinks && structure.type === "heading") {
-        structure["data"]["flaggable"] = true;
+    return structure;
+};
+
+// Structure config based on the block type
+const genConfig = (config: UserConfig, type: string) => {
+    const typeConf = { ...(config.block?.[type] ?? {}) } as any;
+
+    if (config.enableSectionLinks && type === "heading") {
+        typeConf["flaggable"] = true;
     }
 
-    return structure;
+    return typeConf;
 };
 
 // Register and return new Structure
@@ -94,8 +101,8 @@ export const register = (
     // Ensure all items conform to RegisterReturn type
     const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
         component: block.component as React.FC<any>,
-        structure: genStructure(block, config),
-        config: config.block?.[block.structure.type] ?? undefined,
+        structure: genStructure(block, config.block),
+        config: genConfig(config, block.structure.type),
         settings:
             "settings" in block
                 ? (block.settings as SettingsStructure[])
@@ -105,8 +112,8 @@ export const register = (
 
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
-        structure: genStructure(plugin, config),
-        config: config.block?.[plugin.structure.type] ?? undefined,
+        structure: genStructure(plugin, config.block),
+        config: genConfig(config, plugin.structure.type),
         settings: plugin.settings,
         processor: plugin.processor,
     }));

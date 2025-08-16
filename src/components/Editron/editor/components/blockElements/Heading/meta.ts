@@ -112,8 +112,9 @@ export const processor = (
     config: UserConfig
 ) => {
     if (!config.enableSectionLinks) return block;
+    if (block.data.flagged) return block;
 
-    const { flaggable, ...data } = block.data;
+    const { flagged, ...data } = block.data;
 
     return {
         ...block,
