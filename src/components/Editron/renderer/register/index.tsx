@@ -1,4 +1,5 @@
-import type { AllBlocks, AllTypes, PluginType } from "./types";
+import type { PluginType } from "./types";
+import type { AllTypes } from "..";
 
 import Heading from "../components/blockElements/Heading";
 import Paragraph from "../components/blockElements/Paragraph";

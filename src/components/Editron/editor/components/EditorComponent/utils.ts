@@ -70,12 +70,23 @@ export const handleArrowKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     }
 };
 
+// Extract text from HTML
+function extractTextFromHTML(html: string): string {
+    const tempEl = document.createElement("div");
+    tempEl.innerHTML = html;
+    return tempEl.textContent || tempEl.innerText || "";
+}
+
 // Process data before Exporting using the processor of the said block
 export const processExport = async (
     blocks: EditorBlock[],
     config: UserConfig = {},
     processors: Record<string, RegisterReturn["processor"]>
-): Promise<any[]> => {
+): Promise<{
+    blocks: any[];
+    tableOfContents?: { label: string; id: string }[];
+}> => {
+    let tableOfContents;
     const processed = await Promise.all(
         blocks.map(async (block) => {
             const processor = processors[block.type];
@@ -86,7 +97,27 @@ export const processExport = async (
     );
 
     // remove all undefined entries
-    return processed.filter(Boolean) as any[];
+    const cleanBlocks = processed.filter(Boolean) as any[];
+
+    if (config.enableTableOfContents) {
+        tableOfContents = cleanBlocks
+            .filter((block) => block.type === "heading" && block.data.flagged)
+            .map((block) => ({
+                label: extractTextFromHTML(block.data.html),
+                id: block.id,
+            }));
+    }
+
+    if (!tableOfContents) {
+        return {
+            blocks: cleanBlocks,
+        };
+    }
+
+    return {
+        blocks: processed.filter(Boolean) as any[],
+        tableOfContents,
+    };
 };
 
 // Generate a Demo block from structure

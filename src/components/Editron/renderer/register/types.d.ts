@@ -1,3 +1,7 @@
+import type { AllTypes } from "..";
+
+/*
+// ---------------------------------- NOT USING ---------------------------------- //
 import type { CodeBlock } from "../components/blockElements/Code/types";
 import type { DividerBlock } from "../components/blockElements/Divider/types";
 import type { HeadingBlock } from "../components/blockElements/Heading/types";
@@ -25,13 +29,25 @@ export type RendererBlock = {
 } & AllBlocks;
 
 // All Types
-export type AllTypes = AllBlocks["type"];
+// export type AllTypes = AllBlocks["type"];
 
 // All Tags
-export type AllTags = AllBlocks["tag"];
+// export type AllTags = AllBlocks["tag"];
 
 // All Data
-export type AllData = AllBlocks["data"];
+// export type AllData = AllBlocks["data"];
+
+// ---------------------------------- NOT USING ---------------------------------- //
+*/
+
+// Renderer Blocks
+export type RendererBlock = {
+    id: string;
+    type: AllTypes;
+    data: {
+        tag: string;
+    } & Record<string, any>;
+};
 
 // Plugin Props
 export type PluginProps = {

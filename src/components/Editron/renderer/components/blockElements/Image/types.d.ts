@@ -10,11 +10,13 @@ type data = {
 };
 
 export type ImageBlock = {
+    id: string;
     type: "image";
     data: data;
 };
 
-export type ImageProps = Omit<ImageBlock, "type"> & {
+export type ImageProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: ImageBlock;
 };

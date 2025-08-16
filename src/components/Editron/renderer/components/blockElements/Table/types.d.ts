@@ -6,11 +6,13 @@ type data = {
 };
 
 export type TableBlock = {
+    id: string;
     type: "table";
     data: data;
 };
 
-export type TableProps = Omit<TableBlock, "type"> & {
+export type TableProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: TableBlock;
 };

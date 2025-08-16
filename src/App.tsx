@@ -6,7 +6,9 @@ import { demo } from "./components/blank/demo";
 const App = () => {
     const [mode, setMode] = useState<"editor" | "renderer">("editor");
 
-    const [blocks, setBlocks] = useState<Record<string, any>[]>(demo);
+    const [data, setData] = useState<{ blocks: Record<string, any>[] }>({
+        blocks: demo,
+    });
     return (
         <div className="max-w-3xl w-full">
             <div className="flex items-center gap-4 mb-10">
@@ -42,10 +44,10 @@ const App = () => {
 
             <div className="w-full">
                 {mode === "editor" && (
-                    <EditorComponent blocks={blocks} setBlocks={setBlocks} />
+                    <EditorComponent blocks={data} setBlocks={setData} />
                 )}
 
-                {mode === "renderer" && <RendererComponent blocks={blocks} />}
+                {mode === "renderer" && <RendererComponent blocks={data} />}
             </div>
         </div>
     );

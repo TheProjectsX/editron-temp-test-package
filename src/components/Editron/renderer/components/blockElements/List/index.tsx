@@ -1,8 +1,8 @@
 import { spacingConfig } from "../libs/styles";
 import type { ListProps } from "./types";
 
-const List = ({ className = "", style, data }: ListProps) => {
-    const Tag = data.tag;
+const List = ({ className = "", style, metadata }: ListProps) => {
+    const Tag = metadata.data.tag;
 
     return (
         <Tag
@@ -10,11 +10,11 @@ const List = ({ className = "", style, data }: ListProps) => {
                 spacingConfig["list"]
             } ${Tag === "ol" ? "list-decimal" : "list-disc"} ${className}`}
             style={{
-                ...(data.style ?? {}),
+                ...(metadata.data.style ?? {}),
                 ...(style ?? {}),
             }}
         >
-            {data.values.map((item, idx) => (
+            {metadata.data.values.map((item, idx) => (
                 <li
                     key={idx}
                     dangerouslySetInnerHTML={{ __html: item.html }}

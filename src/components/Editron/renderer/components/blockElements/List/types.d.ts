@@ -7,11 +7,13 @@ type data = {
 };
 
 export type ListBlock = {
+    id: string;
     type: "list";
     data: data;
 };
 
-export type ListProps = Omit<ListBlock, "type"> & {
+export type ListProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: ListBlock;
 };

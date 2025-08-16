@@ -7,12 +7,13 @@ type data = {
 };
 
 export type QuoteBlock = {
+    id: string;
     type: "quote";
-    tag: QuoteTags;
     data: data;
 };
 
-export type QuoteProps = Omit<QuoteBlock, "type"> & {
+export type QuoteProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: QuoteBlock;
 };

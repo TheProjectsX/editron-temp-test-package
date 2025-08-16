@@ -5,11 +5,13 @@ type data = {
 };
 
 export type ParagraphBlock = {
+    id: string;
     type: "paragraph";
     data: data;
 };
 
-export type ParagraphProps = Omit<ParagraphBlock, "type"> & {
+export type ParagraphProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: ParagraphBlock;
 };

@@ -7,14 +7,16 @@ const EditorComponent = ({
     setBlocks,
 }: {
     defaultBlock?: string;
-    blocks?: Record<string, any>[];
-    setBlocks: React.Dispatch<React.SetStateAction<Record<string, any>[]>>;
+    blocks?: { blocks: Record<string, any>[] } | Record<string, any>[];
+    setBlocks: React.Dispatch<
+        React.SetStateAction<{ blocks: Record<string, any>[] }>
+    >;
 }) => {
     const [Component, save] = Editor({
-        blocks: blocks,
+        initials: blocks,
         defaultBlock: defaultBlock ?? "paragraph",
         config: {
-            enableSectionLinks: true,
+            enableTableOfContents: true,
             uploadImage: uploadToImgbb,
         },
     });

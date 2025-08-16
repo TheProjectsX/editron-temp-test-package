@@ -1,6 +1,6 @@
 import RendererComponent from "./components/RendererComponent";
 import { register } from "./register";
-import "../styles/renderer.css"
+import "../styles/renderer.css";
 
 const Renderer = ({ config = {}, plugins = [] } = {}) => {
     const registers = register(plugins);
@@ -9,7 +9,7 @@ const Renderer = ({ config = {}, plugins = [] } = {}) => {
         return (
             <RendererComponent
                 registers={registers}
-                blocks={blocks}
+                blocks={Array.isArray(blocks) ? blocks : blocks.blocks}
                 config={config}
             />
         );

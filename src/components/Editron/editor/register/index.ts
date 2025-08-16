@@ -70,7 +70,7 @@ const genStructure = (
 const genConfig = (config: UserConfig, type: string) => {
     const typeConf = { ...(config.block?.[type] ?? {}) } as any;
 
-    if (config.enableSectionLinks && type === "heading") {
+    if (config.enableTableOfContents && type === "heading") {
         typeConf["flaggable"] = true;
     }
 

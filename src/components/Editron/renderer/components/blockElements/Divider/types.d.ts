@@ -5,11 +5,13 @@ type data = {
 };
 
 type DividerBlock = {
+    id: string;
     type: "divider";
     data: data;
 };
 
-export type DividerProps = Omit<DividerBlock, "type"> & {
+export type DividerProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: DividerBlock;
 };

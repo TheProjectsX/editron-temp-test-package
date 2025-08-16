@@ -5,11 +5,13 @@ type data = {
 };
 
 type CodeBlock = {
+    id: string;
     type: "code";
     data: data;
 };
 
-export type CodeProps = Omit<CodeBlock, "type"> & {
+export type CodeProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: CodeBlock;
 };

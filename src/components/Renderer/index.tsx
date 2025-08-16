@@ -1,6 +1,10 @@
 import Renderer from "../Editron/renderer";
 
-const RendererComponent = ({ blocks }: { blocks: Record<string, any>[] }) => {
+const RendererComponent = ({
+    blocks,
+}: {
+    blocks: { blocks: Record<string, any>[] } | Record<string, any>[];
+}) => {
     const [Component] = Renderer();
 
     return (

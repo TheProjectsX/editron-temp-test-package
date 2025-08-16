@@ -111,7 +111,7 @@ export const processor = (
     block: EditorBlock<HeadingBlock>,
     config: UserConfig
 ) => {
-    if (!config.enableSectionLinks) return block;
+    if (!config.enableTableOfContents) return block;
     if (block.data.flagged) return block;
 
     const { flagged, ...data } = block.data;

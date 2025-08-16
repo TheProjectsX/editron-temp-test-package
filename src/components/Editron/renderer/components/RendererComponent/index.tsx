@@ -1,6 +1,5 @@
-import type { UserConfig } from "../..";
+import type { AllTypes, UserConfig } from "../..";
 import type { RegisterReturn } from "../../register";
-import type { AllTypes } from "../../register/types";
 import BlockViewer from "../BlockViewer";
 
 interface RendererComponentProps {

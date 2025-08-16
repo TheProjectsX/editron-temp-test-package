@@ -1,15 +1,15 @@
 import { spacingConfig } from "../libs/styles";
 import type { ParagraphProps } from "./types";
 
-const Paragraph = ({ className = "", style, data }: ParagraphProps) => {
+const Paragraph = ({ className = "", style, metadata }: ParagraphProps) => {
     return (
         <p
             className={`${spacingConfig["paragraph"]} dark:text-gray-200 ${className}`}
             style={{
-                ...(data.style ?? {}),
+                ...(metadata.data.style ?? {}),
                 ...(style ?? {}),
             }}
-            dangerouslySetInnerHTML={{ __html: data.html }}
+            dangerouslySetInnerHTML={{ __html: metadata.data.html }}
         ></p>
     );
 };

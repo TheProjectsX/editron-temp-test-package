@@ -3,7 +3,7 @@ import type { EditorBlock, PluginType } from "./register/types";
 
 export type UserConfig = {
     uploadImage?: (file: File) => Promise<string>;
-    enableSectionLinks?: boolean;
+    enableTableOfContents?: boolean;
     block?: {
         [name: string]: {
             inlineToolbar?: boolean;
@@ -13,13 +13,27 @@ export type UserConfig = {
 };
 
 export interface EditorProps {
-    blocks?: EditorBlock[] | any[];
+    initials?:
+        | {
+              blocks: EditorBlock[] | any[];
+          }
+        | EditorBlock[]
+        | any[];
     defaultBlock?: string;
     plugins?: PluginType[] | any[];
     config?: UserConfig;
 }
 
-export type EditorReturn = [React.FC, () => Promise<OutputBlock[]>];
+export type Output = {
+    blocks: {
+        id: string;
+        type: string;
+        data: { tag: string } & Record<string, any>;
+    }[];
+    tableOfContents?: { label: string; id: string }[];
+};
+
+export type EditorReturn = [React.FC, () => Promise<Output>];
 
 declare const Editor: (props?: EditorProps) => EditorReturn;
 

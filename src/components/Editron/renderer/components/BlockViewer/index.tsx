@@ -1,11 +1,10 @@
 import React from "react";
-import type { AllData, AllTags, RendererBlock } from "../../register/types";
+import type { RendererBlock } from "../../register/types";
 
 export type BlockElement = React.FC<{
-    tag: AllTags;
-    data: AllData;
     className?: string;
     style?: Record<string, string>;
+    metadata: RendererBlock;
 }>;
 
 interface BlockViewerProps {
@@ -27,8 +26,7 @@ const BlockViewer = ({
                 className + (config.className ? " " + config.className : "")
             }
             style={config.style ?? {}}
-            tag={metadata.tag}
-            data={metadata.data}
+            metadata={metadata}
         />
     );
 };

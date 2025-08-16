@@ -8,11 +8,13 @@ type data = {
 };
 
 export type HTMLPreviewBlock = {
+    id: string;
     type: "html-preview";
     data: data;
 };
 
-export type HTMLPreviewProps = Omit<HTMLPreviewBlock, "type"> & {
+export type HTMLPreviewProps = {
     className?: string;
     style?: Record<string, string>;
+    metadata: HTMLPreviewBlock;
 };

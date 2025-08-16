@@ -1,17 +1,18 @@
 import type { HeadingProps } from "./types";
 import { spacingConfig } from "../libs/styles";
 
-const Heading = ({ className = "", style, data }: HeadingProps) => {
-    const Tag = data.tag;
+const Heading = ({ className = "", style, metadata }: HeadingProps) => {
+    const Tag = metadata.data.tag;
 
     return (
         <Tag
+            {...(metadata.data.flagged ? { id: metadata.id } : {})}
             className={`${spacingConfig["heading"][Tag]} ${className}`}
             style={{
-                ...(data.style ?? {}),
+                ...(metadata.data.style ?? {}),
                 ...(style ?? {}),
             }}
-            dangerouslySetInnerHTML={{ __html: data.html }}
+            dangerouslySetInnerHTML={{ __html: metadata.data.html }}
         ></Tag>
     );
 };

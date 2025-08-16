@@ -4,7 +4,7 @@ import EditorComponent from "./components/EditorComponent";
 import "../styles/editor.css";
 
 const Editor = ({
-    blocks = [],
+    initials = [],
     defaultBlock = "paragraph",
     plugins = [],
     config = {},
@@ -17,7 +17,7 @@ const Editor = ({
     const Component = () => (
         <EditorComponent
             registers={registers}
-            values={blocks}
+            values={Array.isArray(initials) ? initials : initials.blocks}
             ref={editorRef}
             defaultBlock={defaultBlock}
             config={config}

@@ -7,10 +7,10 @@ import { MdOutlineDone } from "react-icons/md";
 import { copyToClipboard } from "../libs/utilities";
 import { spacingConfig } from "../libs/styles";
 
-const Code = ({ className = "", style, data }: CodeProps) => {
+const Code = ({ className = "", style, metadata }: CodeProps) => {
     const highlighted = useMemo(
-        () => hljs.highlightAuto(data.code).value,
-        [data.code]
+        () => hljs.highlightAuto(metadata.data.code).value,
+        [metadata.data.code]
     );
 
     return (
@@ -20,9 +20,9 @@ const Code = ({ className = "", style, data }: CodeProps) => {
         >
             <div className="w-full flex justify-between items-center bg-gray-100 dark:bg-slate-700">
                 <div>
-                    {data.label && (
+                    {metadata.data.label && (
                         <p className="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-mono font-medium text-sm">
-                            {data.label}
+                            {metadata.data.label}
                         </p>
                     )}
                 </div>
@@ -65,7 +65,7 @@ const Code = ({ className = "", style, data }: CodeProps) => {
                                 ".copied"
                             ) as HTMLSpanElement;
 
-                            copyToClipboard(data.code, () => {
+                            copyToClipboard(metadata.data.code, () => {
                                 copy.hidden = true;
                                 copied.hidden = false;
                                 setTimeout(() => {
