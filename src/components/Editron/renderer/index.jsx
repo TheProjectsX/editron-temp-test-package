@@ -1,4 +1,5 @@
 import RendererComponent from "./components/RendererComponent";
+import TableOfContents from "./components/tableOfContents";
 import { register } from "./register";
 import "../styles/renderer.css";
 
@@ -19,3 +20,4 @@ const Renderer = ({ config = {}, plugins = [] } = {}) => {
 };
 
 export default Renderer;
+export { TableOfContents };

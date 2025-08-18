@@ -4,14 +4,12 @@ import RendererComponent from "./components/Renderer";
 import { demo } from "./components/blank/demo";
 
 const App = () => {
-    const [mode, setMode] = useState<"editor" | "renderer">("editor");
+    const [mode, setMode] = useState<"editor" | "renderer">("renderer");
 
-    const [data, setData] = useState<{ blocks: Record<string, any>[] }>({
-        blocks: demo,
-    });
+    const [data, setData] = useState<{ blocks: Record<string, any>[] }>(demo);
     return (
-        <div className="max-w-3xl w-full">
-            <div className="flex items-center gap-4 mb-10">
+        <div className="w-full flex flex-col items-center">
+            <div className="flex items-center gap-4 mb-10 max-w-3xl w-full">
                 <button
                     className="w-full p-2.5 text-white font-semibold rounded-2xl cursor-pointer bg-blue-700 active:scale-95 transition-all"
                     onClick={() => {
@@ -42,12 +40,12 @@ const App = () => {
                 </button>
             </div>
 
-            <div className="w-full">
+            <div className="w-full flex justify-center">
                 {mode === "editor" && (
                     <EditorComponent blocks={data} setBlocks={setData} />
                 )}
 
-                {mode === "renderer" && <RendererComponent blocks={data} />}
+                {mode === "renderer" && <RendererComponent data={data} />}
             </div>
         </div>
     );

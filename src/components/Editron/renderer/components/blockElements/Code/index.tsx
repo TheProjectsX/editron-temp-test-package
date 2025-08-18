@@ -21,12 +21,12 @@ const Code = ({ className = "", style, metadata }: CodeProps) => {
             <div className="w-full flex justify-between items-center bg-gray-100 dark:bg-slate-700">
                 <div>
                     {metadata.data.label && (
-                        <p className="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-mono font-medium text-sm">
+                        <p className="px-4 py-2 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-mono font-medium text-sm border border-b-0 border-gray-300 dark:border-gray-600">
                             {metadata.data.label}
                         </p>
                     )}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-3">
                     <label className="items-center gap-2 text-sm font-semibold select-none hidden sm:flex">
                         <input
                             type="checkbox"
@@ -53,7 +53,7 @@ const Code = ({ className = "", style, metadata }: CodeProps) => {
                         Line Wrap
                     </label>
                     <button
-                        className="py-2 w-20 bg-gray-100 dark:bg-gray-700 cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 dark:text-gray-100 border-x border-gray-200 dark:border-gray-600"
+                        className="py-2 w-20 bg-transparent cursor-pointer disabled:cursor-default text-sm font-medium text-gray-800 dark:text-gray-100 border-x border-gray-200 dark:border-gray-600"
                         title="Copy Code"
                         onClick={(e) => {
                             const target = e.currentTarget as HTMLButtonElement;

@@ -22,7 +22,7 @@ const EditorComponent = ({
     });
 
     return (
-        <>
+        <section className="max-w-3xl w-full">
             <div className="bg-white dark:bg-slate-900 rounded-2xl w-full p-6 pb-1.5 mb-5">
                 <Component />
             </div>
@@ -37,7 +37,7 @@ const EditorComponent = ({
             >
                 Save
             </button>
-        </>
+        </section>
     );
 };
 
