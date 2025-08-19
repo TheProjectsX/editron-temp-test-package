@@ -2,7 +2,7 @@ import { Fragment } from "react/jsx-runtime";
 
 export type TableOfContentsData =
     | {
-          tableOfContent: { label: string; id: string }[];
+          tableOfContents: { label: string; id: string }[];
       }
     | { label: string; id: string }[];
 
@@ -16,7 +16,7 @@ const TableOfContents = ({
     children?: (label: string, href: string) => React.ReactElement;
 }) => {
     if (CustomElement) {
-        return (Array.isArray(data) ? data : data.tableOfContent).map(
+        return (Array.isArray(data) ? data : data.tableOfContents).map(
             (item) => (
                 <Fragment key={item.id}>
                     {CustomElement(item.label, `#${item.id}`)}
@@ -27,7 +27,7 @@ const TableOfContents = ({
 
     return (
         <ul className="space-y-1.5">
-            {(Array.isArray(data) ? data : data.tableOfContent).map((item) => (
+            {(Array.isArray(data) ? data : data.tableOfContents).map((item) => (
                 <li key={item.id}>
                     <a
                         href={`#${item.id}`}

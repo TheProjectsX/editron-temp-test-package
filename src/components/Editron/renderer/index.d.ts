@@ -62,7 +62,7 @@ export interface RendererProps {
 export type TableOfContentsData =
     | {
           blocks?: any;
-          tableOfContent?: { label: string; id: string }[];
+          tableOfContents?: { label: string; id: string }[];
       }
     | { label: string; id: string }[];
 
