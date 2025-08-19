@@ -20,9 +20,7 @@ export type AllTypes =
 export type RendererBlock = {
     id: string;
     type: AllTypes | string; // string = custom user type
-    data: {
-        tag: string;
-    } & Record<string, any>;
+    data: { tag: string } & Record<string, any>;
 };
 
 // -------------------
@@ -31,9 +29,7 @@ export type RendererBlock = {
 export type PluginProps = {
     className: string;
     style?: CSSProperties;
-    metadata: {
-        tag: string;
-    } & Record<string, any>;
+    metadata: { tag: string } & Record<string, any>;
 };
 
 export type PluginType = {

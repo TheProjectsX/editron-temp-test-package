@@ -35,7 +35,7 @@ const AllBlocks = [
 // Structure `block structure` to be useable in the register throughout the app
 const genStructure = (
     block: Record<string, any>,
-    config: UserConfig["block"]
+    config: UserConfig["blocks"]
 ): BlockStructure | PluginStructure => {
     const structure: BlockStructure = { ...block.structure };
 
@@ -68,7 +68,7 @@ const genStructure = (
 
 // Structure config based on the block type
 const genConfig = (config: UserConfig, type: string) => {
-    const typeConf = { ...(config.block?.[type] ?? {}) } as any;
+    const typeConf = { ...(config.blocks?.[type] ?? {}) } as any;
 
     if (config.enableTableOfContents && type === "heading") {
         typeConf["flaggable"] = true;
@@ -101,7 +101,7 @@ export const register = (
     // Ensure all items conform to RegisterReturn type
     const blocks: RegisterReturn[] = AllBlocks.map((block) => ({
         component: block.component as React.FC<any>,
-        structure: genStructure(block, config.block),
+        structure: genStructure(block, config.blocks),
         config: genConfig(config, block.structure.type),
         settings:
             "settings" in block
@@ -112,7 +112,7 @@ export const register = (
 
     const pluginItems: RegisterReturn[] = plugins.map((plugin) => ({
         component: plugin.component as React.FC<any>,
-        structure: genStructure(plugin, config.block),
+        structure: genStructure(plugin, config.blocks),
         config: genConfig(config, plugin.structure.type),
         settings: plugin.settings,
         processor: plugin.processor,

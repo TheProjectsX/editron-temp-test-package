@@ -34,8 +34,6 @@ type AllTypes = AllBlocks["type"];
 // All Data
 type AllData = AllBlocks["data"];
 
-// ---------------------------------- NOT USING ---------------------------------- //
-*/
 
 // Editor Block
 export type EditorBlock = {
@@ -81,9 +79,8 @@ export type PluginStructure = Omit<BlockStructure, "data"> & {
 // Plugin Props
 export type PluginProps = {
     className?: string;
-    tag?: string;
-    data: Record<string, any>;
-    onUpdate: (value: any) => void;
+    data: { tag: string } & Record<string, any>;
+    onUpdate: (value: Record<string, any>) => void;
 };
 
 // Plugin type
@@ -92,4 +89,24 @@ export type PluginType = {
     structure: PluginStructure;
     settings?: SettingsStructure[];
     processor?: (block: Record<string, any>) => Promise<Record<string, any>>;
+};
+// ---------------------------------- NOT USING ---------------------------------- //
+*/
+
+import {
+    EditorBlock,
+    BlockStructure,
+    SettingsStructure,
+    PluginProps,
+    PluginStructure,
+    PluginType,
+} from "..";
+
+export {
+    EditorBlock,
+    BlockStructure,
+    SettingsStructure,
+    PluginProps,
+    PluginStructure,
+    PluginType,
 };
