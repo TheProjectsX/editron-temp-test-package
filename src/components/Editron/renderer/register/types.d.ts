@@ -1,7 +1,8 @@
+/*
+
+// ---------------------------------- NOT USING ---------------------------------- //
 import type { AllTypes } from "..";
 
-/*
-// ---------------------------------- NOT USING ---------------------------------- //
 import type { CodeBlock } from "../components/blockElements/Code/types";
 import type { DividerBlock } from "../components/blockElements/Divider/types";
 import type { HeadingBlock } from "../components/blockElements/Heading/types";
@@ -37,8 +38,7 @@ export type RendererBlock = {
 // All Data
 // export type AllData = AllBlocks["data"];
 
-// ---------------------------------- NOT USING ---------------------------------- //
-*/
+
 
 // Renderer Blocks
 export type RendererBlock = {
@@ -62,3 +62,7 @@ export type PluginType = {
     type: "string";
     component: React.FC<PluginProps>;
 };
+
+
+// ---------------------------------- NOT USING ---------------------------------- //
+*/

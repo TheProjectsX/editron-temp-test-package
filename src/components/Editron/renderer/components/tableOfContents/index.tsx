@@ -1,25 +1,33 @@
 import { Fragment } from "react/jsx-runtime";
 
+export type TableOfContentsData =
+    | {
+          tableOfContent: { label: string; id: string }[];
+      }
+    | { label: string; id: string }[];
+
 const TableOfContents = ({
-    data,
+    data = [],
     className = "",
     children: CustomElement,
 }: {
-    data: { label: string; id: string }[];
+    data: TableOfContentsData;
     className?: string;
     children?: (label: string, href: string) => React.ReactElement;
 }) => {
     if (CustomElement) {
-        return data.map((item) => (
-            <Fragment key={item.id}>
-                {CustomElement(item.label, `#${item.id}`)}
-            </Fragment>
-        ));
+        return (Array.isArray(data) ? data : data.tableOfContent).map(
+            (item) => (
+                <Fragment key={item.id}>
+                    {CustomElement(item.label, `#${item.id}`)}
+                </Fragment>
+            )
+        );
     }
 
     return (
         <ul className="space-y-1.5">
-            {data.map((item) => (
+            {(Array.isArray(data) ? data : data.tableOfContent).map((item) => (
                 <li key={item.id}>
                     <a
                         href={`#${item.id}`}

@@ -24,12 +24,12 @@ const AllBlocks = [
     Paragraph,
     Heading,
     List,
+    Table,
     Divider,
     Code,
     Quote,
     Image,
     HTMLPreview,
-    Table,
 ];
 
 // Structure `block structure` to be useable in the register throughout the app

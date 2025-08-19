@@ -3,10 +3,21 @@ import EditorComponent from "./components/Editor";
 import RendererComponent from "./components/Renderer";
 import { demo } from "./components/blank/demo";
 
+export type blockState = {
+    blocks: {
+        id: string;
+        type: string;
+        data: {
+            tag: string;
+        } & Record<string, any>;
+    }[];
+    tableOfContent?: { label: string; id: string };
+};
+
 const App = () => {
     const [mode, setMode] = useState<"editor" | "renderer">("renderer");
 
-    const [data, setData] = useState<{ blocks: Record<string, any>[] }>(demo);
+    const [data, setData] = useState<blockState>(demo);
     return (
         <div className="w-full flex flex-col items-center">
             <div className="flex items-center gap-4 mb-10 max-w-3xl w-full">

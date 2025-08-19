@@ -5,16 +5,26 @@ const RendererComponent = ({
     data,
 }: {
     data: {
-        blocks: Record<string, any>[];
+        blocks: {
+            id: string;
+            type: string;
+            data: {
+                tag: string;
+            } & Record<string, any>;
+        }[];
         tableOfContents?: { label: string; id: string }[];
     };
 }) => {
-    const [Component] = Renderer();
+    const [Component] = Renderer({
+        config: {
+            something: {},
+        },
+    });
 
     return (
         <div className="flex flex-col-reverse lg:flex-row gap-2 lg:gap-4 relative">
             <div className="bg-white dark:bg-slate-900 px-4 py-4 max-w-3xl w-full">
-                <Component blocks={data.blocks} />
+                <Component blocks={data} />
             </div>
 
             {Array.isArray(data.tableOfContents) &&
@@ -24,7 +34,7 @@ const RendererComponent = ({
                             <p className="text-black dark:text-white font-semibold mb-2 text-lg">
                                 On This Page
                             </p>
-                            <TableOfContents data={data.tableOfContents} />
+                            <TableOfContents data={data} />
                         </div>
                     </div>
                 )}

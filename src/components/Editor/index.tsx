@@ -1,3 +1,4 @@
+import type { blockState } from "../../App";
 import { uploadToImgbb } from "../../util";
 import Editor from "../Editron/editor";
 
@@ -8,9 +9,7 @@ const EditorComponent = ({
 }: {
     defaultBlock?: string;
     blocks?: { blocks: Record<string, any>[] } | Record<string, any>[];
-    setBlocks: React.Dispatch<
-        React.SetStateAction<{ blocks: Record<string, any>[] }>
-    >;
+    setBlocks: React.Dispatch<React.SetStateAction<blockState>>;
 }) => {
     const [Component, save] = Editor({
         initials: blocks,

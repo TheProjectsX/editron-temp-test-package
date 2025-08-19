@@ -1,5 +1,5 @@
 import React from "react";
-import type { RendererBlock } from "../../register/types";
+import type { RendererBlock } from "../..";
 
 export type BlockElement = React.FC<{
     className?: string;
