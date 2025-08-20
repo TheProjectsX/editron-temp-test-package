@@ -52,6 +52,7 @@ const BlockViewer = ({
     return (
         <div
             data-name="block-editor"
+            data-type={metadata.type}
             className={`flex flex-col justify-center ${className}`}
             onMouseEnter={(e) => {
                 if (controllerFocused) return;

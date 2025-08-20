@@ -17,9 +17,6 @@ const EditorComponent = ({
         config: {
             enableTableOfContents: true,
             uploadImage: uploadToImgbb,
-            blocks: {
-                "soe": {}
-            }
         },
     });
 

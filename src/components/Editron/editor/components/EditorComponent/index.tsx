@@ -135,7 +135,9 @@ const EditorComponent = forwardRef<
                     setControllerFocused={setControllerFocused}
                 />
 
-                <InlineToolbar />
+                <InlineToolbar
+                    config={recordFromRegister(registers, "config")}
+                />
             </div>
         </div>
     );

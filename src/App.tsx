@@ -15,7 +15,7 @@ export type blockState = {
 };
 
 const App = () => {
-    const [mode, setMode] = useState<"editor" | "renderer">("renderer");
+    const [mode, setMode] = useState<"editor" | "renderer">("editor");
 
     const [data, setData] = useState<blockState>(demo);
     return (

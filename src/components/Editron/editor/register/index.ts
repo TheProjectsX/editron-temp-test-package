@@ -68,7 +68,32 @@ const genStructure = (
 
 // Structure config based on the block type
 const genConfig = (config: UserConfig, type: string) => {
-    const typeConf = { ...(config.blocks?.[type] ?? {}) } as any;
+    const defaultConfig: {
+        [name: string]: {
+            inlineToolbar: boolean;
+        };
+    } = {
+        paragraph: {
+            inlineToolbar: false,
+        },
+        divider: {
+            inlineToolbar: false,
+        },
+        code: {
+            inlineToolbar: false,
+        },
+        image: {
+            inlineToolbar: false,
+        },
+        "html-preview": {
+            inlineToolbar: false,
+        },
+    };
+
+    const typeConf = {
+        ...(config.blocks?.[type] ?? {}),
+        ...(defaultConfig[type] ?? {}),
+    } as any;
 
     if (config.enableTableOfContents && type === "heading") {
         typeConf["flaggable"] = true;

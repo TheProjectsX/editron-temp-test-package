@@ -5,7 +5,11 @@ import { useTextSelection } from "./useTextSelection";
 import { FakeHighlight } from "./FakeHighlight";
 import { createPortal } from "react-dom";
 
-const InlineToolbar = () => {
+const InlineToolbar = ({
+    config,
+}: {
+    config: Record<string, { inlineToolbar?: boolean } | any>;
+}) => {
     const [preventSelectEvent, setPreventSelectEvent] = useState(false);
     const { saveSelection, restoreSelection } = useTextSelection();
     const [rendered, setRendered] = useState(false);
@@ -25,7 +29,13 @@ const InlineToolbar = () => {
     }, [preventSelectEvent]);
 
     // Will not show the Toolbar if there is no position OR the component haven't rendered yet OR the focused block does not support Toolbar
-    if (!selectionData || !rendered) return null;
+    if (
+        !selectionData ||
+        !rendered ||
+        config[selectionData.element.dataset["type"] ?? ""].inlineToolbar ===
+            false
+    )
+        return null;
 
     const Toolbar = (
         <div
