@@ -2,7 +2,6 @@ import { cleanInnerHTML } from "../libs/utilities";
 import { preventNewLine } from "../libs/events";
 import type { HeadingProps } from "./types";
 import { processor, settings, structure } from "./meta";
-import { spacingConfig } from "../libs/styles";
 import { GoDotFill } from "react-icons/go";
 
 const Heading = ({ className = "", data, config, onUpdate }: HeadingProps) => {
@@ -28,7 +27,7 @@ const Heading = ({ className = "", data, config, onUpdate }: HeadingProps) => {
 
     return (
         <div
-            className={`${spacingConfig["heading"][Tag]} ${className} relative`}
+            className={`${className} relative`}
         >
             {config?.flaggable && (
                 <button

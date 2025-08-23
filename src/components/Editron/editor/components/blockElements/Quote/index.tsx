@@ -1,5 +1,4 @@
 import { preventNewLine } from "../libs/events";
-import { spacingConfig } from "../libs/styles";
 import { cleanInnerHTML } from "../libs/utilities";
 import { settings, structure } from "./meta";
 import type { QuoteProps } from "./types";
@@ -11,7 +10,7 @@ const Quote = ({ className = "", data, onUpdate }: QuoteProps) => {
                 data.type === "highlighted"
                     ? "p-4 border-s-4 border-gray-300 bg-gray-50 dark:border-gray-500 dark:bg-gray-800"
                     : ""
-            } ${spacingConfig["quote"]} ${className}`}
+            } ${className}`}
         >
             <p
                 className="outline-none text-xl italic leading-relaxed text-gray-900 dark:text-white cursor-text mb-1.5"

@@ -85,7 +85,7 @@ const EditorComponent = forwardRef<
                 <div
                     data-name="editor-blocks-wrapper"
                     onKeyDown={handleKeyDown}
-                    className="dark:text-gray-100"
+                    className="dark:text-gray-100 space-y-2.5"
                 >
                     {blocks.map((block) => {
                         const Component = getFromRegister(

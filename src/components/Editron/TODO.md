@@ -82,3 +82,5 @@ export type CodeProps = Omit<CodeBlock, "type"> & {
 -   Changed `AllBlocks` to explicit type
 -   Added `config` in props data and sending them to the `blocks`
 -   Updated `renderer` blocks and types based on the editor changes
+
+-   Components of `editor`

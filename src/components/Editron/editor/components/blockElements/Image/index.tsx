@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { processor, settings, structure } from "./meta";
 import type { data as ImageData, ImageProps } from "./types";
-import { spacingConfig } from "../libs/styles";
 
 const Image = ({ className = "", data, onUpdate }: ImageProps) => {
     const [currentFile, setCurrentFile] = useState<ImageData["file"]>(
@@ -15,9 +14,7 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
 
     return (
         <div
-            className={`flex items-center justify-center ${
-                spacingConfig["image"]
-            } ${className} ${data.type === "free" ? "min-h-52" : "h-52"}`}
+            className={`flex items-center justify-center ${className} ${data.type === "free" ? "min-h-52" : "h-52"}`}
         >
             {currentFile && (
                 <label className="w-full h-full cursor-pointer">
