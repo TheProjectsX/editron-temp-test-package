@@ -17,7 +17,7 @@ import InlineToolbar from "../InlineToolbar";
 import {
     genDemo,
     getFromRegister,
-    handleArrowKeyDown,
+    handleKeyDown,
     processExport,
     recordFromRegister,
 } from "./utils";
@@ -84,7 +84,7 @@ const EditorComponent = forwardRef<
             <div className="relative">
                 <div
                     data-name="editor-blocks-wrapper"
-                    onKeyDown={handleArrowKeyDown}
+                    onKeyDown={handleKeyDown}
                     className="dark:text-gray-100"
                 >
                     {blocks.map((block) => {

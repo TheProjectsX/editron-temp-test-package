@@ -73,9 +73,6 @@ const genConfig = (config: UserConfig, type: string) => {
             inlineToolbar: boolean;
         };
     } = {
-        paragraph: {
-            inlineToolbar: false,
-        },
         divider: {
             inlineToolbar: false,
         },

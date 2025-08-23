@@ -49,7 +49,7 @@ export const setCaretToEnd = (el: HTMLElement) => {
 };
 
 // Handle arrow keys down and move the focus of element
-export const handleArrowKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+export const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
     const key = e.key;
     if (key !== "ArrowUp" && key !== "ArrowDown") return;
 

@@ -1,6 +1,7 @@
 import type { blockState } from "../../App";
 import { uploadToImgbb } from "../../util";
 import Editor from "../Editron/editor";
+// import Editor from "articwriter/editor";
 
 const EditorComponent = ({
     defaultBlock,
@@ -22,7 +23,7 @@ const EditorComponent = ({
 
     return (
         <section className="max-w-3xl w-full">
-            <div className="bg-white dark:bg-slate-900 rounded-2xl w-full p-6 pb-1.5 mb-5">
+            <div className="bg-white dark:bg-slate-900 rounded-2xl w-full px-8 py-6 pb-1.5 mb-5">
                 <Component />
             </div>
 

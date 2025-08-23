@@ -1,5 +1,5 @@
-import Renderer from "../Editron/renderer";
-import { TableOfContents } from "../Editron/renderer";
+import Renderer, { TableOfContents } from "../Editron/renderer";
+// import Renderer, { TableOfContents } from "articwriter/renderer";
 
 const RendererComponent = ({
     data,

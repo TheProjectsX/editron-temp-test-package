@@ -66,3 +66,6 @@ export type PluginType = {
 
 // ---------------------------------- NOT USING ---------------------------------- //
 */
+
+import type { PluginType } from "..";
+export { PluginType };

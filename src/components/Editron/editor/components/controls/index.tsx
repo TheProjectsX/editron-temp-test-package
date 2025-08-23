@@ -64,9 +64,11 @@ const Controls = ({
         const currentFocusedElement = focusedBlock.element;
 
         const payload = {
-            tag: structure.tags,
             type: structure.type,
-            data: structure.data,
+            data: {
+                ...structure.data,
+                tag: structure.tags,
+            },
         };
 
         dispatch({

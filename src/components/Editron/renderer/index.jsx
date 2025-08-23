@@ -1,6 +1,7 @@
 import RendererComponent from "./components/RendererComponent";
 import TableOfContents from "./components/tableOfContents";
 import { register } from "./register";
+import "../styles/index.css"
 import "../styles/renderer.css";
 
 const Renderer = ({ config = {}, plugins = [] } = {}) => {

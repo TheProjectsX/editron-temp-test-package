@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@source inline("mb-3, sm:mb-4, text-2xl, sm:text-3xl, mb-5, sm:mb-6, font-bold, text-xl, sm:text-2xl, mb-4, sm:mb-5, font-semibold, text-lg, sm:text-xl, mb-3, sm:mb-4, text-base, sm:text-lg, mb-2, sm:mb-3, font-semibold, text-base, mb-2, font-medium, text-sm, sm:text-base, mb-2, font-medium, mb-3, sm:mb-4, mb-4, sm:mb-5, h-8, sm:h-10, h-7, sm:h-8, h-6, sm:h-7, h-5");
+
 @plugin 'tailwind-scrollbar';
 
 html {
