@@ -62,7 +62,7 @@ export type SettingsStructure = {
     name: string;
     icon?: IconType;
     transform?: (values: EditorBlock) => Partial<EditorBlock> | null;
-    actions: {
+    actions?: {
         name: string;
         icon?: IconType;
         transform: (values: EditorBlock) => Partial<EditorBlock> | null;

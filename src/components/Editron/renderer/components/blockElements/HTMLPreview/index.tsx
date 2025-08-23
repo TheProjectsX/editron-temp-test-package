@@ -11,16 +11,22 @@ const HTMLPreview = ({ className = "", style, metadata }: HTMLPreviewProps) => {
             style={style ?? {}}
         >
             {/* Preview */}
-            <div className="border border-b-0 border-gray-200 dark:border-gray-600 bg-gray-400 dark:bg-slate-700 flex justify-center">
+            <div
+                className={`border border-gray-200 dark:border-gray-600 bg-gray-400 dark:bg-slate-700 flex justify-center ${
+                    metadata.data.mode === "reveal" ? "border-b-0" : ""
+                }`}
+            >
                 <Iframe srcDoc={makeSrcDoc(metadata.data)} />
             </div>
 
             {/* Code View */}
-            <CodeView
-                html={metadata.data.html}
-                css={metadata.data.css}
-                js={metadata.data.js}
-            />
+            {metadata.data.mode === "reveal" && (
+                <CodeView
+                    html={metadata.data.html}
+                    css={metadata.data.css}
+                    js={metadata.data.js}
+                />
+            )}
         </div>
     );
 };

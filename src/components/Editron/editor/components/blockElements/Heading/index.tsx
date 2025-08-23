@@ -17,18 +17,16 @@ const Heading = ({ className = "", data, config, onUpdate }: HeadingProps) => {
     };
 
     const relativeHeight = {
-        h1: "h-8 sm:h-10", // text-3xl
-        h2: "h-7 sm:h-8", // text-2xl
-        h3: "h-6 sm:h-7", // text-xl
-        h4: "h-6", // text-lg
-        h5: "h-6", // text-base
-        h6: "h-5", // text-sm
+        h1: "h-8 sm:h-10",
+        h2: "h-7 sm:h-8",
+        h3: "h-6 sm:h-7",
+        h4: "h-6",
+        h5: "h-6",
+        h6: "h-5",
     };
 
     return (
-        <div
-            className={`${className} relative`}
-        >
+        <div className={`${className} relative`}>
             {config?.flaggable && (
                 <button
                     className={`absolute -left-5 cursor-pointer text-gray-300 dark:text-gray-600 hover:text-gray-400 dark:hover:text-gray-500 data-[flagged=true]:text-black data-[flagged=true]:dark:text-white ${relativeHeight[Tag]}`}

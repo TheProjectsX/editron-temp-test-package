@@ -4,6 +4,8 @@ import {
     MdOutlineFormatListBulleted,
 } from "react-icons/md";
 import { AlignSettings } from "../libs/common";
+import type { EditorBlock } from "../libs/types";
+import type { ListBlock } from "./types";
 
 export const structure = {
     name: "List",
@@ -35,15 +37,25 @@ export const settings = [
     {
         name: "Ordered",
         icon: MdFormatListNumbered,
-        transform: () => {
-            return { tag: "ol" };
+        transform: (block: EditorBlock<ListBlock>) => {
+            return {
+                data: {
+                    ...block.data,
+                    tag: "ol",
+                },
+            };
         },
     },
     {
         name: "Unordered",
         icon: MdOutlineFormatListBulleted,
-        transform: () => {
-            return { tag: "ul" };
+        transform: (block: EditorBlock<ListBlock>) => {
+            return {
+                data: {
+                    ...block.data,
+                    tag: "ul",
+                },
+            };
         },
     },
     AlignSettings,

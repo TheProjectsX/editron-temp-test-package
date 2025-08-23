@@ -4,7 +4,7 @@ type data = {
     html: string;
     css?: string;
     js?: string;
-    type: "preview" | "reveal";
+    mode: "preview" | "reveal";
 };
 
 export type HTMLPreviewBlock = {

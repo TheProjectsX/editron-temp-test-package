@@ -63,43 +63,73 @@ export const settings = [
             {
                 name: "Heading 1",
                 icon: LuHeading1,
-                transform: () => {
-                    return { tag: "h1" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h1",
+                        },
+                    };
                 },
             },
             {
                 name: "Heading 2",
                 icon: LuHeading2,
-                transform: () => {
-                    return { tag: "h2" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h2",
+                        },
+                    };
                 },
             },
             {
                 name: "Heading 3",
                 icon: LuHeading3,
-                transform: () => {
-                    return { tag: "h3" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h3",
+                        },
+                    };
                 },
             },
             {
                 name: "Heading 4",
                 icon: LuHeading4,
-                transform: () => {
-                    return { tag: "h4" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h4",
+                        },
+                    };
                 },
             },
             {
                 name: "Heading 5",
                 icon: LuHeading5,
-                transform: () => {
-                    return { tag: "h5" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h5",
+                        },
+                    };
                 },
             },
             {
                 name: "Heading 6",
                 icon: LuHeading6,
-                transform: () => {
-                    return { tag: "h6" };
+                transform: (block: EditorBlock<HeadingBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            tag: "h6",
+                        },
+                    };
                 },
             },
         ],
