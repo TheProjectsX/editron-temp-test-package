@@ -3,3 +3,7 @@
     color: #016ad3;
     text-decoration: underline;
 } */
+
+.resizer-none::-webkit-resizer {
+    display: none;
+}

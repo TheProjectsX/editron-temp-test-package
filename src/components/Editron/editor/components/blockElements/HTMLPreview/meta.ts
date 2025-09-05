@@ -1,8 +1,10 @@
-import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { LuEye } from "react-icons/lu";
 import { MdAutoMode } from "react-icons/md";
 import { TbEyeCode } from "react-icons/tb";
 import type { EditorBlock } from "../libs/types";
 import type { HTMLPreviewBlock } from "./types";
+import { VscPreview } from "react-icons/vsc";
+import { IoCodeSlash } from "react-icons/io5";
 
 export const structure = {
     name: "HTML Preview",
@@ -21,8 +23,20 @@ export const settings = [
         icon: MdAutoMode,
         actions: [
             {
+                name: "Reveal",
+                icon: LuEye,
+                transform: (block: EditorBlock<HTMLPreviewBlock>) => {
+                    return {
+                        data: {
+                            ...block.data,
+                            mode: "reveal",
+                        },
+                    };
+                },
+            },
+            {
                 name: "Preview Only",
-                icon: LuEyeClosed,
+                icon: VscPreview,
                 transform: (block: EditorBlock<HTMLPreviewBlock>) => {
                     return {
                         data: {
@@ -33,13 +47,13 @@ export const settings = [
                 },
             },
             {
-                name: "Reveal",
-                icon: LuEye,
+                name: "Code Only",
+                icon: IoCodeSlash,
                 transform: (block: EditorBlock<HTMLPreviewBlock>) => {
                     return {
                         data: {
                             ...block.data,
-                            mode: "reveal",
+                            mode: "hide",
                         },
                     };
                 },

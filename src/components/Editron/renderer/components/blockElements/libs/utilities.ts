@@ -1,4 +1,4 @@
-export const copyToClipboard = (
+export const copyToClipboard = async (
     value: string,
     onCopied: () => void = () => {}
 ) => {
@@ -35,7 +35,8 @@ export const makeSrcDoc = ({
 <meta charset="utf-8">
 ${head}
 ${css ? `<style>${css}</style>` : ""}
-<style>*{padding: 0; margin: 0; box-sizing: border-box}</style>
+<style>*{padding:0; margin:0; box-sizing:border-box}\nhtml::-webkit-scrollbar-track{border-radius:4px;}\nhtml::-webkit-scrollbar-thumb{border-radius:4px;}\nhtml::-webkit-scrollbar-corner{border-radius:4px;}\nhtml{scrollbar-width:thin;}\nhtml::-webkit-scrollbar{display:block;width:8px;height:8px;}
+</style>
 </head>
 <body>
 ${fixedHtml}

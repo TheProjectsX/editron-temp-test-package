@@ -13,7 +13,7 @@ export const structure = {
     type: "image",
     tags: "img",
     data: {
-        file: null,
+        file: null
     },
 };
 

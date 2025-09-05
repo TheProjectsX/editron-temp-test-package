@@ -248,6 +248,7 @@ export const demo = {
                     src: "https://i.ibb.co.com/7xJXPy0C/alexia-midgar-teis-2.png",
                     size: 522950,
                 },
+                alt: "Alexia Midgar",
                 type: "free",
             },
             id: "XOrh7Y3-mX",

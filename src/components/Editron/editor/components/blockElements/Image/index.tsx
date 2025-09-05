@@ -14,7 +14,9 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
 
     return (
         <div
-            className={`flex items-center justify-center ${className} ${data.type === "free" ? "min-h-52" : "h-52"}`}
+            className={`flex flex-col gap-2.5 items-center justify-center ${className} ${
+                data.type === "free" ? "min-h-52" : "h-52"
+            }`}
         >
             {currentFile && (
                 <label className="w-full h-full cursor-pointer">
@@ -63,6 +65,18 @@ const Image = ({ className = "", data, onUpdate }: ImageProps) => {
                     />
                 </label>
             )}
+
+            <input
+                type="text"
+                name="alt"
+                className="outline-none py-3 px-4 font-mono text-sm bg-[#f5f5f5] dark:bg-[#1c2641] text-gray-800 dark:text-slate-200 rounded-sm w-full"
+                placeholder="Alt text for Image"
+                onBlur={(e) => {
+                    const target = e.currentTarget ?? e.target;
+                    onUpdate({ ...data, alt: target.value });
+                }}
+                defaultValue={data.alt ?? ""}
+            />
         </div>
     );
 };
